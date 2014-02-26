@@ -18,6 +18,7 @@ def is_ascii(s):
 Base.metadata.create_all(engine)
 
 with codecs.open('../../Dropbox/processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='ignore') as tsvin:
+
 		count = 0
 		for row in tsvin:
 				row = row.split('\t')
@@ -27,28 +28,37 @@ with codecs.open('../../Dropbox/processed_tweets_kenya.txt', 'rU', encoding='utf
 
 					#
 					# If the timestamp is invalid, the database is not so consistent
+					# Also trick to remove faulty rows that have correct timestamp but
+					# are not split in the right way.
 					#
 					if len(timestamp) != 24:
 						continue
 
 					#
-					# Delete the quotes
+					# delete the quotes
 					#
 					text = text.replace("\"", "")
-					
-					if not lat:
+
+					#
+					# If there is no location
+					#
+					if len(lat) == 0:
 						lat = 0
 						lng = 0
+
 
 					textToInsert = text
 					textToSearch = text
 					userToSearch = None
-					while re.match(r"(RT|via) +@([^ :]+):? (.+)", textToSearch):
+					while re.match(r"(RT|via) +@([^ :]+):? (.+)", textToSearch) != None:
 						rt_patterns = re.compile(r"(RT|via) +@([^ :]+):? (.+)", re.IGNORECASE).split(textToSearch)
 						textToSearch = rt_patterns[-2]
 						userToSearch = rt_patterns[-3]
 
-					if textToSearch != text:
+					#
+					# If there is a retweet, it needs to be found
+					#
+					if userToSearch:
 						foundTweet = session.query(Tweet).filter(Tweet.username==userToSearch).filter(Tweet.parent_ID==None).filter(Tweet.text.startswith(textToSearch[:10])).first()
 						#
 						# Sometimes it can happen that the retweeter modifies the tweet. Let's try to "fix" it
@@ -62,6 +72,7 @@ with codecs.open('../../Dropbox/processed_tweets_kenya.txt', 'rU', encoding='utf
 							parentTweet = foundTweet.ID
 							textToInsert = None
 					
+
 					u = Tweet(username, textToInsert, datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.000Z"), float(lat), float(lng), parentTweet)
 					session.add(u)
 					session.commit()
@@ -70,8 +81,8 @@ with codecs.open('../../Dropbox/processed_tweets_kenya.txt', 'rU', encoding='utf
 					# if it's not a retweet
 					#
 					if not parentTweet:
-						links = re.findall(r"(http:\/\/[^ ]+)", text)
-						if len(links):
+						links = re.findall(r"http:\/\/t.co\/[a-zA-Z0-9\-\.]+", text)
+						if links:
 							#
 							# let's remove the duplicates
 							#
@@ -80,7 +91,7 @@ with codecs.open('../../Dropbox/processed_tweets_kenya.txt', 'rU', encoding='utf
 								#
 								# if it's a real link
 								#
-								if len(link) > 14 and is_ascii(link):
+								if is_ascii(link):
 									fetchedURL = session.query(URL).filter(URL.shortAddress==link).first()
 									if not fetchedURL:
 										l = URL(link, u.ID)
@@ -92,6 +103,6 @@ with codecs.open('../../Dropbox/processed_tweets_kenya.txt', 'rU', encoding='utf
 					
 
 					session.commit()
-					count = count+1
+					count += 1
 					if count % 1000 == 0:
 						print "processed "+str(count)+" tweets"
