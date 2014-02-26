@@ -37,9 +37,13 @@ with codecs.open('processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='i
 	        #
 	        text = text.replace("\"", "")
 
+	        #
+	        # If there is no location
+	        #
 	        if len(lat) == 0:
 	       		lat = 0
 	       		lng = 0
+
 
 	        textToInsert = text
 	        textToSearch = text
@@ -49,12 +53,16 @@ with codecs.open('processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='i
 	        	textToSearch = rt_patterns[-2]
 	        	userToSearch = rt_patterns[-3]
 
-	        if textToSearch != text:
-	        	foundTweet = session.query(Tweet).filter(Tweet.username==userToSearch).filter(Tweet.parent_ID==None).filter(Tweet.text.startswith(textToSearch[:10])).first()
+	        #
+	        # If there is a retweet, it needs to be found
+	        #
+	        if userToSearch:
+	        	foundTweet = session.query(Tweet).filter(Tweet.username==userToSearch).filter(Tweet.parent_ID==None)
+	        	.filter(Tweet.text.startswith(textToSearch[:10])).first()
 	        	#
 	        	# Sometimes it can happen that the retweeter modifies the tweet. Let's try to "fix" it
 	        	#
-	        	if foundTweet == None:
+	        	if not foundTweet:
 	        		tweetsFromTheUser = session.query(Tweet).filter(Tweet.username==userToSearch).filter(Tweet.parent_ID==None).all()
 	        		if len(tweetsFromTheUser) == 1:
 	        			parentTweet = tweetsFromTheUser[0].ID
@@ -71,8 +79,8 @@ with codecs.open('processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='i
 	        #
 	        # if it's not a retweet
 	        #
-	        if parentTweet == None:
-		        links = re.findall(r"(http:\/\/[^ ]+)", text)
+	        if not parentTweet:
+		        links = re.findall(r"http:\/\/t.co\/[a-zA-Z0-9\-\.]+", text)
 		        if len(links) > 0:
 		        	#
 			        # let's remove the duplicates
@@ -82,9 +90,9 @@ with codecs.open('processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='i
 			        	#
 				        # if it's a real link
 				        #
-			        	if len(link) > 14 and is_ascii(link):
+			        	if is_ascii(link):
 			        		fetchedURL = session.query(URL).filter(URL.shortAddress==link).first()
-			        		if fetchedURL == None:
+			        		if not fetchedURL:
 			        			l = URL(link, u.ID)
 			        			session.add(l)
 			        			fetchedURL = l
