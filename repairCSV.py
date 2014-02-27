@@ -79,11 +79,13 @@ with codecs.open('processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='i
 					parentTweet = foundTweet.ID
 					textToInsert = None
 				else:
-					tweetsFromTheUser = session.query(Tweet).filter(Tweet.username==retweetedUser).filter(Tweet.parent_ID==None).all()
+					
+					query = session.query(Tweet).filter(Tweet.username==retweetedUser).filter(Tweet.parent_ID==None)
+					tweetsFromTheUser = query.count()
 					#
 					# If the retweet is retweeting a tweet that is not present, it will build a "fake" original tweet
 					#
-					if not tweetsFromTheUser:
+					if tweetsFromTheUser == 0:
 						u = Tweet(retweetedUser, retweetedText, timestamp, 0.0, 0.0, None)
 						session.add(u)
 						session.commit()
@@ -93,9 +95,14 @@ with codecs.open('processed_tweets_kenya.txt', 'rU', encoding='utf-8', errors='i
 					#
 					# Sometimes it can happen that the retweeter modifies the tweet. Let's try to "fix" it
 					#
-					elif len(tweetsFromTheUser) == 1:
-						parentTweet = tweetsFromTheUser[0].ID
+					elif tweetsFromTheUser == 1:
+						parentTweet = query.first().ID
 						textToInsert = None
+					else:
+						#
+						# If it is an invalid retweet, we will discard it
+						#
+						continue
 					
 			
 
