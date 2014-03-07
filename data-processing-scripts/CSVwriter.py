@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 
 import sqlalchemy
 
-engine = sqlalchemy.create_engine('sqlite:///SQLite.db')
+engine = sqlalchemy.create_engine('sqlite:////Users/denadai2/Google Drive/InfoVis/Data processing/SQLite.db')
 engine.raw_connection().connection.text_factory = str
 Session = sessionmaker(bind=engine)
 session = Session()

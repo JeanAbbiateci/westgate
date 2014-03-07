@@ -17,7 +17,7 @@ class Tweet(Base):
 	parent_ID = Column(Integer, ForeignKey('Tweet.ID'))
 
 	parentTweet = relationship("Tweet", remote_side=ID)
-
+	retweets = relationship("Tweet", remote_side=parent_ID)
 
 	def __init__(self, username, text, timestamp, lat, lng, parent_ID):
 		self.username = username
