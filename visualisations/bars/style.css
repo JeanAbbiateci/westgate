@@ -1,0 +1,51 @@
+body{
+	margin:0;
+	font-family: Arial;
+	font-size:10px;
+	text-align:center;
+	background-color:#404040;
+}
+
+
+svg
+{
+	margin-top:50px;}
+
+.axis line, .axis path
+{
+	fill:none;
+	stroke: #efefef;
+}
+
+.axis .tick
+{
+	fill:#efefef;
+}
+
+text
+{
+	font-size: 10px;
+	font-family: Arial;
+	text-anchor: middle;
+}
+
+rect
+{
+	transition: all 0.3s;
+	fill:#E67B25;
+}
+
+rect:hover
+{
+	fill:#F79648;
+}
+
+text.values
+{
+	fill:white;
+}
+
+text.months
+{
+	fill:#222;
+}

@@ -1,0 +1,67 @@
+body{
+	margin:0;
+	font-family: 'Lato';
+	font-size:10px;
+	background-color:#444;
+}
+
+#sliderdiv
+{
+	width:60%;
+	margin-left:20%;
+	position:fixed;
+	bottom:25px;
+}
+
+input, textarea, select, a { outline: none; }
+
+input[type='range'] {
+    margin:0px;
+    float:left;
+    -webkit-appearance: none !important;
+    width:70%;
+    height:3px;
+    background-color: transparent;
+    height:10px;
+    border-bottom:1px solid #FF6666;
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: transparent;
+    height:10px;
+    border-bottom:4px solid #fff;
+    width: 10px;
+}
+
+#startstop
+{
+    padding-top:4px;
+    width:29%;
+    float:left;
+}
+#startstop a
+{
+    margin-left:8px;
+    color:white;   
+    text-decoration: none;
+}
+
+
+
+path {
+  stroke: #555;
+  stroke-width: 0.25px;
+  fill:#222}
+
+circle
+{
+	fill:url(#gradient);
+	box-shadow: 10px;
+}
+
+text
+{
+	font-size:16px;
+	font-family: 'Lato';
+	fill: White;
+}
