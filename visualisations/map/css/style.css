@@ -55,7 +55,6 @@ path {
 
 circle
 {
-	fill:url(#gradient);
 	box-shadow: 10px;
 }
 
