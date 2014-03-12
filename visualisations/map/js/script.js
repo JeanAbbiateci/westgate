@@ -195,7 +195,7 @@ function drawDot(dotsList, animate){
 // Draw dots from current hour based on ti.
 function drawDots() {
     var temp_g;
-console.log(tweets_per_hour);
+
     if (ti == 0)
         temp_g = svg.append("g").attr("id", "avc");
     else
@@ -210,12 +210,12 @@ console.log(tweets_per_hour);
     //enter
     drawDot(temp_g.enter().append("circle"), true);
 
+    //remove
+    temp_g.exit().remove();
+
     //timeset
     var currenttime = tweets_per_hour[ti].key;
     textd.text(dates[currenttime.substring(0, 3)]);
     textt.text(currenttime.substring(4, 6) + ":00");
-
-    //remove
-    temp_g.exit().remove();
 }
 
