@@ -91,18 +91,22 @@ gradient.append("stop")
 gradient.append("stop")
         .attr("offset", "100%")
         .style("stop-color", "#444")
-        .style("stop-opacity", 0.9)
+        .style("stop-opacity", 0.9);
 
 // Append TEXT to SVG
 var textd = svg.append("text")
         .attr("x", w * 0.15)
         .attr("y", h * 0.75)
-        .text("LOADING...")
+        .text("LOADING...");
 
 var textt = svg.append("text")
         .attr("x", w * 0.15)
         .attr("y", h * 0.75 + 20)
-        .text("")
+        .text("");
+
+var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
 
 // Append G to SVG for world map.
 var g = svg.append("g");
@@ -125,13 +129,17 @@ d3.json("data/world-110m2.json", function(error, topology) {
 // Load tweets from JSON
 function loadTweets() {
     // DRAW TWEETS ON MAP.
-    d3.json("data/locations.json", function(error, tweet_locations) {
-        tweets = tweet_locations;
+    d3.json("data/compressed.json", function(error, tweet_locations) {
+
+        
+        console.log(tweet_locations);
         tweets_per_hour = d3.nest()
                 .key(function(d) {
-            return d.Time;
+            return d[0];
         })
-        .entries(tweets.RECORDS);
+        .entries(tweet_locations);
+        console.log(tweets_per_hour);
+
         drawDots();
         //timelapse = setInterval(drawDots,2000);
     });
@@ -171,12 +179,25 @@ function animate() {
 */
 function drawDot(dotsList, animate){
   dotsList.attr("cx", function(d) {
-        return projection([d.lat, d.lng])[0];
+        return projection([d[1], d[2]])[0];
     })
     .attr("cy", function(d) {
-        return projection([d.lat, d.lng])[1];
+        return projection([d[1], d[2]])[1];
     })
-    .attr("style", "fill:url(#gradient)"); //Firefox fix
+    .attr("style", "fill:url(#gradient)") //Firefox fix
+    .on("mouseover", function(d) {      
+            div.transition()        
+                .duration(500)      
+                .style("opacity", .9);      
+            div .html(d[4])  
+                .style("left", (d3.event.pageX) - 25 + "px")     
+                .style("top", (d3.event.pageY - 40) + "px");    
+            })                  
+        .on("mouseout", function(d) {       
+            div.transition()        
+                .duration(500)      
+                .style("opacity", 0);   
+        });
 
     if(animate){
       dotsList.attr("r", function(d) {
@@ -187,7 +208,8 @@ function drawDot(dotsList, animate){
     dotsList.transition()
     .ease(t_style)
     .duration(600).attr("r", function(d) {
-        return logscale(d.number_of_tweets);
+        console.log(d);
+        return logscale(d[3]);
     });
     
 }
@@ -202,7 +224,7 @@ function drawDots() {
         temp_g = svg.select("#avc");
 
     temp_g = temp_g.selectAll("circle")
-            .data(tweets_per_hour[ti].values, function(d) { return d.lat + "-" + d.lng; });
+            .data(tweets_per_hour[ti].values, function(d) { console.log(d); return d[0] + "-" + d[1]; });
 
     //update
     drawDot(temp_g, false);
@@ -214,8 +236,8 @@ function drawDots() {
     temp_g.exit().remove();
 
     //timeset
-    var currenttime = tweets_per_hour[ti].key;
+    /*var currenttime = tweets_per_hour[ti].key;
     textd.text(dates[currenttime.substring(0, 3)]);
-    textt.text(currenttime.substring(4, 6) + ":00");
+    textt.text(currenttime.substring(4, 6) + ":00");*/
 }
 

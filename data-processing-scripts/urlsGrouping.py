@@ -1,14 +1,18 @@
 import urllib2
+import urllib
 import httplib
 import json
+import re
 from models import Tweet, URL, Base
 from sqlalchemy.orm import scoped_session, sessionmaker
 from multiprocessing import Pool
 from multiprocessing.dummy import Pool as ThreadPool
 
+import os.path
+
 import sqlalchemy
 
-engine = sqlalchemy.create_engine('sqlite:///SQLite.db')
+engine = sqlalchemy.create_engine('sqlite:////Users/denadai2/Google Drive/InfoVis/Data processing/SQLite.db')
 engine.raw_connection().connection.text_factory = str
 Session = scoped_session(sessionmaker(bind=engine))
 session = Session()
@@ -57,10 +61,47 @@ def take_url(row):
 	session2.commit()
 	session2.close()
 
+def countTweets(url):
+	count = 0
+	for tweet in url.tweets:
+		count = count + len(tweet.retweets) + 1 #the tweet itself also
 
-urls = session.query(URL).filter(URL.longAddress==None).all()
+	return count
+
+
+'''urls = session.query(URL).filter(URL.longAddress==None).all()
 session.close()
 pool = ThreadPool(15)
-placesContent = pool.map(take_url, urls)
+placesContent = pool.map(take_url, urls)'''
+
+
+urls = session.query(URL).filter(URL.longAddress.contains("youtube")).all()
+for url in urls:
+	temp = re.compile(r"^(http[s]?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/(.+)v=([^&#]+)(.+)?$", re.IGNORECASE).split(url.longAddress)
+	if len(temp) > 4:
+		print url.longAddress
+
+		#merge urls
+		address = "https://www.youtube.com/watch?v="+temp[4]
+		fetchedURL = session.query(URL).filter(URL.longAddress==address).filter(URL.ID!=url.ID).first()
+		if fetchedURL:
+			count = countTweets(url)
+			filename = 'videoScreenshots/'+str(count)+"_"+str(url.ID)+"_"+temp[4]+".jpg"
+			if os.path.isfile(filename):
+				os.remove(filename)
+
+			fetchedURL.tweets.extend(url.tweets)
+			session.commit()
+			session.delete(url)
+			url = fetchedURL
+		else:
+			url.longAddress = address
+			session.commit()
+
+		count = countTweets(url)
+		filename = 'videoScreenshots/'+str(count)+"_"+str(url.ID)+"_"+temp[4]+".jpg"
+		urllib.urlretrieve('https://img.youtube.com/vi/'+temp[4]+'/0.jpg', filename)
+
+
 
 
