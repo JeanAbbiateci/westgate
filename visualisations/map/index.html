@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
 <body>
-<div id="sliderdiv">
-<input id="slider" type="range" min="0" max="100" value="0" step="1" onmouseup="sliderChanged(this.value)" />
 <div id="startstop">
 <a href="#" onclick="startAnimate()" id="start">START</a>
-<a href="#" onclick="stopAnimate()"id="stop">STOP</a>
-</div></div>
+<a href="#" onclick="stopAnimate()"id="stop">PAUSE</a>
+</div>
 <script src="js/underscore-min.js" charset="utf-8"></script>
 <script src="js/d3.v3.min.js" charset="utf-8"></script>
+<script src="js/d3tip_and_slider.js" charset="utf-8"></script>
 <script src="js/topojson.js"></script>
 <script src="js/script.js"></script>
 </body>

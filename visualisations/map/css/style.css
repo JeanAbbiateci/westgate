@@ -2,39 +2,13 @@ body{
 	margin:0;
 	font-family: 'Lato';
 	font-size:10px;
-	background-color:#444;
+	background-color:#4c515c;
 }
-
-#sliderdiv
-{
-	width:60%;
-	margin-left:20%;
-	position:fixed;
-	bottom:25px;
-}
-
-input, textarea, select, a { outline: none; }
-
-input[type='range'] {
-    margin:0px;
-    float:left;
-    -webkit-appearance: none !important;
-    width:70%;
-    height:3px;
-    background-color: transparent;
-    height:10px;
-    border-bottom:1px solid #FF6666;
-}
-input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none !important;
-    background-color: transparent;
-    height:10px;
-    border-bottom:4px solid #fff;
-    width: 10px;
-}
-
 #startstop
 {
+    position:fixed;
+    top:0px;
+    left:0px;
     padding-top:4px;
     width:29%;
     float:left;
@@ -46,12 +20,17 @@ input[type='range']::-webkit-slider-thumb {
     text-decoration: none;
 }
 
+svg
+{
+  display:block;
+  margin:0px !important;
+}
 
 
 path {
-  stroke: #555;
+  stroke:#4c515c;
   stroke-width: 0.25px;
-  fill:#222}
+  fill:#333641}
 
 circle
 {
@@ -63,7 +42,106 @@ text
 {
 	font-size:16px;
 	font-family: 'Lato';
-	fill: White;
+	fill: white;
+}
+
+#barchart rect
+{
+    fill:#3a414c;
+    cursor:pointer;
+}
+
+
+
+#barchart 
+
+#barchart rect:hover
+{
+    fill:#FF8A66;
+}
+
+#barchart circle
+{
+  fill:222;
+  cursor:pointer;
+}
+
+#barchart circle:hover
+{
+    fill:#FF8A66;
+}
+
+.currentbar
+{
+    fill:#FF6666 !important;
+}
+
+.infodiv
+{
+  display:none;
+  height:200px;
+  width:100%;
+  position:fixed;
+  bottom:80px;
+  background-color:rgba(255, 255, 255, 0.2);
+}
+
+
+
+/* D3 TIP */
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+
+
+/* D3 Slider */
+
+.d3-slider {
+    position: relative;
+    z-index: 2;
+}
+
+.d3-slider-horizontal {
+    height: 100%;
+}  
+
+
+.d3-slider-handle {
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    background: rgba(60, 140, 184, 0.3);
+    border-left: 1px solid rgba(60, 140, 184, 0.7);;
+    border-right: 1px solid rgba(60, 140, 184, 0.7);;
+    z-index: 3;
 }
 
 div.tooltip {   
@@ -77,4 +155,8 @@ div.tooltip {
   background: rgb(128, 136, 150);   
   border: 0px;               
   pointer-events: none;         
+.d3-slider-handle:hover {
+    background: rgba(60, 140, 184, 0.5);
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
 }
