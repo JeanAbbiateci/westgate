@@ -7,7 +7,8 @@ Declaring Variables
 var years = [264, 265, 266, 267, 268],
         h = window.innerHeight, w = window.innerWidth, bp = 1,
         t_style = "linear", ti = 0,
-        timelapse, tweets, tweets_per_location, tweets_per_hour, times, dates = new Array();
+        timelapse, tweets, tweets_per_location, tweets_per_hour, times, dates = new Array(),
+        barchartheight = 80;
 
 dates[264] = "21-09-2013"
 dates[265] = "22-09-2013"
@@ -62,28 +63,27 @@ function init ()
 {
     logscale = d3.scale.log()
             .domain([1, 200])
-            .range([0, 20]);
+            .range([0, 15]);
 
 
     // Define Projection for lat/lng to pixel coordinates.
     projection = d3.geo.mercator()
-            .scale((w + 1) / 2.2 / Math.PI)
-            .center([0, 20])
+            .scale((w + 1) / 2.5 / Math.PI)
+            .center([0, 5])
             .translate([w / 2, h / 2])
             .precision(.1);
 
     path = d3.geo.path()
             .projection(projection);
 
-
     // Append SVG to body
     svg = d3.select("body").append("svg")
             .attr("width", w)
-            .attr("height", h -80);
+            .attr("height", h - barchartheight);
 
     svgbar = d3.select("body").append("svg")
             .attr("width", w)
-            .attr("height", 70)
+            .attr("height", barchartheight)
             .attr("id", "barchart");
 
 
@@ -99,18 +99,18 @@ function init ()
 
     gradient.append("stop")
             .attr("offset", "0%")
-            .style("stop-color", "#FDDCDC")
+            .style("stop-color", "#f7828e")
             .style("stop-opacity", 0.8)
 
     gradient.append("stop")
             .attr("offset", "30%")
-            .style("stop-color", "#FF8A66")
-            .style("stop-opacity", 0.3)
+            .style("stop-color", "#db3d3c")
+            .style("stop-opacity", 0.5)
 
     gradient.append("stop")
             .attr("offset", "100%")
-            .style("stop-color", "#FF6666")
-            .style("stop-opacity", 0.2)
+            .style("stop-color", "#db3d3c")
+            .style("stop-opacity", 0.5)
 
     // Append TEXT to SVG
     textd = svg.append("text")
@@ -128,10 +128,14 @@ function init ()
 
 
     // D3 tip
-
-    // d3.tip
     tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d.number_of_tweets; });
     svg.call(tip);
+
+    // Hidden DIV for information
+        infodiv = d3.select("body").append("div")
+        .attr("class", "infodiv")
+        .style("width", 500);
+    
 
     loadWorld();
     loadTweetHours();
@@ -213,8 +217,11 @@ function animate() {
     {
         stopAnimate();
     }
-    drawDots();
-
+    else
+    {
+        drawDots();
+    }
+    
 }
 
 
@@ -277,16 +284,17 @@ function drawDots() {
     //enter
     drawDot(temp_g.enter().append("circle"), true);
 
+    //remove
+    temp_g.exit().remove();
+
     //timeset
     var currenttime = tweets_per_location[ti].key;
     textd.text(dates[currenttime.substring(0, 3)]);
     textt.text(currenttime.substring(4, 6) + ":00");
 
-    //remove
-    temp_g.exit().remove();
+    //set slider
+    slider.slide_to(ti)
 
-    // change current bar
-    fillCurrentBar();
 }
 
 /* 
@@ -297,39 +305,88 @@ Functions for the Barchart.
 
 function loadBarchart ()
 {
+    // VARIABLES
+    var left_rightmargin = 200
+    var topmargin = 10;
+    var barwidth = w - left_rightmargin * 2;
+    var barheight = barchartheight - 20;
 
+
+    //SCALE FOR NUMBER OF TWEETS VALUE TO PIXELS
     yScale = d3.scale.linear()
     .domain([0, 21322])
-    .range([70, 0]);
+    .range([barheight, 0]);
 
-    var bars = svgbar.selectAll("rect")
+    //FILL BACKGROUND OF LINE
+    var rectangle = svgbar.append("rect")
+    .attr("x", left_rightmargin)
+    .attr("y", 0)
+    .attr("width", barwidth)
+    .attr("height", barheight - 1);
+
+    //LINEFUNCTION
+    var lineFunction = d3.svg.line()
+    .x(function(d,i) { return left_rightmargin + i * barwidth/ tweets_per_hour.length; })
+    .y(function(d,i) { return yScale(d.number_of_tweets); })
+    .interpolate("linear");
+
+
+    // DIAGRAM WITH LINE
+    var lineGraph = svgbar.append("path")
+    .attr("d", lineFunction(tweets_per_hour))
+    .attr("stroke", "blue")
+    .attr("stroke-width", 2)
+    .attr("fill", "none");
+
+
+    // DIV FOR SLIDER AT CORRECT LOCATION.
+    sliderdiv = d3.select("body").append("div")
+    .attr("id", "slider")
+    .style("width", function(d){return barwidth + "px"})
+    .style("height", function(d){return barheight + "px"})
+    .style("position", "absolute")
+    .style("left", function(d){return left_rightmargin + "px"})
+    .style("top", function(d){return (h - barchartheight) + "px"})
+    .append("div");
+
+    slider = d3.slider()
+        .min(0)
+        .max(tweets_per_hour.length - 1)
+        .step(1)
+        .on("slide", function(evt, value) {
+            ti = value;
+            drawDots();
+        })
+    // CREATE SLIDER
+    d3.select('#slider div')
+    .call(slider);
+
+
+pos = 0;
+    d3.select('#slider-button').on('click', function() { slider.slide_to(++pos); });
+    /*
+    var circles = svgbar.selectAll("circle")
         .data(tweets_per_hour)
         .enter()
-        .append("rect")
-        .on("click", function(d,i) {
-
-            stopAnimate();
-            ti = i;
-            drawDots();
-
+        .append("circle")
+        .attr("cx", function(d, i) {
+            return 200 + i * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp) / 2;
         })
-
-    var barAttributes = bars
-        .attr("width", (w-400) / tweets_per_hour.length - bp )
-        .attr("height", function (d) {return h - yScale(d.number_of_tweets);} )
-        .attr("x", function (d, i) {
-            return 200 + i * (w-400) / tweets_per_hour.length ; 
+        .attr("cy", function(d, i) {
+            return yScale(d.number_of_tweets) - 8;
         })
-        .attr("id", function(d,i){
-            return "bar_" + i;
+        .attr("r", function(d,i) {
+            return (barwidth / tweets_per_hour.length - bp) / 2 - 1;
         })
-        .attr("y", function(d,i) {return yScale(d.number_of_tweets);})
-}
+    .on('mouseover', function(d,i) {
+        infodiv.transition().style("display","block");
+    })
+    .on('mouseout', function(d,i) {
+        infodiv.transition().style("display","none");
+    });
+    */
 
-function fillCurrentBar ()
-{
-    d3.selectAll("#barchart rect").classed("currentbar", false)
-    d3.select("#bar_" + ti).classed("currentbar", true)
+
 }
 
 
