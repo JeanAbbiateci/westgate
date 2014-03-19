@@ -8,7 +8,7 @@ var years = [264, 265, 266, 267, 268],
         h = window.innerHeight, w = window.innerWidth, bp = 1,
         t_style = "linear", ti = 0,
         timelapse, tweets, tweets_per_location, tweets_per_hour, times, dates = new Array(),
-        barchartheight = 80,
+        barchartheight = 110,
         animationSpeed = 700;
 
 dates[264] = "21-09-2013";
@@ -145,22 +145,12 @@ function init ()
     // Append G to SVG for world map.
     g = svg.append("g");
 
-
-    // D3 tip
-    tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d.number_of_tweets; });
-    svg.call(tip);
-    // Hidden DIV for information
-        infodiv = d3.select("body").append("div")
-        .attr("class", "infodiv")
-        .style("width", 500);
-    
-
     loadWorld();
-}
 
-var div = d3.select("body").append("div")   
+    div = d3.select("body").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
+}
 
 
 /* 
@@ -264,7 +254,7 @@ function drawDot(dotsList, animate){
             div.transition()        
                 .duration(500)      
                 .style("opacity", .9);      
-            div .html(d[4])  
+            div .text(d[4] + ": " + d[3] + " tweets")  
                 .style("left", (d3.event.pageX) - 25 + "px")     
                 .style("top", (d3.event.pageY - 40) + "px");    
             })                  
@@ -331,20 +321,20 @@ function loadBarchart ()
     var topmargin = 10;
     var playPauseWidth = 80;
     var barwidth = w - playPauseWidth - left_rightmargin * 2;
-    var barheight = barchartheight - 20;
+    var barheight = barchartheight - 40;
 
 
     //SCALE FOR NUMBER OF TWEETS VALUE TO PIXELS
     yScale = d3.scale.linear()
     .domain([0, 21322])
-    .range([barheight, 0]);
+    .range([barheight, topmargin]);
 
     //FILL BACKGROUND OF LINE
     var rectangle = svgbar.append("rect")
     .attr("x", left_rightmargin)
-    .attr("y", 0)
+    .attr("y", topmargin)
     .attr("width", barwidth)
-    .attr("height", barheight - 1);
+    .attr("height", barheight - topmargin - 1);
 
     //LINEFUNCTION
     var lineFunction = d3.svg.line()
@@ -365,10 +355,10 @@ function loadBarchart ()
     sliderdiv = d3.select("body").append("div")
     .attr("id", "slider")
     .style("width", function(d){return barwidth + "px"})
-    .style("height", function(d){return barheight + "px"})
+    .style("height", function(d){return barheight - topmargin + "px"})
     .style("position", "absolute")
     .style("left", function(d){return left_rightmargin + "px"})
-    .style("top", function(d){return (h - barchartheight) + "px"})
+    .style("top", function(d){return (h - barchartheight) + topmargin + "px"})
     .append("div");
 
     slider = d3.slider()
@@ -386,7 +376,7 @@ function loadBarchart ()
 
     d3.select("#startstop")
     .style("left", function(d){return left_rightmargin - playPauseWidth + "px"})
-    .style("top", function(d){return (h - barchartheight -2) + "px"});
+    .style("top", function(d){return (h - barchartheight -2)+ topmargin + "px"});
 
 
 pos = 0;
