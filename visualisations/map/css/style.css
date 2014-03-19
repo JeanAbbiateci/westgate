@@ -6,12 +6,10 @@ body{
 }
 #startstop
 {
-    position:fixed;
-    top:0px;
-    left:0px;
     padding-top:4px;
-    width:29%;
+    width:70px;
     float:left;
+    position: absolute;
 }
 #startstop a
 {
@@ -150,6 +148,7 @@ text
     border-left: 1px solid rgba(60, 140, 184, 0.7);;
     border-right: 1px solid rgba(60, 140, 184, 0.7);;
     z-index: 3;
+    cursor: col-resize;
 }
 
 div.tooltip {   

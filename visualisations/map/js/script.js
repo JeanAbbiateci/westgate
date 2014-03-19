@@ -384,9 +384,9 @@ function loadBarchart ()
     d3.select('#slider div')
     .call(slider);
 
-    d3.select('#startstop')
+    d3.select("#startstop")
     .style("left", function(d){return left_rightmargin - playPauseWidth + "px"})
-    .style("top", function(d){return (h - barchartheight - 2) + "px"});
+    .style("top", function(d){return (h - barchartheight -2) + "px"});
 
 
 pos = 0;
