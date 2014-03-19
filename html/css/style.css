@@ -1,0 +1,179 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  font-family: 'Open sans', sans-serif; }
+
+.container {
+  max-width: 1190px;
+  width: auto;
+  margin: 0 auto;
+  height: 100%; }
+
+#story-nav {
+  cursor: default;
+  background-color: #343a45;
+  font-family: 'collator';
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  height: 71px;
+  z-index: 100; }
+  #story-nav #logo {
+    padding: 20px 0 0;
+    height: 100%;
+    width: 180px;
+    color: #8a93a5;
+    float: left;
+    font-size: 16px; }
+    #story-nav #logo span {
+      font-family: 'Open sans';
+      font-size: 10px;
+      letter-spacing: 1px; }
+  #story-nav ul {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+    color: #dbe1e7;
+    padding: 30px 0 0 20px;
+    font-size: 16px; }
+  #story-nav li {
+    display: inline-block;
+    margin-left: 50px; }
+  #story-nav a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none; }
+
+.pages-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #4c515c;
+  overflow-x: hidden; }
+  .pages-container #pages {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    transition: all 0.5s ease-out; }
+    .pages-container #pages .page {
+      display: block;
+      margin-top: 70px;
+      height: 100%;
+      color: #8a93a5;
+      position: absolute;
+      z-index: 1; }
+
+#arrow-right {
+  -webkit-tap-highlight-color: transparent;
+  position: fixed;
+  right: 50px;
+  top: 50%;
+  width: 22px;
+  height: 40px;
+  margin-top: -20px;
+  cursor: pointer;
+  background-size: 22px 40px;
+  background-image: url("../img/arrow-right.png");
+  z-index: 100;
+  -webkit-user-select: none; }
+
+#arrow-left {
+  -webkit-tap-highlight-color: transparent;
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  width: 22px;
+  height: 40px;
+  margin-top: -20px;
+  cursor: pointer;
+  background-size: 22px 40px;
+  background-image: url("../img/arrow-left.png");
+  z-index: 100;
+  -webkit-user-select: none; }
+
+h1 {
+  font-family: 'Collator', sans-serif;
+  font-size: 32px;
+  color: #DBE1E7;
+  line-height: 38px; }
+
+p {
+  font-family: OpenSans;
+  font-size: 13px;
+  color: #ACB2C1;
+  line-height: 20px; }
+
+body {
+  font-family: OpenSans, sans-serif;
+  font-size: 13px; }
+
+@font-face {
+  font-family: "collator";
+  src: url("./fonts/collator.eot");
+  src: url("./fonts/collator.eot?#iefix") format("embedded-opentype"), url("./fonts/collator.woff") format("woff"), url("./fonts/collator.ttf") format("truetype"), url("./fonts/collator.svg#collator") format("svg");
+  font-style: normal;
+  font-weight: normal; }
+#page-intro {
+  padding-top: 80px; }
+  #page-intro p {
+    width: 500px; }
+
+#pages {
+  padding-top: 30; }

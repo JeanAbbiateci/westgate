@@ -131,6 +131,7 @@ text
 /* D3 Slider */
 
 .d3-slider {
+  cursor: pointer;
     position: relative;
     z-index: 2;
 }
