@@ -8,7 +8,8 @@ var years = [264, 265, 266, 267, 268],
         h = window.innerHeight, w = window.innerWidth, bp = 1,
         t_style = "linear", ti = 0,
         timelapse, tweets, tweets_per_location, tweets_per_hour, times, dates = new Array(),
-        barchartheight = 80;
+        barchartheight = 80,
+        animationSpeed = 700;
 
 dates[264] = "21-09-2013";
 dates[265] = "22-09-2013";
@@ -48,6 +49,28 @@ function checkKey(e) {
 }
 
 document.onkeydown = checkKey;
+
+var playPauseElement = d3.select('#startstop a');
+playPauseElement.on('click', function() { 
+    if(!this.classList.contains("play")){
+        stopAnimate();
+
+        playPauseElement.transition()
+        .duration(300)
+        .style("opacity", 0).each("end", function(){
+            playPauseElement.classed("play", true).transition().duration(100).style("opacity", 1);
+        });
+    }else{
+        startAnimate();
+
+        playPauseElement.transition()
+        .duration(300)
+        .style("opacity", 0).each("end", function(){
+            playPauseElement.classed("play", false).transition().duration(100).style("opacity", 1);
+        });
+    }
+     
+});
 
 /* 
 ---------------------
@@ -195,7 +218,7 @@ Functions Handling Animation
 
 function startAnimate()
 {
-    timelapse = setInterval(animate, 500);
+    timelapse = setInterval(animate, animationSpeed);
 }
 
 
@@ -306,7 +329,8 @@ function loadBarchart ()
     // VARIABLES
     var left_rightmargin = 200
     var topmargin = 10;
-    var barwidth = w - left_rightmargin * 2;
+    var playPauseWidth = 80;
+    var barwidth = w - playPauseWidth - left_rightmargin * 2;
     var barheight = barchartheight - 20;
 
 
@@ -349,7 +373,7 @@ function loadBarchart ()
 
     slider = d3.slider()
         .min(0)
-        .animate(500)
+        .animate(animationSpeed)
         .max(tweets_per_hour.length - 1)
         .step(1)
         .on("slide", function(evt, value) {
@@ -359,6 +383,10 @@ function loadBarchart ()
     // CREATE SLIDER
     d3.select('#slider div')
     .call(slider);
+
+    d3.select('#startstop')
+    .style("left", function(d){return left_rightmargin - playPauseWidth + "px"})
+    .style("top", function(d){return (h - barchartheight - 2) + "px"});
 
 
 pos = 0;
