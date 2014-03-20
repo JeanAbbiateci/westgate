@@ -7,7 +7,7 @@ Declaring Variables
 var years = [264, 265, 266, 267, 268],
         h = window.innerHeight, w = window.innerWidth, bp = 1,
         t_style = "linear", ti = 0,
-        timelapse, tweets, tweets_per_location, tweets_per_hour, times, dates = new Array(),
+        timelapse, tweets, tweets_per_location, newsfeed, tweets_per_hour, times, dates = new Array(),
         barchartheight = 110,
         animationSpeed = 700;
 
@@ -147,8 +147,14 @@ function init ()
 
     loadWorld();
 
-    div = d3.select("body").append("div")   
+    // Tooltip Map
+    tipdiv = d3.select("body").append("div")   
     .attr("class", "tooltip")               
+    .style("opacity", 0);
+
+    // Tooltip News
+    newstipdiv = d3.select("body").append("div")   
+    .attr("class", "newstip")               
     .style("opacity", 0);
 }
 
@@ -196,9 +202,20 @@ function loadTweetHours() {
     // DRAW TWEETS ON MAP.
     d3.json("data/tweets_per_hour.json", function(error, tweet_hour) {
         tweets_per_hour = tweet_hour.RECORDS;
+        loadNewsItems();
+    });
+}
+
+// News Items
+function loadNewsItems() {
+    // DRAW TWEETS ON MAP.
+    d3.json("data/newsfeed.json", function(error, news_feed) {
+        console.log(error);
+        newsfeed = news_feed;
         loadBarchart();
     });
 }
+
 
 /* 
 ---------------------
@@ -251,15 +268,15 @@ function drawDot(dotsList, animate){
     })
     .attr("style", "fill:url(#gradient)") //Firefox fix
     .on("mouseover", function(d) {      
-            div.transition()        
+            tipdiv.transition()        
                 .duration(500)      
-                .style("opacity", .9);      
-            div .text(d[4] + ": " + d[3] + " tweets")  
+                .style("opacity", .7);      
+            tipdiv .html(d[4] + ": " + d[3] + " tweets")  
                 .style("left", (d3.event.pageX) - 25 + "px")     
                 .style("top", (d3.event.pageY - 40) + "px");    
             })                  
         .on("mouseout", function(d) {       
-            div.transition()        
+            tipdiv.transition()        
                 .duration(500)      
                 .style("opacity", 0);   
         });
@@ -338,7 +355,7 @@ function loadBarchart ()
 
     //LINEFUNCTION
     var lineFunction = d3.svg.line()
-    .x(function(d,i) { return left_rightmargin + i * barwidth/ tweets_per_hour.length; })
+    .x(function(d,i) { return left_rightmargin + i * barwidth/ tweets_per_hour.length +(barwidth / tweets_per_hour.length - bp); })
     .y(function(d,i) { return yScale(d.number_of_tweets); })
     .interpolate("linear");
 
@@ -379,29 +396,42 @@ function loadBarchart ()
     .style("top", function(d){return (h - barchartheight -2)+ topmargin + "px"});
 
 
-pos = 0;
-    d3.select('#slider-button').on('click', function() { slider.slide_to(++pos); });
-    /*
+
     var circles = svgbar.selectAll("circle")
-        .data(tweets_per_hour)
+        .data(newsfeed)
         .enter()
         .append("circle")
         .attr("cx", function(d, i) {
-            return 200 + i * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp) / 2;
+            return 200 + d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp) / 2;
         })
         .attr("cy", function(d, i) {
-            return yScale(d.number_of_tweets) - 8;
+            return 7;
         })
-        .attr("r", function(d,i) {
-            return (barwidth / tweets_per_hour.length - bp) / 2 - 1;
+        .attr("r", 4)
+        .on("mouseover", function(d) {      
+            newstipdiv.transition()        
+                .duration(500)      
+                .style("opacity", .7);      
+            newstipdiv .html(
+                // Source + Time
+                '<p class="time">' + d[2] + ":" + d[1] + "</p>" +
+                // Content
+                '<p class="content">' + d[3] + "</p>" +
+                // link
+                '<p>Click on dot to open</p>'
+                )  
+                .style("left", (d3.event.pageX) - 100 + "px")     
+                .style("bottom", (h - d3.event.pageY) + "px")
+            })      
+        .on("mouseout", function(d) {       
+            newstipdiv.transition()        
+                .duration(500)      
+                .style("opacity", 0);   
         })
-    .on('mouseover', function(d,i) {
-        infodiv.transition().style("display","block");
-    })
-    .on('mouseout', function(d,i) {
-        infodiv.transition().style("display","none");
-    });
-    */
+        .on("click", function(d){
+            window.location = d[4];
+        });
+    
 
 
 }

@@ -38,11 +38,6 @@ path {
   stroke-width: 0.25px;
   fill:#333641}
 
-circle
-{
-	box-shadow: 10px;
-    cursor: pointer;
-}
 
 text
 {
@@ -68,8 +63,9 @@ text
 
 #barchart circle
 {
-  fill:222;
+  fill:#db3d3c;
   cursor:pointer;
+
 }
 
 #barchart circle:hover
@@ -162,9 +158,24 @@ div.tooltip {
   color:#fff;        
   background: rgb(128, 136, 150);   
   border: 0px;               
-  pointer-events: none;         
-.d3-slider-handle:hover {
-    background: rgba(60, 140, 184, 0.5);
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
+  pointer-events: none;
+}
+
+div.newstip {   
+  border-radius:6px;
+  position: absolute;           
+  text-align: left;
+  width: 200px;               
+  height: 200px;                 
+  padding: 5px 5px;             
+  font-size: 13px;
+  color:#fff;        
+  background: rgb(128, 136, 150);   
+  border: 0px;               
+  pointer-events: none;
+}
+
+div.newstip .time
+{
+  margin:0px;
 }
