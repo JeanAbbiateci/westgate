@@ -19,6 +19,7 @@ $s3: 22px;
 @include fontFace('collator','./fonts/collator');
 
 //PAGES
-@import "./pages/intro";
-@import "./pages/tweet-map"
+@import "pages/intro";
+@import "pages/tweet-map";
+@import "pages/bubble";
 

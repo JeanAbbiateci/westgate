@@ -200,7 +200,7 @@ d3.json("new_mentions_top100.json", function(error, ORIGINAL_DATA) {
     
     link.enter().append("line")
       .attr("class","link")
-      .attr("stroke","#9E5757")
+      .attr("stroke","#343A45")
       .attr("stroke-width", function(d){return logScale(d.value)})
 
     link.exit().remove()
