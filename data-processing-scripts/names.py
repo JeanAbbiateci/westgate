@@ -42,8 +42,8 @@ for key,d in c:
 		if k == 'Gangsters':
 			gang.append(v)
 
-plt.plot(terror[:21],label = 'Terrorists')
-plt.plot(gang[:21],label = 'Gangsters')
+plt.plot(terror,label = 'Terrorists')
+plt.plot(gang,label = 'Gangsters')
 plt.legend()
 plt.show()
 

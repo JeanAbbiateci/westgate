@@ -9,11 +9,13 @@ def example(latitude, longitude):
 	lon=longitude
 	)
 	url = "{base}{params}".format(base=base, params=params)
-	response = requests.get(url)
+	headers = {'Accept-Language': 'en'}
+	response = requests.get(url, headers=headers)
 	print latitude, longitude
 	
 	
 	response = response.json()
+	#print response
 	place = []
 
 	if 'city' in response['address']:
@@ -50,3 +52,4 @@ for row in data['RECORDS']:
 
 with open('compressed.json', 'w') as outfile:
 	json.dump(outArray, outfile)
+

@@ -385,6 +385,7 @@ function loadBarchart ()
         .step(1)
         .on("slide", function(evt, value) {
             ti = value;
+            console.log(ti)
             drawDots();
         });
     // CREATE SLIDER

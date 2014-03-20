@@ -4,4 +4,4 @@ include/
 processed_tweets_kenya.txt
 foo.db
 *.pyc
-
+.DS_Store
