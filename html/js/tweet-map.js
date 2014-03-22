@@ -51,7 +51,7 @@ document.onkeydown = checkKey;
 
 
 var playPauseElement = d3.select('#tweet-map #startstop a');
-playPauseElement.on('click', function() { 
+playPauseElement.on('click', function(e) { 
     if(!this.classList.contains("play")){
         stopAnimate();
 
@@ -69,7 +69,6 @@ playPauseElement.on('click', function() {
             playPauseElement.classed("play", false).transition().duration(100).style("opacity", 1);
         });
     }
-     
 });
 
 /* 
@@ -79,7 +78,7 @@ Initialize Scale, Projection, SVG, Gradients etc.
 */
 
 function init ()
-{
+{ 
     logscale = d3.scale.log()
             .domain([1, 200])
             .range([0, 15]);
@@ -99,7 +98,7 @@ function init ()
     svg = d3.select("#tweet-map").append("svg")
             .attr("width", w)
             .attr("height", h - 71 - barchartheight)
-            .attr("id", "map")
+            .attr("id", "map");
 
     svgbar = d3.select("#tweet-map").append("svg")
             .attr("width", w)
@@ -150,7 +149,8 @@ function init ()
 
     // Tooltip Map
     tipdiv = d3.select("#tweet-map").append("div")   
-    .attr("class", "tooltip")               
+    .attr("class", "tooltip")
+    .style("position", "fixed")               
     .style("opacity", 0);
 
     // Tooltip News
@@ -268,13 +268,13 @@ function drawDot(dotsList, animate){
         return projection([d[1], d[2]])[1];
     })
     .attr("style", "fill:url(#gradient)") //Firefox fix
-    .on("mouseover", function(d) {      
+    .on("mouseover", function(d) {   
             tipdiv.transition()        
                 .duration(500)      
                 .style("opacity", 1);      
             tipdiv .html(d[4] + ": " + d[3] + " tweets")  
                 .style("left", (d3.event.pageX) - 25 + "px")     
-                .style("top", (d3.event.pageY - 33) + "px");    
+                .style("top", (d3.event.pageY - 37) + "px");    
             })                  
         .on("mouseout", function(d) {       
             tipdiv.transition()        
@@ -285,7 +285,7 @@ function drawDot(dotsList, animate){
     if(animate){
       dotsList.attr("r", function(d) {
         return 0;
-      })
+      });
     }
 
     dotsList.transition()
@@ -299,7 +299,7 @@ function drawDot(dotsList, animate){
 // Draw dots from current hour based on ti.
 function drawDots() {
     var temp_g;
-    if (ti == 0)
+    if (ti === 0)
         temp_g = svg.append("g").attr("id", "avc");
     else
         temp_g = svg.select("#tweet-map #avc");
@@ -386,7 +386,7 @@ function loadBarchart ()
         .step(1)
         .on("slide", function(evt, value) {
             ti = value;
-            console.log(ti)
+            console.log(ti);
             drawDots();
         });
     // CREATE SLIDER

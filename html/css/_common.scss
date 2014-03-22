@@ -1,0 +1,20 @@
+div.tooltip {   
+      position: absolute;           
+      text-align: center;           
+      width: auto;                  
+      height: 15px;                 
+      padding: 5px 10px;             
+      font-size: 13px;
+      color:$white-blue;    
+      background:$grayTest;
+      border: 0px;               
+      pointer-events: none;
+    }
+
+    div.tooltipline {   
+      width: 2px; /* Line width */
+      background-color: black; /* Line color */
+      height: 100%; /* Override in-line if you want specific height. */
+      float: left;
+    z-index: 1000;  
+    }

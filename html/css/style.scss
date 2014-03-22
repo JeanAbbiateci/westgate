@@ -5,6 +5,7 @@ $light-blue: #8A93A5;
 $bright-blue: #ACB2C1;
 $white-blue: #DBE1E7;
 $gray: #4C515C;
+$grayTest: rgba(255,255,255,0.6);
 
 //FONT SCALES
 $s0: 10px;
@@ -17,9 +18,11 @@ $s3: 22px;
 @import "navigation";
 @import 'fonts';
 @include fontFace('collator','./fonts/collator');
+@import "common";
 
 //PAGES
 @import "pages/intro";
 @import "pages/tweet-map";
+@import "pages/wordChart";
 @import "pages/bubble";
 
