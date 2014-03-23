@@ -1,15 +1,17 @@
 
 (function(pageHeight) {
+    // ... all vars and functions are in this scope only
+    // still maintains access to all globals
+    
     /* 
      ---------------------
      Declaring Variables 
      ---------------------
      */
 
-    var years = [264, 265, 266, 267, 268],
-            h = window.innerHeight, w = window.innerWidth, bp = 1,
+    var h = window.innerHeight, w = window.innerWidth, bp = 1,
             t_style = "linear", ti = 0,
-            timelapse, tweets, tweets_per_location, newsfeed, tweets_per_hour, times, dates = new Array(),
+            timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
             barchartheight = 90,
             animationSpeed = 700;
 
@@ -131,15 +133,16 @@
         loadWorld();
 
         // Tooltip Map
-        tipdiv = d3.select("#tweet-map").append("div")
+        tipdiv = d3.select("body").append("div")
                 .attr("class", "tooltip")
-                .style("position", "fixed")
-                .style("opacity", 0);
+                .style("opacity", 0)
+                .style("display", "none");
 
         // Tooltip News
-        newstipdiv = d3.select("#tweet-map").append("div")
+        newstipdiv = d3.select("body").append("div")
                 .attr("class", "newstip")
-                .style("opacity", 0);
+                .style("opacity", 0)
+                .style("display", "none");
     }
 
 
@@ -149,7 +152,7 @@
      ---------------------
      */
 
-// World
+    // World
     function loadWorld()
     {
         // load and display the World
@@ -168,7 +171,7 @@
 
     }
 
-// Tweets
+    // Tweets
     function loadTweets() {
         // DRAW TWEETS ON MAP.
         d3.json("data/compressed.json", function(error, tweet_locations) {
@@ -207,14 +210,12 @@
      ---------------------
      */
 
-    function startAnimate()
-    {
+    function startAnimate(){
         timelapse = setInterval(animate, animationSpeed);
     }
 
 
-    function stopAnimate()
-    {
+    function stopAnimate(){
         clearInterval(timelapse);
     }
 
@@ -254,7 +255,8 @@
                 .on("mouseover", function(d) {
             tipdiv.transition()
                     .duration(500)
-                    .style("opacity", 1);
+                    .style("opacity", 1)
+                    .style("display", "block");
             tipdiv.html(d[4] + ": " + d[3] + " tweets")
                     .style("left", (d3.event.pageX) - 25 + "px")
                     .style("top", (d3.event.pageY - 37) + "px");
@@ -262,7 +264,8 @@
                 .on("mouseout", function(d) {
             tipdiv.transition()
                     .duration(500)
-                    .style("opacity", 0);
+                    .style("opacity", 0)
+                    .style("display", "none");
         });
 
         if (animate) {
@@ -383,7 +386,6 @@
                 .step(1)
                 .on("slide", function(evt, value) {
             ti = value;
-            console.log(ti);
             drawDots();
         });
         // CREATE SLIDER
@@ -400,7 +402,7 @@
 
 
 
-        var circles = svgbar.selectAll("circle")
+        svgbar.selectAll("circle")
                 .data(newsfeed)
                 .enter()
                 .append("circle")
