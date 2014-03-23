@@ -1,0 +1,66 @@
+#word-chart
+{
+
+    
+
+    path {
+    stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .grammes path,
+    .grammes line {
+            stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+            stroke-width: 2;
+        shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    .grid .tick {
+        stroke: #343A45;
+        opacity: 0.7;
+    }
+    .grid path {
+        stroke-width: 0;
+    }
+
+    
+
+    .lala {
+    background-color: red;
+    }
+
+
+    table,th,td
+    {
+    border:1px dotted lightgrey;
+    border-collapse:collapse;
+    }
+
+    th,td
+    {
+    padding:5px;
+    }
+
+    .tableHead{
+            background: #eee;
+    }
+
+}

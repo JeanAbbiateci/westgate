@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
-    <div id="story-nav">
+    <nav id="story-nav">
         <div class="container">
             <div id="logo">WESTGATE ATTACK <span>SOCIAL MEDIA PERSPECTIVE</span></div>
             <ul>
@@ -16,9 +16,7 @@
                 <li>WORDS</li>
             </ul>
         </div>
-    </div>
-    <div id="arrow-left"></div>
-    <div id="arrow-right"></div>
+    </nav>
     <div class="pages-container">
         <div id="pages" style="">
             <div class="page" id="page-intro">
@@ -28,8 +26,10 @@
                     <div style="margin-top: 50px"><img src="img/media.png"></div>
                 </div>
             </div>
-            <div class="page">
-                <iframe src="http://bwitteveen.nl/d/map2/#" style="width: 100%; height: 100%"></iframe>
+            <div class="page" id="tweet-map">
+                <div id="startstop">
+                <a href="#tweet-map" class="play"></a>
+                </div>
             </div>
             <div class="page">
                 <div class="container" id="page-bubble" style="margin-top: 30px">
@@ -40,19 +40,27 @@
             </div>
             <div class="page">
                 <div class="container">
-                    <iframe src="http://timuric.site44.com/infoviz/network/index.html" style="width: 100%; height: 100%"></iframe>
+                    <iframe src="network/index.html" style="width: 100%; height: 100%"></iframe>
                 </div>
             </div>
-            <div class="page" id>
+            <div class="page" id="word-chart">
                 <div class="container">
-                    <iframe src="http://timuric.site44.com/infoviz/words/attackers.html" style="width: 100%; height: 100%"></iframe>
+                    
                 </div>
             </div>
             <div class="page"></div>
         </div>
     </div>
+<script src="js/main.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/bubble.js"></script>
+
+
+<!-- Files for Tweet MAP -->
+<script src="js/d3_slider.js" charset="utf-8"></script>
+<script src="js/topojson.js"></script>
+<script src="js/tweet-map.js"></script>
+<script src="js/attackers.js"></script>
+
 </body>
-<script src="./js/main.js"></script>
-<script src="./js/d3.v3.min.js"></script>
-<script src="./js/bubble.js"></script>
 </html>

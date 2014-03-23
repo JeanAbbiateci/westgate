@@ -13,7 +13,7 @@ s = Session()
 
 i = 0
 
-word = ["terrorist", "criminal", "thug", "gangster", "robber", "jihad", "masked", "shabaab"]
+word = [("shabaab", "shabab", "shebab"), "terrorists", ("gunmen", "gun men"), "thugs", "militants", "criminals", "gang", "robbers", "jihadis", "murderers", "extremists", "islamists", "enemies"]
 
 #rowarray_list = []
 #for i in range(len(word)):
@@ -36,7 +36,16 @@ objects_dates_list = []
 c_list = []
 total_list = []
 for i in range(len(word)):
-    result = s.execute("SELECT date(timestamp),count(*) from Tweet WHERE text LIKE '%" + word[i] +"%' GROUP BY date(timestamp)")
+    query1 = "SELECT date(timestamp),count(*) from Tweet WHERE "
+    query3 = "GROUP BY date(timestamp)"
+    if isinstance(word[i], basestring):
+        result = s.execute(query1 + "text LIKE '%" + word[i] +"%' " + query3)
+    else:
+        query2 = ""
+        for j in range(len(word[i])):
+            query2 = query2 + "text LIKE '%" + word[i][j] +"%' OR "
+        result = s.execute(query1 + query2[:-3] + query3)
+        
     d = collections.OrderedDict()
     d['word'] = word[i]
     for row in result:
