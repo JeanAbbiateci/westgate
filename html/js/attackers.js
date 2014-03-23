@@ -127,9 +127,9 @@ wordsChart.prototype.visualizeitTotal = function() {
                 .enter()
                 .append("rect")
                 .attr("x", xScale(b.date) - 1)
-                .attr("y", this.padding)
+                .attr("y", chart.padding)
                 .attr("width", 2)
-                .attr("height", this.h - this.padding - 50)
+                .attr("height", chart.h - chart.padding - 50)
                 .attr("class", "lala")
                 .style("opacity", 0)
                 .attr("id", "verlines-" + j);
@@ -166,7 +166,7 @@ wordsChart.prototype.visualizeitTotal = function() {
     })
 
 
-            .on("mousemove", function() {
+            .on("mousemove", function(event) {
         return chart.tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
     })
 
