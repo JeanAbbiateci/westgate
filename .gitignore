@@ -9,3 +9,4 @@ foo.db
 ### SASS CACHE ###
 *.sass-cache
 /html/nbproject/private/
+/html/nbproject/
