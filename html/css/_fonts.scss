@@ -1,3 +1,6 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Homenaje);
+
 @mixin fontFace($family,$src,$weight: normal,$style: normal) {
   @font-face {
     font-family: $family;
@@ -20,14 +23,14 @@ h1{
 }
 
 p{
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   color: #ACB2C1;
   line-height: 20px;
 }
 
 body{
-  font-family: OpenSans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13px;
 }
 
