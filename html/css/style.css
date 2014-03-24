@@ -190,6 +190,23 @@ div.tooltipline {
   padding-top: 80px; }
   #page-intro .container p {
     width: 500px; }
+#page-intro .y path {
+  fill: none; }
+#page-intro .y text {
+  text-transform: uppercase;
+  fill: #8a93a5; }
+#page-intro .grid .tick {
+  stroke: #8a93a5;
+  opacity: 0.7; }
+#page-intro .grid path {
+  stroke-width: 0.1;
+  shape-rendering: crispEdges; }
+#page-intro .hour {
+  fill: #343a45; }
+#page-intro .hour-light {
+  fill: #4c515c; }
+#page-intro .hourLabel {
+  fill: #8a93a5; }
 
 #tweet-map {
   margin-top: 0px !important;

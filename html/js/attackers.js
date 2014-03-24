@@ -16,7 +16,11 @@
     var sData = null;
 
 
-    // load everything from json
+    /** /
+     * load everything from json files
+     * 
+     * @returns {undefined}
+     */
     function loadData() {
         d3.json("data/wordsDay.json", function(error, json) {
             if (error)

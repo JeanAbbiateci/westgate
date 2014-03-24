@@ -1,0 +1,30 @@
+#page-intro {
+    .container{
+      padding-top: 80px;
+      p{
+        width: 500px;
+      }
+    }
+
+    .y path{
+        fill: none;
+    }
+    .y text{
+        text-transform: uppercase;
+        fill: $light-blue;
+    }
+
+    .grid .tick{stroke: $light-blue;opacity:0.7;}
+    .grid path{stroke-width:0.1;shape-rendering:crispEdges;}
+    .hour{
+        fill: $dark-blue;
+
+    }
+
+    .hour-light{
+        fill: $gray;
+    }
+    .hourLabel{
+        fill: $light-blue;
+    }
+}

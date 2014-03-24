@@ -5,6 +5,10 @@ processed_tweets_kenya.txt
 foo.db
 *.pyc
 .DS_Store
+html/.idea/
+html/node_modules/
+.Python
+man/
 
 ### SASS CACHE ###
 *.sass-cache

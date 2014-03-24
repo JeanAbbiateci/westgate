@@ -2,7 +2,7 @@
 (function(pageHeight) {
     // ... all vars and functions are in this scope only
     // still maintains access to all globals
-    
+
     /* 
      ---------------------
      Declaring Variables 
@@ -55,13 +55,13 @@
             });
         }
     });
-
-    /* 
-     ---------------------
-     Initialize Scale, Projection, SVG, Gradients etc.
-     ---------------------
+    
+    
+    /** /
+     * Initialize Scale, Projection, SVG, Gradients etc.
+     * 
+     * @return {undefined}
      */
-
     function init()
     {
         logscale = d3.scale.log()
@@ -152,7 +152,10 @@
      ---------------------
      */
 
-    // World
+    /** /
+     * Load the map
+     * @return {undefined}
+     */
     function loadWorld()
     {
         // load and display the World
@@ -210,12 +213,12 @@
      ---------------------
      */
 
-    function startAnimate(){
+    function startAnimate() {
         timelapse = setInterval(animate, animationSpeed);
     }
 
 
-    function stopAnimate(){
+    function stopAnimate() {
         clearInterval(timelapse);
     }
 
@@ -233,17 +236,15 @@
 
     }
 
-    /* 
-     ---------------------
-     Functions for Drawing dots on map. 
-     ---------------------
-     
-     * @method methodName
-     * @param {Object} dotsList A list of object to be inserted in the map
-     * @param {Boolean} animate indicates if the circle needs to be animated or only inserted
-     * @return {Null} 
-     */
-
+    
+    /**
+    * Method that draw a single circle inside the map
+    *
+    * @method drawDot
+    * @param {Object} dotsList A list of object to be inserted in the map
+    * @param {Boolean} animate indicates if the circle needs to be animated or only inserted
+    * @return {Null} 
+    */
     function drawDot(dotsList, animate) {
         dotsList.attr("cx", function(d) {
             return projection([d[1], d[2]])[0];
@@ -283,6 +284,12 @@
     }
 
     // Draw dots from current hour based on ti.
+    /**
+    * Method that draw all the dots based on the actual ti (=time)
+    *
+    * @method drawDots
+    * @return {Null} 
+    */
     function drawDots() {
         var temp_g;
         if (ti === 0)
@@ -319,7 +326,11 @@
      Functions for the Barchart.
      ---------------------
      */
-
+    
+    /** /
+     * 
+     * @return {undefined}
+     */
     function loadBarchart()
     {
         // VARIABLES
