@@ -1,3 +1,15 @@
 #page-bubble{
 
+.bubble
+{
+	fill: $dark-blue;
+	stroke: $light-blue;
+	stroke-width:1px;
+}
+
+.bubble.verified
+{
+	fill:$medium-blue;
+}
+
 }

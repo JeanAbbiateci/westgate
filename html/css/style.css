@@ -163,6 +163,7 @@ body {
   src: url("./fonts/collator.eot?#iefix") format("embedded-opentype"), url("./fonts/collator.woff") format("woff"), url("./fonts/collator.ttf") format("truetype"), url("./fonts/collator.svg#collator") format("svg");
   font-style: normal;
   font-weight: normal; }
+
 div.tooltip {
   position: absolute;
   text-align: center;
@@ -171,9 +172,10 @@ div.tooltip {
   padding: 5px 10px;
   font-size: 13px;
   color: #dbe1e7;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(66, 73, 87, 0.6);
   border: 0px;
-  pointer-events: none; }
+  pointer-events: none;
+  z-index: 999; }
 
 div.tooltipline {
   width: 2px;
@@ -184,6 +186,21 @@ div.tooltipline {
   /* Override in-line if you want specific height. */
   float: left;
   z-index: 1000; }
+
+div.newstip {
+  border-radius: 6px;
+  position: absolute;
+  text-align: left;
+  width: 300px;
+  height: 300px;
+  padding: 5px 5px;
+  font-size: 13px;
+  color: #fff;
+  background: rgba(66, 73, 87, 0.6);
+  z-index: 999; }
+
+div.newstip .time {
+  margin: 0px; }
 
 #page-intro .container {
   padding-top: 80px; }
@@ -264,18 +281,6 @@ div.tooltipline {
     border-right: 1px solid rgba(138, 147, 165, 0.6);
     z-index: 3;
     cursor: col-resize; }
-  #tweet-map div.newstip {
-    border-radius: 6px;
-    position: absolute;
-    text-align: left;
-    width: 200px;
-    height: 200px;
-    padding: 5px 5px;
-    font-size: 13px;
-    color: #fff;
-    background: rgba(66, 73, 87, 0.6); }
-  #tweet-map div.newstip .time {
-    margin: 0px; }
 
 #word-chart path {
   stroke: steelblue;
@@ -311,3 +316,10 @@ div.tooltipline {
   padding: 5px; }
 #word-chart .tableHead {
   background: #eee; }
+
+#page-bubble .bubble {
+  fill: #343a45;
+  stroke: #8a93a5;
+  stroke-width: 1px; }
+#page-bubble .bubble.verified {
+  fill: #424957; }

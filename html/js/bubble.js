@@ -86,13 +86,11 @@ function bubble(hour,current_view) {
         return d.id;
       });
       that = this;
-      this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d){
+      this.circles.enter().append("circle").attr("r", 0).attr("class", function(d){
         if(d.verified){
-          return '#333'
+          return 'bubble verified';
         }
-        return '#999'
-      }).attr("stroke-width", 2).attr("stroke", function(d) {
-        return '#777'
+        return 'bubble';
       }).attr("id", function(d) {
         return "bubble_" + d.id;
       }).on("mouseover", function(d, i) {
@@ -273,6 +271,3 @@ window.onload = function(){
   button.html('Click me to change between graphs!')
 }
 
-
-setTimeout(function() {bubble(1,get_current_view())}, 10000);
-setTimeout(function() {bubble(2,get_current_view())}, 20000);

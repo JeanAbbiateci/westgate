@@ -6,9 +6,10 @@ div.tooltip {
       padding: 5px 10px;             
       font-size: 13px;
       color:$white-blue;    
-      background:$grayTest;
+      background: rgba($medium-blue, 0.6);
       border: 0px;               
       pointer-events: none;
+      z-index:999;
     }
 
     div.tooltipline {   
@@ -17,4 +18,22 @@ div.tooltip {
       height: 100%; /* Override in-line if you want specific height. */
       float: left;
     z-index: 1000;  
+    }
+
+    div.newstip {   
+      border-radius:6px;
+      position: absolute;
+      text-align: left;
+      width: 300px;               
+      height: 300px;                 
+      padding: 5px 5px;             
+      font-size: 13px;
+      color:#fff;        
+      background: rgba($medium-blue, 0.6);
+      z-index:999;
+    }
+
+    div.newstip .time
+    {
+      margin:0px;
     }

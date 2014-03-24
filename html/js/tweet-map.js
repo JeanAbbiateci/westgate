@@ -9,7 +9,7 @@
      ---------------------
      */
 
-    var h = window.innerHeight, w = window.innerWidth, bp = 1,
+    var h = window.innerHeight, w = window.innerWidth,
             t_style = "linear", ti = 0,
             timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
             barchartheight = 90,
@@ -200,7 +200,7 @@
     function loadNewsItems() {
         // DRAW TWEETS ON MAP.
         d3.json("data/newsfeed.json", function(error, news_feed) {
-            console.log(error);
+            console.log(news_feed);
             newsfeed = news_feed;
             loadBarchart();
         });
@@ -356,7 +356,7 @@
         //LINEFUNCTION
         var lineFunction = d3.svg.line()
                 .x(function(d, i) {
-            return left_rightmargin + i * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp);
+            return left_rightmargin + i * barwidth / tweets_per_hour.length ;
         })
                 .y(function(d, i) {
             return yScale(d.number_of_tweets);
@@ -398,6 +398,7 @@
                 .on("slide", function(evt, value) {
             ti = value;
             drawDots();
+            bubble(5,get_current_view())
         });
         // CREATE SLIDER
         d3.select('#tweet-map #slider div')
@@ -418,7 +419,7 @@
                 .enter()
                 .append("circle")
                 .attr("cx", function(d, i) {
-            return left_rightmargin + d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp) / 2;
+            return left_rightmargin + d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
         })
                 .attr("cy", function(d, i) {
             return 3;
@@ -427,26 +428,23 @@
                 .on("mouseover", function(d) {
             newstipdiv.transition()
                     .duration(500)
+                    .style("display", "block")
                     .style("opacity", 1);
             newstipdiv.html(
                     // Source + Time
                     '<p class="time">' + d[2] + ":" + d[1] + "</p>" +
                     // Content
-                    '<p class="content">' + d[3] + "</p>" +
-                    // link
-                    '<p>Click on dot to open</p>'
+                    '<p class="content">' + d[3] + "</p>"
                     )
-                    .style("left", (d3.event.pageX) - 100 + "px")
-                    .style("bottom", (h - d3.event.pageY) + "px");
+                    .style("left", (d3.event.pageX - 200) + "px")
+                    .style("top", (d3.event.pageY - 320) + "px");
         })
                 .on("mouseout", function(d) {
             newstipdiv.transition()
                     .duration(500)
-                    .style("opacity", 0);
+                    .style("opacity", 0)
+                    .style("display", "none");
         })
-                .on("click", function(d) {
-            window.location = d[4];
-        });
 
 
 
