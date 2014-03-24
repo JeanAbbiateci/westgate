@@ -3,6 +3,7 @@
    License: none (public domain)
 */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Homenaje);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -107,7 +108,7 @@ body {
   .pages-container #pages {
     transition: all 0.5s ease-out; }
     .pages-container #pages .page {
-      border: 3px solid #000;
+      border-bottom: 1px solid #343a45;
       display: block;
       color: #8a93a5;
       min-height: 700px; }
@@ -164,7 +165,6 @@ body {
   src: url("./fonts/collator.eot?#iefix") format("embedded-opentype"), url("./fonts/collator.woff") format("woff"), url("./fonts/collator.ttf") format("truetype"), url("./fonts/collator.svg#collator") format("svg");
   font-style: normal;
   font-weight: normal; }
-
 /* General styling for SVG, path, circle, p, h1 etc */
 p {
   font-family: 'Open Sans';
