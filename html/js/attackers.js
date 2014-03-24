@@ -49,7 +49,7 @@
         });
 
 
-        checkClicked = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1];
+        checkClicked = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         /*data.forEach(function(d) {
          checkClicked.push(1);
          });*/
