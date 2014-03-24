@@ -169,7 +169,10 @@ body {
 p {
   font-family: 'Open Sans';
   margin: 0px;
-  font-size: 10px; }
+  font-size: 12px; }
+
+a {
+  color: #008daa; }
 
 circle {
   fill: #db3d3c;
@@ -211,17 +214,21 @@ div.tooltipline {
   z-index: 1000; }
 
 div.newstip {
-  border-radius: 6px;
+  border-radius: 3px;
   position: absolute;
   text-align: left;
-  background: rgba(66, 73, 87, 0.6);
-  height: 80px;
-  width: auto;
-  max-width: 600px;
-  padding: 5px 5px;
-  font-size: 13px;
-  color: #fff;
+  background: #acb2c1;
+  height: auto;
+  min-width: 100px;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 12px;
+  color: #343a45;
+  overflow: hidden;
   z-index: 999; }
+
+.newstip p {
+  color: #343a45; }
 
 div.newstip .time {
   margin: 0px; }
