@@ -402,7 +402,7 @@
                     '<p class="content">' + d[3] + "</p>"
                     )
                     .style("left", (d3.event.pageX - 200) + "px")
-                    .style("top", (d3.event.pageY - 150) + "px");
+                    .style("top", (d3.event.pageY - 90) + "px");
                     console.log(newstipdiv)
 
             newstipdiv.transition()
