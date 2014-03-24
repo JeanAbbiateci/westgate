@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -148,13 +149,13 @@ h1 {
   line-height: 38px; }
 
 p {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   color: #ACB2C1;
   line-height: 20px; }
 
 body {
-  font-family: OpenSans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13px; }
 
 @font-face {
