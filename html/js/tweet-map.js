@@ -9,7 +9,7 @@
      ---------------------
      */
 
-    var h = window.innerHeight, w = window.innerWidth, bp = 1,
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0), w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
             t_style = "linear", ti = 0,
             timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
             barchartheight = 90,
@@ -28,33 +28,6 @@
      ---------------------
      */
     init();
-
-
-    /* 
-     ---------------------
-     Handling controls & events 
-     ---------------------
-     */
-    var playPauseElement = d3.select('#tweet-map #startstop a');
-    playPauseElement.on('click', function(e) {
-        if (!this.classList.contains("play")) {
-            stopAnimate();
-
-            playPauseElement.transition()
-                    .duration(300)
-                    .style("opacity", 0).each("end", function() {
-                playPauseElement.classed("play", true).transition().duration(100).style("opacity", 1);
-            });
-        } else {
-            startAnimate();
-
-            playPauseElement.transition()
-                    .duration(300)
-                    .style("opacity", 0).each("end", function() {
-                playPauseElement.classed("play", false).transition().duration(100).style("opacity", 1);
-            });
-        }
-    });
     
     
     /** /
@@ -85,11 +58,6 @@
                 .attr("height", h - 71 - barchartheight)
                 .attr("id", "map");
 
-        svgbar = d3.select("#tweet-map").append("svg")
-                .attr("width", w)
-                .attr("height", barchartheight)
-                .attr("id", "barchart");
-
 
         // Append Gradient to SVG
         defs = svg.append("defs");
@@ -116,17 +84,6 @@
                 .style("stop-color", "#db3d3c")
                 .style("stop-opacity", 0.5);
 
-        // Append TEXT to SVG
-        textd = svg.append("text")
-                .attr("x", w * 0.15)
-                .attr("y", h * 0.55)
-                .text("LOADING...");
-
-        textt = svg.append("text")
-                .attr("x", w * 0.15)
-                .attr("y", h * 0.55 + 20)
-                .text("");
-
         // Append G to SVG for world map.
         g = svg.append("g");
 
@@ -143,6 +100,13 @@
                 .attr("class", "newstip")
                 .style("opacity", 0)
                 .style("display", "none");
+
+        // TimeDiv
+        timediv = d3.select("body").append("div")
+                .attr("class", "timediv")
+                .html("<h1>LOADING...");
+
+
     }
 
 
@@ -200,7 +164,7 @@
     function loadNewsItems() {
         // DRAW TWEETS ON MAP.
         d3.json("data/newsfeed.json", function(error, news_feed) {
-            console.log(error);
+            console.log(news_feed);
             newsfeed = news_feed;
             loadBarchart();
         });
@@ -258,7 +222,7 @@
                     .duration(500)
                     .style("opacity", 1)
                     .style("display", "block");
-            tipdiv.html(d[4] + ": " + d[3] + " tweets")
+            tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
                     .style("left", (d3.event.pageX) - 25 + "px")
                     .style("top", (d3.event.pageY - 37) + "px");
         })
@@ -313,8 +277,7 @@
 
         //timeset
         var currenttime = tweets_per_location[ti].key;
-        textd.text(dates[currenttime.substring(0, 3)]);
-        textt.text(currenttime.substring(4, 6) + ":00");
+        timediv.html("<h1>" + dates[currenttime.substring(0, 3)] + " || " + currenttime.substring(4, 6) + ":00</h1>")
 
         //set slider
         slider.slide_to(ti);
@@ -341,6 +304,51 @@
         var barheight = barchartheight - 20;
 
 
+        // DIV FOR SLIDER AT CORRECT LOCATION.
+        sliderdiv = d3.select("body").append("div")
+                .attr("id", "slider")
+                .style("width", function(d) {
+            return barwidth + "px";
+        })
+                .style("height", function(d) {
+            return barheight + "px";
+        })
+                .style("left", function(d) {
+            return left_rightmargin + "px";
+        })
+                .style("top", function(d) {
+            return (h - barchartheight) + "px";
+        })
+                .append("div");
+
+        slider = d3.slider()
+                .min(0)
+                .animate(animationSpeed)
+                .max(tweets_per_hour.length - 1)
+                .step(1)
+                .on("slide", function(evt, value) {
+            ti = value;
+            drawDots();
+            bubble(5,get_current_view())
+        });
+        // CREATE SLIDER
+        d3.select('#slider div')
+                .call(slider);
+
+        d3.select("#startstop")
+                .style("left", function(d) {
+            return left_rightmargin - playPauseWidth + "px";
+        })
+                .style("top", function(d) {
+            return (h - barchartheight - 2) + topmargin + "px";
+        });
+
+
+        svgbar = sliderdiv.append("svg")
+                .attr("width", barwidth)
+                .attr("height", barheight)
+                .attr("id", "barchart");
+
         //SCALE FOR NUMBER OF TWEETS VALUE TO PIXELS
         yScale = d3.scale.linear()
                 .domain([0, 21322])
@@ -348,7 +356,7 @@
 
         //FILL BACKGROUND OF LINE
         svgbar.append("rect")
-                .attr("x", left_rightmargin)
+                .attr("x", 0)
                 .attr("y", topmargin)
                 .attr("width", barwidth)
                 .attr("height", barheight - topmargin - 1);
@@ -356,7 +364,7 @@
         //LINEFUNCTION
         var lineFunction = d3.svg.line()
                 .x(function(d, i) {
-            return left_rightmargin + i * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp);
+            return i * barwidth / tweets_per_hour.length ;
         })
                 .y(function(d, i) {
             return yScale(d.number_of_tweets);
@@ -372,83 +380,71 @@
                 .attr("fill", "none");
 
 
-        // DIV FOR SLIDER AT CORRECT LOCATION.
-        sliderdiv = d3.select("#tweet-map").append("div")
-                .attr("id", "slider")
-                .style("width", function(d) {
-            return barwidth - 5 + "px";
-        })
-                .style("height", function(d) {
-            return barheight - topmargin + "px";
-        })
-                .style("position", "absolute")
-                .style("left", function(d) {
-            return left_rightmargin + "px";
-        })
-                .style("top", function(d) {
-            return (h - barchartheight) + topmargin + "px";
-        })
-                .append("div");
-
-        slider = d3.slider()
-                .min(0)
-                .animate(animationSpeed)
-                .max(tweets_per_hour.length - 1)
-                .step(1)
-                .on("slide", function(evt, value) {
-            ti = value;
-            drawDots();
-        });
-        // CREATE SLIDER
-        d3.select('#tweet-map #slider div')
-                .call(slider);
-
-        d3.select("#tweet-map #startstop")
-                .style("left", function(d) {
-            return left_rightmargin - playPauseWidth + "px";
-        })
-                .style("top", function(d) {
-            return (h - barchartheight - 2) + topmargin + "px";
-        });
-
-
-
+        // Circles for news events
         svgbar.selectAll("circle")
                 .data(newsfeed)
                 .enter()
                 .append("circle")
                 .attr("cx", function(d, i) {
-            return left_rightmargin + d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length - bp) / 2;
+            return d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
         })
                 .attr("cy", function(d, i) {
             return 3;
         })
                 .attr("r", 3)
                 .on("mouseover", function(d) {
-            newstipdiv.transition()
-                    .duration(500)
-                    .style("opacity", 1);
+
+
             newstipdiv.html(
                     // Source + Time
-                    '<p class="time">' + d[2] + ":" + d[1] + "</p>" +
+                    '<p class="time"><strong>' + d[2] + ":" + d[1] + "</strong></p>" +
                     // Content
-                    '<p class="content">' + d[3] + "</p>" +
-                    // link
-                    '<p>Click on dot to open</p>'
+                    '<p class="content">' + d[3] + "</p>"
                     )
-                    .style("left", (d3.event.pageX) - 100 + "px")
-                    .style("bottom", (h - d3.event.pageY) + "px");
+                    .style("left", (d3.event.pageX - 200) + "px")
+                    .style("top", (d3.event.pageY - 90) + "px");
+                    console.log(newstipdiv)
+
+            newstipdiv.transition()
+                    .duration(500)
+                    .style("display", "block")
+                    .style("opacity", 1);
+
         })
                 .on("mouseout", function(d) {
             newstipdiv.transition()
                     .duration(500)
-                    .style("opacity", 0);
-        })
-                .on("click", function(d) {
-            window.location = d[4];
+                    .style("opacity", 0)
+                    .style("display", "none");
         });
 
 
+        /*
+        playpause = sliderdiv.append("div")
+                .attr("id", "startstop")
+                .append("a")
+                .attr("class", "play")
+
+        var playPauseElement = playpause
+    playPauseElement.on('click', function(e) {
+        if (!this.classList.contains("play")) {
+            stopAnimate();
+
+            playPauseElement.transition()
+                    .duration(300)
+                    .style("opacity", 0).each("end", function() {
+                playPauseElement.classed("play", true).transition().duration(100).style("opacity", 1);
+            });
+        } else {
+            startAnimate();
+
+            playPauseElement.transition()
+                    .duration(300)
+                    .style("opacity", 0).each("end", function() {
+                playPauseElement.classed("play", false).transition().duration(100).style("opacity", 1);
+            });
+        }
+    }); */
 
     }
 

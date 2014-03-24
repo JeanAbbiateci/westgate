@@ -164,17 +164,41 @@ body {
   src: url("./fonts/collator.eot?#iefix") format("embedded-opentype"), url("./fonts/collator.woff") format("woff"), url("./fonts/collator.ttf") format("truetype"), url("./fonts/collator.svg#collator") format("svg");
   font-style: normal;
   font-weight: normal; }
+
+/* General styling for SVG, path, circle, p, h1 etc */
+p {
+  font-family: 'Open Sans';
+  margin: 0px;
+  font-size: 10px; }
+
+circle {
+  fill: #db3d3c;
+  cursor: pointer; }
+
+circle:hover {
+  fill: #343a45; }
+
+svg {
+  display: block;
+  margin: 0px !important; }
+
+path {
+  stroke: #8a93a5;
+  stroke-width: 0.25px;
+  fill: #343a45; }
+
 div.tooltip {
   position: absolute;
   text-align: center;
   width: auto;
   height: 15px;
-  padding: 5px 10px;
+  padding: 2px 10px 7px 10px;
   font-size: 13px;
   color: #dbe1e7;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(66, 73, 87, 0.6);
   border: 0px;
-  pointer-events: none; }
+  pointer-events: none;
+  z-index: 999; }
 
 div.tooltipline {
   width: 2px;
@@ -185,6 +209,74 @@ div.tooltipline {
   /* Override in-line if you want specific height. */
   float: left;
   z-index: 1000; }
+
+div.newstip {
+  border-radius: 6px;
+  position: absolute;
+  text-align: left;
+  background: rgba(66, 73, 87, 0.6);
+  height: 80px;
+  width: auto;
+  max-width: 600px;
+  padding: 5px 5px;
+  font-size: 13px;
+  color: #fff;
+  z-index: 999; }
+
+div.newstip .time {
+  margin: 0px; }
+
+div.timediv {
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  text-align: center;
+  z-index: 30000; }
+  div.timediv h1 {
+    font-family: 'Collator';
+    font-size: 16px; }
+
+/* Slider is now common as it is needed on multiple pages. */
+#slider {
+  position: fixed; }
+
+.d3-slider {
+  cursor: pointer;
+  position: relative;
+  z-index: 2; }
+
+.d3-slider-horizontal {
+  height: 100%; }
+
+.d3-slider-handle {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: rgba(66, 73, 87, 0.6);
+  border-left: 1px solid rgba(138, 147, 165, 0.6);
+  border-right: 1px solid rgba(138, 147, 165, 0.6);
+  z-index: 3;
+  cursor: col-resize; }
+
+/* Styling for slider */
+#slider rect {
+  fill: #3a414c;
+  cursor: pointer; }
+#slider #startstop {
+  padding-top: 4px;
+  width: 70px;
+  float: left;
+  position: fixed; }
+#slider #startstop a {
+  margin-left: 8px;
+  color: white;
+  text-decoration: none;
+  width: 55px;
+  height: 55px;
+  display: block;
+  background: url(../img/pause.png); }
+#slider #startstop a.play {
+  background: url(../img/play.png); }
 
 #page-intro .container {
   padding-top: 80px; }
@@ -210,73 +302,13 @@ div.tooltipline {
 
 #tweet-map {
   margin-top: 0px !important;
-  position: relative;
-  /* D3 Slider */ }
-  #tweet-map #startstop {
-    padding-top: 4px;
-    width: 70px;
-    float: left;
-    position: absolute; }
-  #tweet-map #startstop a {
-    margin-left: 8px;
-    color: white;
-    text-decoration: none;
-    width: 55px;
-    height: 55px;
-    display: block;
-    background: url(../img/pause.png); }
-  #tweet-map #startstop a.play {
-    background: url(../img/play.png); }
-  #tweet-map svg {
-    display: block;
-    margin: 0px !important; }
-  #tweet-map circle {
-    cursor: pointer; }
+  position: relative; }
   #tweet-map #map {
     margin-top: 71px !important; }
-  #tweet-map path {
-    stroke: #8a93a5;
-    stroke-width: 0.25px;
-    fill: #343a45; }
   #tweet-map text {
     font-size: 16px;
     font-family: 'Collator';
     fill: #dbe1e7; }
-  #tweet-map #barchart rect {
-    fill: #3a414c;
-    cursor: pointer; }
-  #tweet-map #barchart circle {
-    fill: #db3d3c;
-    cursor: pointer; }
-  #tweet-map #barchart circle:hover {
-    fill: #343a45; }
-  #tweet-map .d3-slider {
-    cursor: pointer;
-    position: relative;
-    z-index: 2; }
-  #tweet-map .d3-slider-horizontal {
-    height: 100%; }
-  #tweet-map .d3-slider-handle {
-    position: absolute;
-    width: 5px;
-    height: 100%;
-    background: rgba(66, 73, 87, 0.6);
-    border-left: 1px solid rgba(138, 147, 165, 0.6);
-    border-right: 1px solid rgba(138, 147, 165, 0.6);
-    z-index: 3;
-    cursor: col-resize; }
-  #tweet-map div.newstip {
-    border-radius: 6px;
-    position: absolute;
-    text-align: left;
-    width: 200px;
-    height: 200px;
-    padding: 5px 5px;
-    font-size: 13px;
-    color: #fff;
-    background: rgba(66, 73, 87, 0.6); }
-  #tweet-map div.newstip .time {
-    margin: 0px; }
 
 #word-chart path {
   stroke: steelblue;
@@ -312,3 +344,12 @@ div.tooltipline {
   padding: 5px; }
 #word-chart .tableHead {
   background: #eee; }
+
+#page-bubble {
+  margin-top: 80px; }
+  #page-bubble .bubble {
+    fill: #343a45;
+    stroke: #8a93a5;
+    stroke-width: 1px; }
+  #page-bubble .bubble.verified {
+    fill: #424957; }

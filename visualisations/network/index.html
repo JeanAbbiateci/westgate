@@ -1,242 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Westgate attack</title>
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
 <body>
-<style>
-body{
-  background-color: #333;
-  width: 100%;
-  height: 100%;
-}
-
-#container{
-	background-color: #333;
-	width: 500px;
-	height: 500px;
-}
-.nodetext {
-	font-size: 1em;
-	font-family: arial;
-	fill : #fff;
-}
-</style>
-
-<div id='container'></div>
-<script type="text/javascript" src="js/d3.v3.min.js"></script>
-<script type="text/javascript" src="js/colorbrewer.js"></script>
-<script type="text/javascript">
-  var width = 750,
-      height = 680;
-
-  var sqrtScale = d3.scale.pow()
-    .range([1,20])
-
-  var logScale = d3.scale.log()
-    .range([1,1])
-
-  var colors = d3.scale.linear()
-    .range([colorbrewer.RdBu[3].reverse()[8],colorbrewer.RdBu[9].reverse()[0]]);
-
-  var linkramp = d3.scale.sqrt()
-    .domain([0,100])
-    .range([10,40])
-    .clamp(true)
-
-  var force = d3.layout.force()
-    .charge(-150)
-    .linkDistance(function(d) { return linkramp(d.source.value + d.target.value )})
-    .size([width, height])
-
-  var svg = d3.select("#container").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-  		
-  function mouseover() {
-    text = d3.select(this).select('.nodetext')
-    text.transition()
-        .duration(100)
-        .style("opacity", 1);
-  }
-
-  function mouseout() {
-    text = d3.select(this).select('.nodetext')
-    text.transition()
-        .duration(100)
-        .style("opacity", 0);
-  }
+    <nav id="story-nav">
+        <div class="container">
+            <div id="logo">WESTGATE ATTACK <span>SOCIAL MEDIA PERSPECTIVE</span></div>
+            <ul>
+                <li>MAP</li>
+                <li>TWEETS</li>
+                <li>AUTHORS</li>
+                <li>WORDS</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="pages-container">
+        <div id="pages" style="">
+            <div class="page" id="page-intro">
+                <div class="container">
+                    <h1>MASS MEDIA COVERAGE</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in ipsum nec nibh faucibus tincidunt sit amet suscipit nibh. Praesent congue molestie leo. Aliquam vitae consequat metus. Ut condimentum id dui ac convallis. Duis libero mauris, condimentum eu elit vel.</p>
+                    <div style="margin-top: 50px"><img src="img/media.png"></div>
+                </div>
+            </div>
+            <div class="page" id="tweet-map">
+                <div id="startstop">
+                <a href="#tweet-map" class="play"></a>
+                </div>
+            </div>
+            <div class="page">
+                <div class="container" id="page-bubble" style="margin-top: 30px">
+                    <div id='tooltip'></div>
+                    <div id='options'></div>
+                    <div id='bubble'></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="container">
+                    <iframe src="network/index.html" style="width: 100%; height: 100%"></iframe>
+                </div>
+            </div>
+            <div class="page" id="word-chart">
+                <div class="container">
+                    
+                </div>
+            </div>
+            <div class="page"></div>
+        </div>
+    </div>
+<script src="js/main.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/bubble.js"></script>
 
 
+<!-- Files for Tweet MAP -->
+<script src="js/d3_slider.js" charset="utf-8"></script>
+<script src="js/topojson.js"></script>
+<script src="js/tweet-map.js"></script>
+<script src="js/attackers.js"></script>
 
-
-function drawGraph(graph){
-  links = graph.links.slice()
-
-  force
-    .nodes(graph.nodes.slice())
-    .links(links)
-    .start();
-
-  maxNodes = 0
-  minNodes = 100000
-  graph.nodes.forEach(function(n){
-    if(n.value > maxNodes){
-      maxNodes = n.value
-    }
-    if(n.value < minNodes){
-      minNodes = n.value
-    }
-  })
-
-  maxLinks = 0
-  minLinks = 100000
-  links.forEach(function(l){
-    if(l.value > maxLinks){
-      maxLinks = l.value
-    }
-    if(l.value < minNodes && l.value > 0){
-      minNodes = l.value
-    }
-  })
-
-  sqrtScale.domain([minNodes,maxNodes])
-  colors.domain([minNodes,maxNodes])
-  logScale.domain([minLinks,maxLinks])
-  
-  var linkGroup = svg.append('g').attr('class','linkGroup')
-  var link = linkGroup.selectAll(".link")
-    .data(graph.links)
-    .enter().append("line")
-    .attr("class","link")
-    .attr("stroke","#777")
-    .attr("stroke-width", function(d){return logScale(d.value)})
-
-  var nodeGroup = svg.append('g').attr('class','nodeGroup')
-  var g = nodeGroup.selectAll(".group")
-    .data(graph.nodes)
-    .enter()
-    .append("g")
-    .attr("class", "group")
-    .on("mouseover", mouseover)
-    .on("mouseout", mouseout)
-
-  var node = g.append("circle") 
-    .attr("class", "node")
-    .attr("r", function(d) {return sqrtScale(d.value)})
-    .style("fill",function(d) {return colors(d.value)})
-    .call(force.drag);
-
-  var text = g.append("text")
-    .attr("class", "nodetext")
-    .text(function(d) { return d.name })
-    .style("opacity",0)
-
-
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-
-    text.attr("x", function(d){return d.x + 5})
-        .attr("y", function(d){return d.y - 5});
-
-  });
-}
-
-
-
-
-
-var i = 1
-d3.json("new_mentions_top100.json", function(error, ORIGINAL_DATA) {
-
-  
-  document.onkeydown = checkKey;
-  drawGraph(ORIGINAL_DATA[i])
-
-  function checkKey(e) {
-    if (e.keyCode == '37') {
-      updateGraph(-1);
-    }
-    else if (e.keyCode == '39') {
-      updateGraph(1);
-    }
-  }
-  
-  function updateGraph(updateValue){
-    beforeI = i
-    i += updateValue;
-    if (i<1) i = 1;
-    if (i>5) i = 5;
-    if (beforeI == i){return}
-    newGraph = {'nodes' : ORIGINAL_DATA[i].nodes.slice(), 'links' : ORIGINAL_DATA[i].links.slice()}
-
-    var maxNodes = 0
-    var minNodes = 100000
-    newGraph.nodes.forEach(function(n){
-      if(n.value > maxNodes){
-        maxNodes = n.value
-      }
-      if(n.value < minNodes){
-        minNodes = n.value
-      }
-    })
-
-    maxLinks = 0
-    minLinks = 100000
-    newGraph.links.forEach(function(l){
-      if(l.value > maxLinks){
-        maxLinks = l.value
-      }
-      if(l.value < minNodes){
-        minNodes = l.value
-      }
-    })
-
-    sqrtScale.domain([minNodes,maxNodes])
-    colors.domain([minNodes,maxNodes])
-    logScale.domain([minLinks,maxLinks])
-
-    var link = svg.select('.linkGroup').selectAll(".link")
-      .data(newGraph.links)
-    
-    link.enter().append("line")
-      .attr("class","link")
-      .attr("stroke","#777")
-      .attr("stroke-width", function(d){return logScale(d.value)})
-
-    link.exit().remove()
-
-    var nodes = svg.select('.nodeGroup').selectAll('.node')
-    nodes.data().map(function(d){
-      console.log(d.value)
-      d.value = newGraph.nodes[d.index].value
-      console.log(d.value)
-    })
-
-    nodes.attr("r", function(d) {return sqrtScale(d.value)})
-      .style("fill",function(d) {return colors(d.value)})
-    
-    var text = svg.select('.nodeGroup').selectAll('text')
-
-    force.links(newGraph.links).nodes(nodes.data()).start()
-
-    force.on("tick", function() {
-      link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-      nodes.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-
-      text.attr("x", function(d){return d.x + 5})
-        .attr("y", function(d){return d.y - 5});
-
-  });
-  }
-
-});
-
-</script>
 </body>
+</html>

@@ -17,20 +17,20 @@ function bubble(hour,current_view) {
       this.create_nodes = __bind(this.create_nodes, this);
       this.data = data
       var max_amount;
-      this.width = 1200;
-      this.height = 500;
+      this.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       this.center = {
         x: this.width / 2,
-        y: this.height / 2
+        y: (this.height - 100) / 2
       };
       this.centers = {
         'Verified users' : {
           x: this.width / 3,
-          y: this.height / 2
+          y: (this.height - 100) / 2
         },
         'Normal users' : {
           x: 2 * this.width / 3,
-          y: this.height / 2
+          y: (this.height - 100) / 2
         }
       };
       this.layout_gravity = -0.01;
@@ -81,18 +81,16 @@ function bubble(hour,current_view) {
       var that,
         _this = this;
       d3.select('#bubble').selectAll("svg").remove()
-      this.vis = d3.select("#bubble").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
+      this.vis = d3.select("#bubble").append("svg").attr("width", this.width).attr("height", this.height - 80).attr("id", "svg_vis");
       this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
         return d.id;
       });
       that = this;
-      this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d){
+      this.circles.enter().append("circle").attr("r", 0).attr("class", function(d){
         if(d.verified){
-          return '#333'
+          return 'bubble verified';
         }
-        return '#999'
-      }).attr("stroke-width", 2).attr("stroke", function(d) {
-        return '#777'
+        return 'bubble';
       }).attr("id", function(d) {
         return "bubble_" + d.id;
       }).on("mouseover", function(d, i) {
@@ -188,12 +186,13 @@ function bubble(hour,current_view) {
       content = "<span class=\"name\">User:</span><span class=\"value\"> " + data.name + "</span><br/>";
       content += "<span class=\"name\">Tweet:</span><span class=\"value\"> " + urlize(data.tweet)+ "</span><br/>";
       content += "<span class=\"name\">Amount:</span><span class=\"value\">" + data.value + "</span>";
-      d3.select('#tooltip').html(content).transition().duration(1000).style("opacity",1)
+      d3.select('.newstip').style("left", (d3.event.pageX - 125) + "px").style("top", (d3.event.pageY - 90) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
+
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
       var _this = this;
-      d3.select("#tooltip").transition().duration(1000).style("opacity",0)
+      d3.select(".newstip").transition().duration(1000).style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
       });
@@ -273,6 +272,3 @@ window.onload = function(){
   button.html('Click me to change between graphs!')
 }
 
-
-setTimeout(function() {bubble(1,get_current_view())}, 10000);
-setTimeout(function() {bubble(2,get_current_view())}, 20000);
