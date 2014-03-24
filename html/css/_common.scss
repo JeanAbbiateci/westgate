@@ -1,9 +1,42 @@
+/* General styling for SVG, path, circle, p, h1 etc */
+p
+      {
+        font-family:'Open Sans';
+        margin:0px;
+        font-size:$s0;
+      }
+
+circle
+    {
+      fill:#db3d3c;
+      cursor:pointer;
+    }
+
+    circle:hover
+    {
+        fill:$dark-blue;
+    }
+
+    svg
+    {
+      display:block;
+      margin:0px !important;
+    }
+
+    path 
+    {
+    stroke:$light-blue;
+    stroke-width: 0.25px;
+    fill:$dark-blue;
+    }
+
+
 div.tooltip {   
       position: absolute;           
       text-align: center;           
       width: auto;                  
       height: 15px;                 
-      padding: 5px 10px;             
+      padding: 2px 10px 7px 10px;           
       font-size: 13px;
       color:$white-blue;    
       background: rgba($medium-blue, 0.6);
@@ -23,13 +56,14 @@ div.tooltip {
     div.newstip {   
       border-radius:6px;
       position: absolute;
-      text-align: left;
-      width: 300px;               
-      height: 300px;                 
+      text-align: left;    
+      background: rgba($medium-blue, 0.6);
+      height:100px;
+      width:auto;
+      max-width:500px;      
       padding: 5px 5px;             
       font-size: 13px;
       color:#fff;        
-      background: rgba($medium-blue, 0.6);
       z-index:999;
     }
 
@@ -37,3 +71,83 @@ div.tooltip {
     {
       margin:0px;
     }
+
+    div.timediv 
+    {
+      position:fixed;
+      top: 90px;
+      left:50%;
+      text-align:center;
+      h1
+      {
+      font-family: 'Collator';
+      font-size:$s2;
+      }
+    }
+
+
+      
+    /* Slider is now common as it is needed on multiple pages. */
+
+    #slider
+    {
+      position:fixed;
+    }
+
+    .d3-slider {
+      cursor: pointer;
+        position: relative;
+        z-index: 2;
+    }
+
+    .d3-slider-horizontal {
+        height: 100%;
+    }  
+
+
+    .d3-slider-handle {
+        position: absolute;
+        width: 3px;
+        height: 100%;
+        background: rgba($medium-blue, 0.6);
+        border-left: 1px solid rgba($light-blue, 0.6);
+        border-right: 1px solid rgba($light-blue, 0.6);
+        z-index: 3;
+        cursor: col-resize;
+    }
+
+    /* Styling for slider */
+    #slider
+    {
+    rect
+    {
+        fill:#3a414c;
+        cursor:pointer;
+    }
+    
+
+    #startstop
+    {
+        padding-top:4px;
+        width:70px;
+        float:left;
+        position: fixed
+    }
+
+    #startstop a
+    {
+        margin-left:8px;
+        color:white;   
+        text-decoration: none;
+        width: 55px;
+        height: 55px;
+        display: block;
+        background: url(../img/pause.png);
+    }
+
+    #startstop a.play
+    {
+        background: url(../img/play.png);
+    }
+
+}

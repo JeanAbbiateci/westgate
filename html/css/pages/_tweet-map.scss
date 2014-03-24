@@ -5,51 +5,10 @@
     position:relative;
 
 
-    #startstop
-    {
-        padding-top:4px;
-        width:70px;
-        float:left;
-        position: absolute;
-    }
-
-    #startstop a
-    {
-        margin-left:8px;
-        color:white;   
-        text-decoration: none;
-        width: 55px;
-        height: 55px;
-        display: block;
-        background: url(../img/pause.png);
-    }
-
-    #startstop a.play
-    {
-        background: url(../img/play.png);
-    }
-
-    svg
-    {
-      display:block;
-      margin:0px !important;
-    }
-
-    circle{
-        cursor:pointer;
-    }
-
     #map
     {
             margin-top:71px !important;
     }
-
-
-    path {
-      stroke:$light-blue;
-      stroke-width: 0.25px;
-      fill:$dark-blue;
-      }
 
 
     text
@@ -58,49 +17,5 @@
             font-family: 'Collator';
             fill: $white-blue;
     }
-
-    #barchart rect
-    {
-        fill:#3a414c;
-        cursor:pointer;
-    }
-
-    #barchart circle
-    {
-      fill:#db3d3c;
-      cursor:pointer;
-
-    }
-
-    #barchart circle:hover
-    {
-        fill:$dark-blue;
-    }
-
-    /* D3 Slider */
-
-    .d3-slider {
-      cursor: pointer;
-        position: relative;
-        z-index: 2;
-    }
-
-    .d3-slider-horizontal {
-        height: 100%;
-    }  
-
-
-    .d3-slider-handle {
-        position: absolute;
-        width: 5px;
-        height: 100%;
-        background: rgba($medium-blue, 0.6);
-        border-left: 1px solid rgba($light-blue, 0.6);
-        border-right: 1px solid rgba($light-blue, 0.6);
-        z-index: 3;
-        cursor: col-resize;
-    }
-
-    
 
 }

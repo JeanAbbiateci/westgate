@@ -17,20 +17,20 @@ function bubble(hour,current_view) {
       this.create_nodes = __bind(this.create_nodes, this);
       this.data = data
       var max_amount;
-      this.width = 1200;
-      this.height = 500;
+      this.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       this.center = {
         x: this.width / 2,
-        y: this.height / 2
+        y: (this.height - 160) / 2
       };
       this.centers = {
         'Verified users' : {
           x: this.width / 3,
-          y: this.height / 2
+          y: (this.height - 160) / 2
         },
         'Normal users' : {
           x: 2 * this.width / 3,
-          y: this.height / 2
+          y: (this.height - 160) / 2
         }
       };
       this.layout_gravity = -0.01;
@@ -42,7 +42,7 @@ function bubble(hour,current_view) {
       max_amount = d3.max(this.data, function(d) {
         return parseInt(d.amount);
       });
-      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 50]);
+      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, h / 7]);
       this.create_nodes();
       this.create_vis();
     }
@@ -81,7 +81,7 @@ function bubble(hour,current_view) {
       var that,
         _this = this;
       d3.select('#bubble').selectAll("svg").remove()
-      this.vis = d3.select("#bubble").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
+      this.vis = d3.select("#bubble").append("svg").attr("width", this.width).attr("height", this.height - 80).attr("id", "svg_vis");
       this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
         return d.id;
       });
@@ -186,12 +186,13 @@ function bubble(hour,current_view) {
       content = "<span class=\"name\">User:</span><span class=\"value\"> " + data.name + "</span><br/>";
       content += "<span class=\"name\">Tweet:</span><span class=\"value\"> " + urlize(data.tweet)+ "</span><br/>";
       content += "<span class=\"name\">Amount:</span><span class=\"value\">" + data.value + "</span>";
-      d3.select('#tooltip').html(content).transition().duration(1000).style("opacity",1)
+      d3.select('.newstip').style("left", (d3.event.pageX - 125) + "px").style("top", (d3.event.pageY - 130) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
+
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
       var _this = this;
-      d3.select("#tooltip").transition().duration(1000).style("opacity",0)
+      d3.select(".newstip").transition().duration(1000).style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
       });
