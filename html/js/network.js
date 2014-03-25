@@ -26,7 +26,7 @@ function network(){
     var content;
     content = "User: " + data.name + "<br/>";
     content += "Amount of retweets: " + data.value;
-    d3.select('.newstip').style("left", (d3.event.pageX - 50) + "px").style("top", (d3.event.pageY - 50) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
+    d3.select('.newstip').style("left", (d3.event.pageX - 50) + "px").style("top", (d3.event.pageY - 160) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
   }
 
   function hideTooltip(d,i) {

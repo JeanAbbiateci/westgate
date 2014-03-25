@@ -28,18 +28,26 @@ window.load = (function() {
             currentPageIndex = selectPage(currentPageIndex - 1);
         else if (event.which === 40)
             currentPageIndex = selectPage(currentPageIndex + 1);
-        console.log(currentPageIndex);
+        
         if (currentPage !== pagesList[currentPageIndex]) {
             currentPage = pagesList[currentPageIndex];
 
-            var pos = $("#" + currentPage).offset().top;
+            //var pos = $("#" + currentPage).offset().top;
+            var pos = pageHeight*currentPageIndex;
             // If it's not the first one, we need to subtract the header height
-            if (currentPageIndex !== 0)
-                pos -= headerHeight;
-            $("html").stop(true, true).animate({
+           
+                pos = -(pos);
+            /*if (currentPageIndex !== 0)
+                pos -= headerHeight;*/
+            
+            
+            
+            $("#pages").css("transform", "translate(0,"+pos+"px)");
+            /*$("html, body").stop(true).animate({
                 scrollTop: pos
-            }, 1000);
+            }, 1000);*/
         }
+        return;
     });
 
     function selectPage(index) {
