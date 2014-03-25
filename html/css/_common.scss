@@ -81,20 +81,6 @@ circle
       margin:0px;
     }
 
-    div.timediv 
-    {
-      position:fixed;
-      bottom: 90px;
-      left:50%;
-      text-align:center;
-      h1
-      {
-      font-family: 'Collator';
-      font-size:$s2;
-      }
-      z-index:30000;
-    }
-
 
       
     /* Slider is now common as it is needed on multiple pages. */
@@ -102,6 +88,18 @@ circle
     #slider
     {
       position:fixed;
+
+          div.timediv 
+    {
+      h1
+      {
+      line-height:$s2 + 12;
+      margin:0px;
+      font-family: 'Collator';
+      font-size:$s2;
+      }
+      z-index:30000;
+    }
     }
 
     .d3-slider {

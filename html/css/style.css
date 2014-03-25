@@ -167,6 +167,7 @@ body {
   src: url("./fonts/collator.eot?#iefix") format("embedded-opentype"), url("./fonts/collator.woff") format("woff"), url("./fonts/collator.ttf") format("truetype"), url("./fonts/collator.svg#collator") format("svg");
   font-style: normal;
   font-weight: normal; }
+
 /* General styling for SVG, path, circle, p, h1 etc */
 p {
   font-family: 'Open Sans';
@@ -235,19 +236,16 @@ div.newstip {
 div.newstip .time {
   margin: 0px; }
 
-div.timediv {
-  position: fixed;
-  bottom: 90px;
-  left: 50%;
-  text-align: center;
-  z-index: 30000; }
-  div.timediv h1 {
-    font-family: 'Collator';
-    font-size: 16px; }
-
 /* Slider is now common as it is needed on multiple pages. */
 #slider {
   position: fixed; }
+  #slider div.timediv {
+    z-index: 30000; }
+    #slider div.timediv h1 {
+      line-height: 28px;
+      margin: 0px;
+      font-family: 'Collator';
+      font-size: 16px; }
 
 .d3-slider {
   cursor: pointer;
