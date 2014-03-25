@@ -53,7 +53,7 @@ $(function(){
                 }, function(){clearTimeout(timer)})
             })
         var moveTimer;
-        $(window).on('mousemove', function(e){
+        $('#photo-gallery').on('mousemove', function(e){
             clearTimeout(moveTimer);
             moveTimer = setTimeout(function(){
                 var width = $('#preview').width();
@@ -68,6 +68,12 @@ $(function(){
                     })
             }, 10);
         });
+        $('#photo-gallery').mouseleave(function(){
+            $('#preview').css('display','none');
+        })
+        $('#photo-gallery').mouseenter(function(){
+            $('#preview').css('display','block');
+        })
     };
     mosaic.createMosaic(8);
     mosaic.cropImages();

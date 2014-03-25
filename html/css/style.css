@@ -235,7 +235,7 @@ div.newstip .time {
 
 div.timediv {
   position: fixed;
-  top: 90px;
+  bottom: 90px;
   left: 50%;
   text-align: center;
   z-index: 30000; }
