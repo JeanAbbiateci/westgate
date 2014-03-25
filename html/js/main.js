@@ -4,7 +4,7 @@
     $.fn.scrolled = function(waitTime, fn) {
         if (typeof waitTime === "function") {
             fn = waitTime;
-            waitTime = 300;
+            waitTime = 100;
         }
         var tag = "scrollTimer" + uniqueCntr++;
         this.scroll(function() {
@@ -43,15 +43,16 @@ window.load = (function() {
         var isUserGoingUp = false;
         if (pastPos > top)
             isUserGoingUp = true;
-
+console.log(pastPos+" "+top);
         var element = null;
-        if ((isUserGoingUp && top % (pageHeight) < pageHeight * 3 / 5)
-                || (!isUserGoingUp && top % (pageHeight) < pageHeight * 2 / 3)) {
-            console.log("going to" + pagesList[parseInt(top / pageHeight)]);
-            element = $("#" + pagesList[parseInt(top / pageHeight)]);
-        } else if (!isUserGoingUp && top % (pageHeight) > pageHeight * 2 / 3) {
-            console.log("going to" + pagesList[parseInt(top / pageHeight) + 1]);
-            element = $("#" + pagesList[parseInt(top / pageHeight) + 1]);
+        if (isUserGoingUp){
+            index = selectPage(parseInt(top / pageHeight));
+            console.log("going to" + pagesList[index]);
+            element = $("#" + pagesList[index]);
+        } else{
+            index = selectPage(parseInt(top / pageHeight)+1);
+            console.log("going to" + pagesList[index]);
+            element = $("#" + pagesList[index]);
         }
 
         if (element) {
@@ -75,21 +76,26 @@ window.load = (function() {
     setPagesHeight();
     window.onresize = setPagesHeight;
 
-    /*$(window).scrolled(function() {
+    $(window).scrolled(function() {
         var top = $(window).scrollTop();
         fixUserScrollPosition(top);
-    });*/
+    });
 
     function currentPageHandler() {
         $(window).scroll(function() {
             var top = $(window).scrollTop();
             var index = parseInt(top / pageHeight);
-            if (index >= pagesList.length)
+            
+            currentPage = pagesList[selectPage(index)];
+        });
+    }
+    
+    function selectPage(index){
+        if (index >= pagesList.length)
                 index = pagesList.length-1;
             else if (index < 0)
                 index = 0;
-            currentPage = pagesList[index];
-        });
+        return index;
     }
     currentPageHandler();
 
