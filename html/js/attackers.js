@@ -1,4 +1,3 @@
-
 (function(pageHeight) {
     // ... all vars and functions are in this scope only
     // still maintains access to all globals
@@ -37,8 +36,6 @@
 
 
     }
-
-
 
     function visualizeitTotal() {
 
@@ -497,11 +494,6 @@
 
         });
     }
-
-
-
-
-
 
     loadData();
 
