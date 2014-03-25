@@ -1,20 +1,30 @@
 function network(){
-  var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+
+  var treshold = 15
+
+  var height = 700,
     width =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  var sqrtScale = d3.scale.pow()
+  var sqrtScale = d3.scale.sqrt()
     .range([1,20])
+    .domain([627,33135]);
 
   var logScale = d3.scale.log()
-    .range([1,1])
+    .range([1,3])
+    .domain([treshold,266]);
+
+  var chargeScale = d3.scale
+    .linear()
+    .range([-50,-150])
+    .domain([627,33135]);
 
   var linkramp = d3.scale.sqrt()
-    .domain([0,100])
-    .range([10,40])
-    .clamp(true)
+    .domain([627 + 627 ,33135 + 33135])
+    .range([25,100])
+    .clamp(true);
 
   var force = d3.layout.force()
-    .charge(-150)
+    .charge(function(d){return chargeScale(d.value)})
     .linkDistance(function(d) { return linkramp(d.source.value + d.target.value )})
     .size([width, height])
 
@@ -22,60 +32,60 @@ function network(){
       .attr("width", width)
       .attr("height", height);
       
-  function showTooltip(data,i) {
+  function showTooltip(data) {
     var content;
     content = "User: " + data.name + "<br/>";
-    content += "Amount of retweets: " + data.value;
+    content += "Amount of mentions/retweets: " + data.value;
     var y = d3.event.pageY;
-    var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 50) + "px").style("top", (d3.event.pageY - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
+    var x = d3.event.pageX;
+    var tooltip = d3.select('.tooltip').style("left", (x - 50) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
     tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
     tooltip.transition().duration(1000).style("opacity",1);
   }
 
-  function hideTooltip(d,i) {
+  function hideTooltip(d) {
+    d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
+  }
+
+   function showLinkTooltip(data) {
+    var content;
+    content = data.source.name + ' & ' + data.target.name + " mentioned each other " + data.value + " times";
+    var y = d3.event.pageY;
+    var x = d3.event.pageX;
+    var tooltip = d3.select('.tooltip').style("left", (x - 50) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
+    tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
+    tooltip.transition().duration(1000).style("opacity",1);
+  }
+
+  function hideLinkTooltip(d) {
     d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
   }
 
   function drawNetwork(graph){
     links = graph.links.slice()
+    for(var i = links.length - 1; i >= 0; i--) {
+      if(links[i].value < treshold) {
+        links.splice(i, 1);
+      }
+    }
 
     force
       .nodes(graph.nodes.slice())
       .links(links)
       .start();
 
-    maxNodes = 0
-    minNodes = 100000
-    graph.nodes.forEach(function(n){
-      if(n.value > maxNodes){
-        maxNodes = n.value
-      }
-      if(n.value < minNodes){
-        minNodes = n.value
-      }
-    })
-
-    maxLinks = 0
-    minLinks = 100000
-    links.forEach(function(l){
-      if(l.value > maxLinks){
-        maxLinks = l.value
-      }
-      if(l.value < minNodes && l.value > 0){
-        minNodes = l.value
-      }
-    })
-
-    sqrtScale.domain([minNodes,maxNodes])
-    logScale.domain([minLinks,maxLinks])
-
     var linkGroup = svg.append('g').attr('class','linkGroup')
     var link = linkGroup.selectAll(".link")
-      .data(graph.links)
+      .data(links)
       .enter().append("line")
       .attr("class","link")
       .attr("stroke","#343A45")
       .attr("stroke-width", function(d){return logScale(d.value)})
+      .on("mouseover", function(d) {
+        return showLinkTooltip(d);
+      }).on("mouseout", function(d) {
+        return hideLinkTooltip(d);
+      });
 
     var nodeGroup = svg.append('g').attr('class','nodeGroup')
     var g = nodeGroup.selectAll(".group")
@@ -83,10 +93,10 @@ function network(){
       .enter()
       .append("g")
       .attr("class", "group")
-      .on("mouseover", function(d, i) {
-        return showTooltip(d, i);
-      }).on("mouseout", function(d, i) {
-        return hideTooltip(d, i);
+      .on("mouseover", function(d) {
+        return showTooltip(d);
+      }).on("mouseout", function(d) {
+        return showTooltip(d);
       });
 
     var node = g.append("circle") 
@@ -115,81 +125,6 @@ function network(){
           .attr("cy", function(d) { return d.y; });
 
     });
-
-    this.latestI = i
-  }
-
-  this.updateNetwork = function(hour){
-    i = Math.floor(hour/24) + 1
-    if(i == latestI){return};
-
-    newGraph = {'nodes' : ORIGINAL_DATA[i].nodes.slice(), 'links' : ORIGINAL_DATA[i].links.slice()}
-
-    var maxNodes = 0
-    var minNodes = 100000
-    newGraph.nodes.forEach(function(n){
-      if(n.value > maxNodes){
-        maxNodes = n.value
-      }
-      if(n.value < minNodes){
-        minNodes = n.value
-      }
-    })
-
-    maxLinks = 0
-    minLinks = 100000
-    newGraph.links.forEach(function(l){
-      if(l.value > maxLinks){
-        maxLinks = l.value
-      }
-      if(l.value < minNodes){
-        minNodes = l.value
-      }
-    })
-
-    sqrtScale.domain([minNodes,maxNodes])
-    logScale.domain([minLinks,maxLinks])
-    var link = svg.select('.linkGroup').selectAll(".link")
-      .data(newGraph.links)
-    
-    link.enter().append("line")
-      .attr("class","link")
-      .attr("stroke","#343A45")
-      .attr("stroke-width", function(d){return logScale(d.value)})
-
-    link.exit().remove()
-
-    var nodes = svg.select('.nodeGroup').selectAll('.bubble')
-    nodes.data().map(function(d){
-      d.value = newGraph.nodes[d.index].value
-    });
-    nodes.attr("r", function(d) {return sqrtScale(d.value)})
-      .attr("class",function(d) {
-        for(e in authors){
-          a = authors[e]
-          if(a.name == d.name){
-            if(a.verified){
-              return 'bubble verified'
-            }
-          }
-        }
-        return 'bubble'
-      })
-
-    force.links(newGraph.links).nodes(nodes.data()).start()
-
-    force.on("tick", function() {
-      
-      link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-      nodes.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-
-    });
-    this.latestI = i
   }
 
 
@@ -199,11 +134,11 @@ function network(){
   var authors = JSON.parse(request.responseText);
 
   var request = new XMLHttpRequest();
-  request.open("GET", "data/new_mentions_top100.json", false);
+  request.open("GET", "data/final_mentions.json", false);
   request.send(null)
   this.ORIGINAL_DATA = JSON.parse(request.responseText);
   var i = 1
-  drawNetwork(this.ORIGINAL_DATA[i])
+  drawNetwork(this.ORIGINAL_DATA)
 
   return this
 }

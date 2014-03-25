@@ -1,5 +1,4 @@
 function bubble(hour,current_view) {
-  console.log('hai')
   var BubbleChart, root,
     __bind = function(fn, me){return function(){ return fn.apply(me, arguments); }; };
 
@@ -40,10 +39,8 @@ function bubble(hour,current_view) {
       this.nodes = [];
       this.force = null;
       this.circles = null;
-      max_amount = d3.max(this.data, function(d) {
-        return parseInt(d.amount);
-      });
-      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 50]);
+      max_amount = 2233
+      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([5, 100]);
       this.create_nodes();
       this.create_vis();
     }
@@ -186,9 +183,9 @@ function bubble(hour,current_view) {
       var content;
       el = d3.select(element)
       el.attr("stroke", "black");
-      content = "<span class=\"name\">User:</span><span class=\"value\"> " + data.name + "</span><br/>";
-      content += "<span class=\"name\">Tweet:</span><span class=\"value\"> " + urlize(data.tweet)+ "</span><br/>";
-      content += "<span class=\"name\">Amount:</span><span class=\"value\">" + data.value + "</span>";
+      content = data.name + " tweeted : <br/>";
+      content += urlize(data.tweet)+"<br/>";
+      content += "It was retweeted " + data.value + " times";
       
       var y = d3.event.pageY;
       var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>");
