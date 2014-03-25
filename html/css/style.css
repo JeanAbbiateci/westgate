@@ -360,3 +360,12 @@ div.timediv {
     stroke-width: 1px; }
   #page-bubble .bubble.verified {
     fill: #424957; }
+
+#network {
+  margin-top: 80px; }
+  #network .bubble {
+    fill: #343a45;
+    stroke: #8a93a5;
+    stroke-width: 1px; }
+  #network .bubble.verified {
+    fill: #424957; }

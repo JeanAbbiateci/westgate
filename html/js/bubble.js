@@ -1,10 +1,11 @@
 function bubble(hour,current_view) {
+  console.log('hai')
   var BubbleChart, root,
     __bind = function(fn, me){return function(){ return fn.apply(me, arguments); }; };
 
   BubbleChart = (function() {
     function BubbleChart(data) {
-     this.hide_details = __bind(this.hide_details, this);
+      this.hide_details = __bind(this.hide_details, this);
       this.show_details = __bind(this.show_details, this);
       this.hide_years = __bind(this.hide_years, this);
       this.display_years = __bind(this.display_years, this);
@@ -15,7 +16,7 @@ function bubble(hour,current_view) {
       this.start = __bind(this.start, this);
       this.create_vis = __bind(this.create_vis, this);
       this.create_nodes = __bind(this.create_nodes, this);
-      this.data = data
+      this.data = data;
       var max_amount;
       this.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
       this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -52,10 +53,10 @@ function bubble(hour,current_view) {
       this.data.forEach(function(d) {
         var node;
         if(authors[d.user]){
-          v = authors[d.user].verified
+          v = authors[d.user].verified;
         }else{
-          v = false
-        }
+          v = false;
+        };
         node = {
           id: d.tweet_id,
           radius: _this.radius_scale(d.amount),
@@ -91,6 +92,8 @@ function bubble(hour,current_view) {
           return 'bubble verified';
         }
         return 'bubble';
+      }).attr("stroke-width", 2).attr("stroke", function(d) {
+        return '#777';
       }).attr("id", function(d) {
         return "bubble_" + d.id;
       }).on("mouseover", function(d, i) {
@@ -99,7 +102,7 @@ function bubble(hour,current_view) {
         return that.hide_details(d, i, this);
       });
       return this.circles.transition().duration(2000).attr("r", function(d) {
-        return d.radius
+        return d.radius;
       });
     };
 
@@ -187,11 +190,9 @@ function bubble(hour,current_view) {
       content += "<span class=\"name\">Tweet:</span><span class=\"value\"> " + urlize(data.tweet)+ "</span><br/>";
       content += "<span class=\"name\">Amount:</span><span class=\"value\">" + data.value + "</span>";
       d3.select('.newstip').style("left", (d3.event.pageX - 125) + "px").style("top", (d3.event.pageY - 90) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
-
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
-      var _this = this;
       d3.select(".newstip").transition().duration(1000).style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
@@ -260,15 +261,17 @@ function urlize(content){
 
 var request = new XMLHttpRequest();
 request.open("GET", "data/userProfiles.json", false);
-request.send(null)
+request.send(null);
 var authors = JSON.parse(request.responseText);
 
-window.onload = function(){
-  bubble(0,'all')
-  button = d3.select('#options').append('button')
+function createButton(){
+  button = d3.select('#options').append('div');
+  button.attr('class','bubble-button')
+  button.html('Switch views')
   button.on('click',function(){
-    toggle_view()
+    toggle_view();
   })
-  button.html('Click me to change between graphs!')
 }
 
+bubble(0,'all');
+createButton();
