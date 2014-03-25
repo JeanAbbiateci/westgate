@@ -12,7 +12,7 @@
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0), w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
             t_style = "linear", ti = 0,
             timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
-            barchartheight = 90,
+            barchartheight = 100,
             animationSpeed = 700;
 
     dates[264] = "21-09-2013";
@@ -100,11 +100,6 @@
                 .attr("class", "newstip")
                 .style("opacity", 0)
                 .style("display", "none");
-
-        // TimeDiv
-        timediv = d3.select("body").append("div")
-                .attr("class", "timediv")
-                .html("<h1>LOADING...");
 
 
     }
@@ -301,7 +296,7 @@
         var playPauseWidth = 80;
         var left_rightmargin = 200 + playPauseWidth / 2;
         var barwidth = w - left_rightmargin * 2;
-        var barheight = barchartheight - 20;
+        var barheight = barchartheight -30;
 
 
         // DIV FOR SLIDER AT CORRECT LOCATION.
@@ -335,15 +330,6 @@
         // CREATE SLIDER
         d3.select('#slider div')
                 .call(slider);
-
-        d3.select("#startstop")
-                .style("left", function(d) {
-            return left_rightmargin - playPauseWidth + "px";
-        })
-                .style("top", function(d) {
-            return (h - barchartheight - 2) + topmargin + "px";
-        });
-
 
         svgbar = sliderdiv.append("svg")
                 .attr("width", barwidth)
@@ -403,8 +389,7 @@
                     '<p class="content">' + d[3] + "</p>"
                     )
                     .style("left", (d3.event.pageX - 200) + "px")
-                    .style("top", (d3.event.pageY - 90) + "px");
-                    console.log(newstipdiv)
+                    .style("bottom", (h - d3.event.pageY +6) + "px");
 
             newstipdiv.transition()
                     .duration(500)
@@ -419,8 +404,21 @@
                     .style("display", "none");
         });
 
+        // TimeDiv
+        timediv = sliderdiv.append("div")
+                .attr("class", "timediv")
+                .html("<h1>LOADING...");
 
         /*
+
+        d3.select("#startstop")
+                .style("left", function(d) {
+            return left_rightmargin - playPauseWidth + "px";
+        })
+                .style("top", function(d) {
+            return (h - barchartheight - 2) + topmargin + "px";
+        });
+
         playpause = sliderdiv.append("div")
                 .attr("id", "startstop")
                 .append("a")
