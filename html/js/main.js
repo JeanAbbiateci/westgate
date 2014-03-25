@@ -62,7 +62,7 @@ window.load = (function() {
 
     function hide_show_slider(index){
         console.log(1)
-        if (index === 1 || index === 2 || index === 3)
+        if (index === 1 || index === 2)
             {d3.select("#slider").transition().duration(200).style("display", "block").style("opacity", 1);
             console.log(1234)}
         else

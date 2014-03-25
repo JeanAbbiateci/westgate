@@ -92,9 +92,6 @@
         // Tooltip Map
         tipdiv = d3.select(".tooltip");
 
-        // Tooltip News
-        newstipdiv = d3.select(".tooltip");
-
 
     }
 
@@ -211,7 +208,7 @@
             tipdiv.transition()
                     .duration(500)
                     .style("opacity", 1)
-                    .style("display", "block");
+                    .style("display", "block").style("height", "15px");
             tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
                     .style("left", (d3.event.pageX) - 25 + "px")
                     .style("top", (d3.event.pageY - 37) + "px");
@@ -220,7 +217,7 @@
             tipdiv.transition()
                     .duration(500)
                     .style("opacity", 0)
-                    .style("display", "none");
+                    .style("display", "none").style("height", "auto");
         });
 
         if (animate) {
@@ -378,23 +375,24 @@
                 .on("mouseover", function(d) {
 
 
-            newstipdiv.html(
+            tooltip.html(
                     // Source + Time
                     '<p class="time"><strong>' + d[2] + ":" + d[1] + "</strong></p>" +
                     // Content
                     '<p class="content">' + d[3] + "</p>"
                     )
                     .style("left", (d3.event.pageX - 200) + "px")
-                    .style("bottom", (h - d3.event.pageY +6) + "px");
+                    .style("bottom", (h - d3.event.pageY +6) + "px")
+                    .style("opacity", 0)
+                    .style("display", "block");
 
-            newstipdiv.transition()
+            tooltip.transition()
                     .duration(500)
-                    .style("display", "block")
                     .style("opacity", 1);
 
         })
                 .on("mouseout", function(d) {
-            newstipdiv.transition()
+            tooltip.transition()
                     .duration(500)
                     .style("opacity", 0)
                     .style("display", "none");
