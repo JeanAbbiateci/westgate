@@ -360,3 +360,30 @@ div.timediv {
     stroke-width: 1px; }
   #page-bubble .bubble.verified {
     fill: #424957; }
+
+#network {
+  margin-top: 80px; }
+  #network .bubble {
+    fill: #343a45;
+    stroke: #8a93a5;
+    stroke-width: 1px; }
+  #network .bubble.verified {
+    fill: #424957; }
+
+#photo-gallery .image-tile {
+  background-repeat: no-repeat;
+  float: left; }
+#photo-gallery .img-row {
+  overflow: hidden; }
+#photo-gallery #preview {
+  position: absolute;
+  z-index: 100;
+  padding: 10px;
+  background-color: #1b1e2a;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(34, 34, 42, 0.96);
+  top: 0;
+  left: 0; }
+#photo-gallery #big-pic {
+  max-height: 300px;
+  max-width: 300px; }

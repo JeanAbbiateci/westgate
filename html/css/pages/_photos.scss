@@ -1,0 +1,26 @@
+#photo-gallery{  
+  .image-tile{
+      background-repeat: no-repeat;
+      float: left;
+  }
+
+  .img-row{
+      overflow: hidden;
+  }
+
+  #preview{
+      position: absolute;
+      z-index: 100;
+      padding: 10px;
+      background-color: #1b1e2a;
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(34, 34, 42, 0.96);
+      top: 0;
+      left: 0;
+  }
+
+  #big-pic{
+      max-height: 300px;
+      max-width: 300px;
+  }
+}

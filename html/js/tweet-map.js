@@ -330,6 +330,7 @@
             ti = value;
             drawDots();
             bubble(ti,get_current_view());
+            updateNetwork(ti)
         });
         // CREATE SLIDER
         d3.select('#slider div')
