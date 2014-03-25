@@ -329,7 +329,7 @@
                 .on("slide", function(evt, value) {
             ti = value;
             drawDots();
-            bubble(5,get_current_view())
+            bubble(ti,get_current_view());
         });
         // CREATE SLIDER
         d3.select('#slider div')
