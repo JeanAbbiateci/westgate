@@ -53,7 +53,7 @@ $(function(){
                 }, function(){clearTimeout(timer)})
             })
         var moveTimer;
-        $(window).on('mousemove', function(e){
+        $('#photo-gallery').on('mousemove', function(e){
             clearTimeout(moveTimer);
             moveTimer = setTimeout(function(){
                 var width = $('#preview').width();
@@ -61,13 +61,19 @@ $(function(){
                 popup.css({
                     'transform': function(){
                         var horizontal = (e.pageX + width + 50) > horizSizeView ? e.pageX - width - 50 : e.pageX + 50;
-                        var vertical = e.pageY < pageHeight/2 + 10 ? 10 : e.pageY - pageHeight/2;
+                        var vertical = e.pageY < height/2 + 10 ? 10 : e.pageY - height/2;
                         position = 'translate('+horizontal+'px,'+ vertical +'px)';
                         return position;
                         }
                     })
             }, 10);
         });
+        $('#photo-gallery').mouseleave(function(){
+            $('#preview').css('display','none');
+        })
+        $('#photo-gallery').mouseenter(function(){
+            $('#preview').css('display','block');
+        })
     };
     mosaic.createMosaic(8);
     mosaic.cropImages();
