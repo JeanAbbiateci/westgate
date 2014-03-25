@@ -54,7 +54,8 @@ table {
   border-spacing: 0; }
 
 body {
-  font-family: 'Open sans', sans-serif; }
+  font-family: 'Open sans', sans-serif;
+  overflow: hidden; }
 
 .container {
   max-width: 1190px;
