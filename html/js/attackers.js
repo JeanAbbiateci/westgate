@@ -68,8 +68,8 @@
         monthsPadding = 27;
 
         margin = {top: 10, right: 10, bottom: 10, left: 10};
-        w = 900 - margin.left - margin.right;
-        h = 500 - margin.top - margin.bottom;
+        w = 700 - margin.left - margin.right;
+        h = 450 - margin.top - margin.bottom;
 
         // scalling
         var xScale = d3.time.scale().range([padding, w - padding]);
@@ -284,10 +284,10 @@
                 .attr("transform", "translate(" + (w / 2) + " ," + (h - margin.bottom) + ")")
                 .style("text-anchor", "middle")
                 .attr("font-family", "sans-serif")
-                .attr("font-size", "14px")
+                .attr("font-size", "10px")
                 .attr("font-weight", "bold")
                 .attr("fill", "#8A93A5")
-                .text("Date");
+                .text("DATE");
 
         // text label for y axis				
         svgContainer.append("text")
@@ -297,10 +297,10 @@
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
                 .attr("font-family", "sans-serif")
-                .attr("font-size", "14px")
+                .attr("font-size", "10px")
                 .attr("font-weight", "bold")
                 .attr("fill", "#8A93A5")
-                .text("Frequency");
+                .text("FREQUENCY");
 
 
     }
@@ -427,7 +427,7 @@
             // remove circles
             svgContainer.selectAll("#circles-" + pos).remove();
             // remove rect
-            legendsvg.select("#rect-" + pos).style("fill", "#fff");
+            legendsvg.select("#rect-" + pos).style("fill", "#4C515C");
         }
 
         // re-calculate max value for y axis

@@ -315,44 +315,53 @@ div.newstip .time {
     font-family: 'Collator';
     fill: #dbe1e7; }
 
-#word-chart .tick {
-  fill: #9399a5; }
-#word-chart div > svg:nth-child(1) {
-  background-color: #343a45; }
-#word-chart path {
-  stroke: steelblue;
-  stroke-width: 2;
-  fill: none; }
-#word-chart .grammes path,
-#word-chart .grammes line {
-  stroke: steelblue;
-  stroke-width: 2;
-  fill: none; }
-#word-chart .axis path,
-#word-chart .axis line {
-  fill: none;
-  stroke: grey;
-  stroke-width: 2;
-  shape-rendering: crispEdges; }
-#word-chart .x.axis path {
-  display: none; }
-#word-chart .axis text {
-  font-family: sans-serif;
-  font-size: 11px; }
-#word-chart .grid .tick {
-  stroke: #424957;
-  opacity: 0.7; }
-#word-chart .grid path {
-  stroke-width: 0; }
-#word-chart .lala {
-  background-color: red; }
-#word-chart table, #word-chart th, #word-chart td {
-  border: 1px dotted lightgrey;
-  border-collapse: collapse; }
-#word-chart th, #word-chart td {
-  padding: 5px; }
-#word-chart .tableHead {
-  background: #eee; }
+#word-chart {
+  position: relative; }
+  #word-chart .tick {
+    fill: #9399a5; }
+  #word-chart div > svg:nth-child(2) {
+    position: absolute;
+    top: 40px;
+    right: 100px; }
+  #word-chart div > svg:nth-child(2) > text {
+    fill: #acb2c1;
+    cursor: default; }
+  #word-chart div > svg:nth-child(1) {
+    background-color: #343a45; }
+  #word-chart path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none; }
+  #word-chart .grammes path,
+  #word-chart .grammes line {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none; }
+  #word-chart .axis path,
+  #word-chart .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 2;
+    shape-rendering: crispEdges; }
+  #word-chart .x.axis path {
+    display: none; }
+  #word-chart .axis text {
+    font-family: sans-serif;
+    font-size: 11px; }
+  #word-chart .grid .tick {
+    stroke: #424957;
+    opacity: 0.7; }
+  #word-chart .grid path {
+    stroke-width: 0; }
+  #word-chart .lala {
+    background-color: red; }
+  #word-chart table, #word-chart th, #word-chart td {
+    border: 1px dotted lightgrey;
+    border-collapse: collapse; }
+  #word-chart th, #word-chart td {
+    padding: 5px; }
+  #word-chart .tableHead {
+    background: #eee; }
 
 #page-bubble {
   margin-top: 80px; }
