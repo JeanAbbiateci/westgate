@@ -25,7 +25,7 @@
 
 
 var pageHeight = 0;                         // height of the slides in the page
-var pagesList = ["page-intro", "tweet-map", "bubble-page", "network", "word-chart"];
+var pagesList = ["page-intro", "tweet-map", "bubble-page", "network", "word-chart", "photo-gallery"];
 var pastPos = 0;                            // past position for the scrollHandler
 var currentPage = pagesList[0];             // current page ID the user is seeing
 
