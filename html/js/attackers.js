@@ -164,9 +164,11 @@
             tooltip.transition()
                     .duration(100)
                     .style("opacity", .9);
-
-            tooltip.html(buildTooltipData(d, i))
-                    .style("visibility", "visible");
+            
+            y = d3.event.pageY;
+            tooltip = tooltip.style("left", (d3.event.pageX - 50) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
+            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
+            tooltip.transition().duration(1000).style("opacity",1);
         })
 
 
@@ -179,9 +181,8 @@
                     .duration(120)
                     .style("opacity", 0);
 
-            tooltip.transition()
-                    .duration(120)
-                    .style("opacity", 0);
+            
+            d3.select(".tooltip").style("opacity",0).style("display", "none");
         });
 
 
@@ -264,11 +265,8 @@
         });
 
         // tooltip div
-        tooltip = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("height", "auto")
-                .style("opacity", 0)
-                .attr("z-index", 1000);
+        tooltip = d3.select(".tooltip");
+        
         // axis
         axiss = svgContainer.append("g")
                 .attr("class", "axis")
@@ -362,10 +360,10 @@
         });
 
         // build the html code
-        var head = "<table ><tr><td class='tableHead' colspan='3'><b>Day " + (i + 1) + ".</b> Total: " + d.occurs + "</td></tr>";
+        var head = "<table style='width:150px'><tr><td class='tableHead' colspan='3'><b>Day " + (i + 1) + ".</b> Total: " + d.occurs + "</td></tr>";
         var rest = "";
         sortedDayView.forEach(function(b, j) {
-            rest = rest + "<tr><td> <FONT size='4' COLOR='" + b[0] + "'><b>- </b></FONT>" + b[1] + "</td><td>" + b[2] + "</td></tr>";
+            rest = rest + "<tr><td style='text-align:left'> <FONT size='4' COLOR='" + b[0] + "'><b>- </b></FONT>" + b[1] + "</td><td style='text-align:right'>" + b[2] + "</td></tr>";
         });
 
         return head + rest + "</table>";

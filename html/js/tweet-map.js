@@ -90,16 +90,10 @@
         loadWorld();
 
         // Tooltip Map
-        tipdiv = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("opacity", 0)
-                .style("display", "none");
+        tipdiv = d3.select(".tooltip");
 
         // Tooltip News
-        newstipdiv = d3.select("body").append("div")
-                .attr("class", "newstip")
-                .style("opacity", 0)
-                .style("display", "none");
+        newstipdiv = d3.select(".tooltip");
 
 
     }

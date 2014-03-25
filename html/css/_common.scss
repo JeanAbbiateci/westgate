@@ -38,7 +38,8 @@ circle
     div.tooltip {
       position: absolute;           
       text-align: center;           
-      width: auto;                  
+      width: auto;
+      max-width: 300px;
       height: 15px;                 
       padding: 2px 10px 7px 10px;           
       font-size: 13px;

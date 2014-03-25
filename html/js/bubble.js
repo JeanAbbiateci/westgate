@@ -189,12 +189,15 @@ function bubble(hour,current_view) {
       content = "<span class=\"name\">User:</span><span class=\"value\"> " + data.name + "</span><br/>";
       content += "<span class=\"name\">Tweet:</span><span class=\"value\"> " + urlize(data.tweet)+ "</span><br/>";
       content += "<span class=\"name\">Amount:</span><span class=\"value\">" + data.value + "</span>";
-      console.log($(content).height())
-      d3.select('.newstip').style("left", (d3.event.pageX - 125) + "px").style("top", (d3.event.pageY - 160) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
+      
+      var y = d3.event.pageY;
+      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>");
+      tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
+      tooltip.transition().duration(1000).style("opacity",1);
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
-      d3.select(".newstip").transition().duration(1000).style("opacity",0).style("display", "none");
+      d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
       });

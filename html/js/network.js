@@ -26,11 +26,14 @@ function network(){
     var content;
     content = "User: " + data.name + "<br/>";
     content += "Amount of retweets: " + data.value;
-    d3.select('.newstip').style("left", (d3.event.pageX - 50) + "px").style("top", (d3.event.pageY - 160) + "px").html("<p>" + content + "</p>").transition().duration(1000).style("display", "block").style("opacity",1);
+    var y = d3.event.pageY;
+    var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 50) + "px").style("top", (d3.event.pageY - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
+    tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
+    tooltip.transition().duration(1000).style("opacity",1);
   }
 
   function hideTooltip(d,i) {
-    d3.select(".newstip").transition().duration(1000).style("opacity",0).style("display", "none");
+    d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
   }
 
   function drawNetwork(graph){
