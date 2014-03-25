@@ -104,14 +104,15 @@ body {
 .pages-container {
   width: 100%;
   background-color: #4c515c;
-  overflow-x: hidden; }
+  overflow: hidden; }
   .pages-container #pages {
     transition: all 0.5s ease-out; }
     .pages-container #pages .page {
       border-bottom: 1px solid #343a45;
       display: block;
       color: #8a93a5;
-      min-height: 700px; }
+      min-height: 700px;
+      overflow: hidden; }
       .pages-container #pages .page .container {
         margin-top: 30px; }
 
