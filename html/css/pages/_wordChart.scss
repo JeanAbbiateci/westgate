@@ -1,7 +1,18 @@
 #word-chart
 {
+    position: relative;
+
     .tick{
       fill:$light-blue;
+    }
+    div > svg:nth-child(2){
+      position: absolute;
+      top: 40px;
+      right: 100px;
+    }
+    div > svg:nth-child(2) > text{
+      fill: $bright-blue;
+      cursor: default;
     }
     div > svg:nth-child(1){
      background-color: $dark-blue;
