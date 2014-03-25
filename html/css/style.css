@@ -356,11 +356,11 @@ div.timediv {
 #page-bubble {
   margin-top: 80px; }
   #page-bubble .bubble {
-    fill: #343a45;
-    stroke: #8a93a5;
+    fill: #c5bb91;
+    stroke: #4c515c;
     stroke-width: 1px; }
   #page-bubble .bubble.verified {
-    fill: #424957; }
+    fill: #8a93a5; }
 
 #network {
   margin-top: 80px; }

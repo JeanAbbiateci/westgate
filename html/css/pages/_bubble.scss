@@ -2,13 +2,13 @@
 	margin-top:80px;
 	.bubble
 	{
-		fill: $dark-blue;
-		stroke: $light-blue;
+		fill: $yellow;
+		stroke: $gray;
 		stroke-width:1px;
 	}
 
 	.bubble.verified
 	{
-		fill:$medium-blue;
+		fill:$light-blue;
 	}
 }
