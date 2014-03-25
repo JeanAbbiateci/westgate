@@ -106,16 +106,14 @@ body {
   width: 100%;
   background-color: #4c515c;
   overflow: hidden; }
-  .pages-container #pages {
-    transition: all 0.5s ease-out; }
-    .pages-container #pages .page {
-      border-bottom: 1px solid #343a45;
-      display: block;
-      color: #9399a5;
-      min-height: 700px;
-      overflow: hidden; }
-      .pages-container #pages .page .container {
-        margin-top: 30px; }
+  .pages-container #pages .page {
+    border-bottom: 1px solid #343a45;
+    display: block;
+    color: #9399a5;
+    min-height: 700px;
+    overflow: hidden; }
+    .pages-container #pages .page .container {
+      margin-top: 30px; }
 
 #arrow-right {
   -webkit-tap-highlight-color: transparent;

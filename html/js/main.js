@@ -55,7 +55,20 @@ window.load = (function() {
             index = pagesList.length - 1;
         else if (index < 0)
             index = 0;
+        hide_show_slider(index);
         return index;
+        
+    }
+
+    function hide_show_slider(index){
+        console.log(1)
+        if (index === 1 || index === 2 || index === 3)
+            {d3.select("#slider").transition().duration(200).style("display", "block").style("opacity", 1);
+            console.log(1234)}
+        else
+            {d3.select("#slider").transition().duration(200).style("opacity", 0).style("display", "none");
+            console.log(1235)}
+
     }
 
 }());

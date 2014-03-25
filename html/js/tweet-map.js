@@ -127,8 +127,9 @@
                     .append("path")
                     .attr("d", path);
 
-            loadTweets();
             loadTweetHours();
+            loadTweets();
+            
         });
 
     }
@@ -300,7 +301,7 @@
 
 
         // DIV FOR SLIDER AT CORRECT LOCATION.
-        sliderdiv = d3.select("body").append("div")
+        slidercontainer = d3.select("body").append("div")
                 .attr("id", "slider")
                 .style("width", function(d) {
             return barwidth + "px";
@@ -313,8 +314,9 @@
         })
                 .style("top", function(d) {
             return (h - barchartheight) + "px";
-        })
-                .append("div");
+        });
+
+        sliderdiv = slidercontainer.append("div");
 
         slider = d3.slider()
                 .min(0)
@@ -405,9 +407,14 @@
         });
 
         // TimeDiv
-        timediv = sliderdiv.append("div")
+        timediv = slidercontainer.append("div")
                 .attr("class", "timediv")
                 .html("<h1>LOADING...");
+
+        if (currentPageIndex != 1 && currentPageIndex != 2 && currentPageIndex != 2 )
+        {
+            slidercontainer.style("opacity", 0).style("display", "none");
+        }
 
         /*
 
