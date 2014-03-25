@@ -1,8 +1,11 @@
 #word-chart
 {
-
-    
-
+    .tick{
+      fill:$light-blue;
+    }
+    div > svg:nth-child(1){
+     background-color: $dark-blue;
+    }
     path {
     stroke: steelblue;
         stroke-width: 2;
@@ -11,7 +14,7 @@
 
     .grammes path,
     .grammes line {
-            stroke: steelblue;
+        stroke: steelblue;
         stroke-width: 2;
         fill: none;
     }
@@ -34,19 +37,16 @@
     }
 
     .grid .tick {
-        stroke: #343A45;
+        stroke: $medium-blue;
         opacity: 0.7;
     }
     .grid path {
         stroke-width: 0;
     }
 
-    
-
     .lala {
     background-color: red;
     }
-
 
     table,th,td
     {
