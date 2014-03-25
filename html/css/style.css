@@ -327,7 +327,10 @@ div.newstip .time {
     fill: #acb2c1;
     cursor: default; }
   #word-chart div > svg:nth-child(1) {
-    background-color: #343a45; }
+    position: absolute;
+    background-color: #343a45;
+    top: 44px;
+    right: 360px; }
   #word-chart path {
     stroke: steelblue;
     stroke-width: 2;

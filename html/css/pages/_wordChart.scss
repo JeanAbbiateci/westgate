@@ -15,7 +15,10 @@
       cursor: default;
     }
     div > svg:nth-child(1){
+     position: absolute;
      background-color: $dark-blue;
+     top: 44px;
+     right: 360px;
     }
     path {
     stroke: steelblue;
