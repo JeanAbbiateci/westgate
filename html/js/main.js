@@ -75,15 +75,20 @@ window.load = (function() {
     setPagesHeight();
     window.onresize = setPagesHeight;
 
-    $(window).scrolled(function() {
+    /*$(window).scrolled(function() {
         var top = $(window).scrollTop();
         fixUserScrollPosition(top);
-    });
+    });*/
 
     function currentPageHandler() {
         $(window).scroll(function() {
             var top = $(window).scrollTop();
-            currentPage = pagesList[parseInt(top / pageHeight)];
+            var index = parseInt(top / pageHeight);
+            if (index >= pagesList.length)
+                index = pagesList.length-1;
+            else if (index < 0)
+                index = 0;
+            currentPage = pagesList[index];
         });
     }
     currentPageHandler();
