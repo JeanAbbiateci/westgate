@@ -329,7 +329,7 @@
                 .on("slide", function(evt, value) {
             ti = value;
             drawDots();
-            bubble(ti,get_current_view())
+            bubble(ti,get_current_view());
             updateNetwork(ti)
         });
         // CREATE SLIDER
