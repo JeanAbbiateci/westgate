@@ -33,14 +33,15 @@ function bubble(hour,current_view) {
           y: (this.height - 100) / 2
         }
       };
-      this.layout_gravity = -0.01;
+      this.layout_gravity = -0.005;
       this.damper = 0.1;
       this.vis = null;
       this.nodes = [];
       this.force = null;
       this.circles = null;
       max_amount = 2233
-      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([5, 100]);
+      min_amount = 7
+      this.radius_scale = d3.scale.pow().exponent(0.6).domain([min_amount, max_amount]).range([5, 100]);
       this.create_nodes();
       this.create_vis();
     }

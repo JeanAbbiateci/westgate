@@ -5,8 +5,8 @@ function network(){
   var height = 700,
     width =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  var sqrtScale = d3.scale.sqrt()
-    .range([1,20])
+  var sqrtScale = d3.scale.pow().exponent(.05)
+    .range([5,40])
     .domain([627,33135]);
 
   var logScale = d3.scale.log()
@@ -15,12 +15,12 @@ function network(){
 
   var chargeScale = d3.scale
     .linear()
-    .range([-50,-150])
+    .range([-100,-125])
     .domain([627,33135]);
 
   var linkramp = d3.scale.sqrt()
     .domain([627 + 627 ,33135 + 33135])
-    .range([25,100])
+    .range([50,100])
     .clamp(true);
 
   var force = d3.layout.force()
@@ -96,7 +96,7 @@ function network(){
       .on("mouseover", function(d) {
         return showTooltip(d);
       }).on("mouseout", function(d) {
-        return showTooltip(d);
+        return hideTooltip(d);
       });
 
     var node = g.append("circle") 
