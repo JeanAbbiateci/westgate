@@ -44,7 +44,7 @@ function network(){
   }
 
   function hideTooltip(d) {
-    d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
+    tooldiv.style("opacity", 0).style("display", "none")
   }
 
    function showLinkTooltip(data) {

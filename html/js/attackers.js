@@ -9,11 +9,11 @@
     var tooltip = null;
     var checkClicked = null;
     // labels
-    var labels = ["al-Shabaab", "Terrorists", "Gunmen", "Thugs", "Militants", "Criminals", "Gangsters", "Robbers", "Jihadists", "Murderers", "Extremists", "Islamists", "Enemies"];
+    var labels = ["al-Shabaab", "Terrorists", "Gunmen", "Thugs", "Militants", "Gangsters", "Jihadists", "Murderers", "Islamists"];
     // colors				
-    var colors = ["#DB3D3D", "#FCA43A", "#008DAA", "#91399E", "#9467bd", "#8c564b", "#e377c2", "#ff7f0e", "#98df8a", "#b34228", "#ff9896", "#17becf", "#c5b0d5"];
+    var colors = ["#DB3D3D", "#FCA43A", "#008DAA", "#91399E", "#9467bd", "#8c564b", "#e377c2", "#ff7f0e", "#98df8a"];
     var sData = null;
-
+	var mOver = [0,0,0,0,0,0,0,0,0];
 
     /** /
      * load everything from json files
@@ -46,7 +46,7 @@
         });
 
 
-        checkClicked = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        checkClicked = [1, 1, 1, 1, 0, 0, 0, 0, 0];
         /*data.forEach(function(d) {
          checkClicked.push(1);
          });*/
@@ -166,9 +166,8 @@
                     .style("opacity", .9);
             
             var y = d3.event.pageY;
-            tooltip = tooltip.style("left", (d3.event.pageX - 50) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
-            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-            tooltip.transition().duration(1000).style("opacity",1);
+            tooltip = tooltip.style("left", (d3.event.pageX - 50) + "px").style("bottom", null).style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
+            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block").style("opacity",1);
         })
 
 
@@ -194,11 +193,11 @@
             // legend rectangles 
             legendsvg.append("rect")
                     .attr("x", 40)
-                    .attr("y", j * (hlegend / data.length) + 5)
+                    .attr("y", j * (hlegend / data.length) + 25)
                     .attr("width", 10)
                     .attr("height", 10)
                     .attr("id", "rect-" + j)
-                    .style("fill", "#fff")
+                    .style("fill", "#4C515C")
                     .style("stroke", colors[j])
                     .attr("rx", 2)
                     .attr("ry", 2)
@@ -210,14 +209,14 @@
             // legend labels
             legendsvg.append("text")
                     .attr("x", 60)
-                    .attr("y", j * (hlegend / data.length) + 10)
+                    .attr("y", j * (hlegend / data.length) + 30)
                     .attr("dy", ".35em")
                     .text(labels[j])
                     .on("mouseover", function() {
-                hideLinesFunc(j);
+                hideLinesFunc(j, xAxis, yAxis, xScale, yScale, gridy);
             })
                     .on("mouseout", function() {
-                showLinesFunc(j);
+                showLinesFunc(j, xAxis, yAxis, xScale, yScale, gridy);
             });
 
             // if on checkClicked list then take occurances of of word
@@ -307,8 +306,111 @@
 
 
     // hide lines and dots on mouseover	
-    function hideLinesFunc(pos) {
+    function hideLinesFunc(pos, xAxis, yAxis, xScale, yScale, gridy) {
+	
+        // remove or add the word in this pos to the list
+        if ((checkClicked[pos] === 0) && (mOver[pos] === 0)){
+			mOver[pos] = 1;
+            checkClicked[pos] = 1;
+
+            // rebuild the line
+            svgContainer.append("path")
+                    .attr("class", "grammes")
+                    .attr("d", line(sData))
+                    .attr("id", "lines-" + pos)
+                    .style("stroke", colors[pos]);
+
+            // rebuild circles
+            svgContainer.selectAll("dot")
+                    .data(sData)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("cx", function(d, i) {
+                return xScale(dataTotal[i].date);
+            })
+                    .attr("cy", function(d, i) {
+                d = Math.round((d * 100 / dataTotal[i].occurs) * 10) / 1000;
+                return yScale(d);
+            })
+                    .attr("id", "circles-" + pos)
+                    .style("fill", colors[pos]);
+        }
+
+        // re-calculate max value for y axis
+        var y_max = [];
         data.forEach(function(b, j) {
+            if (checkClicked[j] !== 0) {
+				
+                y_max.push(d3.max(b.occurs, function(d, i) {
+                    return d = Math.round((d * 100 / dataTotal[i].occurs) * 10) / 1000;
+                }));
+            }
+        });
+			
+			console.log(checkClicked);
+			
+        // update scale for y axis
+        yScale.domain([0, d3.max(y_max, function(d) {
+                return d;
+            })]);
+
+        yAxis.scale(yScale);
+
+        axiss.transition()
+                .duration(750)
+                .call(yAxis);
+
+        // update y grid
+        gridy.transition()
+                .duration(750)
+                .call(make_y_axis(yScale)
+                .tickSize(-w, 0, 0)
+                .tickFormat(""));
+
+        // update lines 
+        data.forEach(function(b, j) {
+
+            // if still on checkClicked list then take occurances of of word
+            if (checkClicked[j] !== 0) {
+                sData = b.occurs;
+
+                // transition for lines and circles
+                svgContainer.select("#lines-" + j)
+                        .transition()
+                        .duration(750)
+                        .attr("d", line(sData))
+                        .style("stroke", colors[j])
+						.style("opacity", function() {
+								if (pos!==j)
+									return .1});
+
+
+                svgContainer.selectAll("#circles-" + j)
+                        .data(sData)
+                        .transition()
+                        .duration(750)
+                        .attr("r", 3)
+                        .attr("cx", function(d, i) {
+                    return xScale(dataTotal[i].date);
+                })
+                        .attr("cy", function(d, i) {
+                    d = Math.round((d * 100 / dataTotal[i].occurs) * 10) / 1000;
+                    return yScale(d);
+                })
+                        .style("fill", colors[j])
+						.style("opacity", function() {
+								if (pos!==j)
+									return .1});
+
+
+            }
+
+        });
+	
+	/*
+        data.forEach(function(b, j) {
+			
             if ((pos !== j) && (checkClicked[pos] !== 0)) {
                 svgContainer.select("#lines-" + j)
                         .transition()
@@ -321,28 +423,93 @@
                         .style("opacity", .1);
 
             }
-        });
+        });*/
     }
 
 
     // show lines and dots on mouseout	
-    function showLinesFunc(pos) {
+    function showLinesFunc(pos, xAxis, yAxis, xScale, yScale, gridy) {
+		
+        // remove or add the word in this pos to the list
+        if ((checkClicked[pos] === 1)  && (mOver[pos] === 1)) {
+			mOver[pos] = 0;
+            checkClicked[pos] = 0;
+
+            // remove line
+            svgContainer.select("#lines-" + pos).remove();
+            // remove circles
+            svgContainer.selectAll("#circles-" + pos).remove();
+        }
+
+        // re-calculate max value for y axis
+        var y_max = [];
         data.forEach(function(b, j) {
-            if (pos !== j) {
-                svgContainer.select("#lines-" + j)
-                        .transition()
-                        .duration(250)
-                        .style("opacity", 1);
-
-                svgContainer.selectAll("#circles-" + j)
-                        .transition()
-                        .duration(250)
-                        .style("opacity", 1);
-
+            if (checkClicked[j] !== 0) {
+                y_max.push(d3.max(b.occurs, function(d, i) {
+                    return d = Math.round((d * 100 / dataTotal[i].occurs) * 10) / 1000;
+                }));
             }
         });
-    }
-    ;
+
+        // update scale for y axis
+        yScale.domain([0, d3.max(y_max, function(d) {
+                return d;
+            })]);
+
+        yAxis.scale(yScale);
+
+        axiss.transition()
+                .duration(750)
+                .call(yAxis);
+
+        // update y grid
+        gridy.transition()
+                .duration(750)
+                .call(make_y_axis(yScale)
+                .tickSize(-w, 0, 0)
+                .tickFormat(""));
+
+        // update lines 
+        data.forEach(function(b, j) {
+
+            // if still on checkClicked list then take occurances of of word
+            if (checkClicked[j] !== 0) {
+                sData = b.occurs;
+
+                // transition for lines and circles
+                svgContainer.select("#lines-" + j)
+                        .transition()
+                        .duration(750)
+                        .attr("d", line(sData))
+                        .style("stroke", colors[j])
+						.style("opacity", function() {
+								if (pos!==j)
+									return 1});;
+
+
+                svgContainer.selectAll("#circles-" + j)
+                        .data(sData)
+                        .transition()
+                        .duration(750)
+                        .attr("r", 3)
+                        .attr("cx", function(d, i) {
+                    return xScale(dataTotal[i].date);
+                })
+                        .attr("cy", function(d, i) {
+                    d = Math.round((d * 100 / dataTotal[i].occurs) * 10) / 1000;
+                    return yScale(d);
+                })
+                        .style("fill", colors[j])
+						.style("opacity", function() {
+								if (pos!==j)
+									return 1});
+
+
+            }
+
+        });
+	
+    };
 
     // build tooltip
     function buildTooltipData(d, i) {

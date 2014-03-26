@@ -1,6 +1,5 @@
 (function(pageHeight) {
 
-    var data2 = [];
     var height = window.innerHeight, width = window.innerWidth;
     var bodySelection = d3.select("#page-intro .container");
     var svgHeight = 500;
@@ -131,15 +130,13 @@
                 .on("mouseover", function(d, i) {
 
             var y = d3.event.pageY;
-            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
+            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0).style("bottom", null);
             tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
             tooltip.transition().duration(1000).style("opacity",1);
         })
 
                 .on("mouseout", function(d, i) {
-
-
-            d3.select(".tooltip").style("opacity", 0).display("none");
+            tooltip.style("opacity", 0).style("display","none");
         });
 
 

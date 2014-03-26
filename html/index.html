@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Westgate attack</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="./css/style.css"/>
     <script src="./js/jquery.js"></script>
 </head>
@@ -21,10 +20,51 @@
     </nav>
     <div class="pages-container">
         <div id="pages" style="">
+            <div class="page" style="background-image: url(./img/backgrounds/0.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-2 h-1">
+                    <h2>A STORY OF TERRORISM, TWITTER AND CITIZEN JOURNALISM</h2>
+                    <h1>THE WESTGATE ATTACK</h1>
+                </div>
+            </div>
+            <div class="page" style="background-image: url(./img/backgrounds/1.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-2 h-3" style="width: 600px; text-align: right">
+                    <h2>THE <span class='red'>80-HOUR</span> TERRORIST ATTACK IN NAIROBI, KENYA, TOOK PLACE BETWEEN THE 21ST AND 24TH SEPTEMBER 2013, RESULTING IN 67 DEATHS AND OVER 175 WOUNDED <PARTICIPANTS></PARTICIPANTS></h2>
+                </div>
+            </div>
+            <div class="page" style="background-image: url(./img/backgrounds/2.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-2 h-1" style="width: 600px">
+                    <h2>THE SOMALI-BASED ISLAMIC TERRORIST GROUP <span class="red">AL-SHABAAB</span> CLAIMED RESPONSIBILITY FOR THE ATTACK</h2>
+                </div>
+            </div>
+            <div class="page" style="background-image: url(./img/backgrounds/3.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-2 h-1" style="width: 600px">
+                    <h2>THE UPMARKET WESTGATE SHOPPING MALL WAS A WELL-KNOWN CENTRE OF WESTERN EXPATRIATE LIFE IN NAIROBI. PREVIOUS WARNINGS SUGGESTED THE COMPLEX WAS IN DANGER OF A TERROR ATTACK.</h2>
+                </div>
+            </div>
+            <div class="page" style="background-image: url(./img/backgrounds/4.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-1 h-1" style="width: 600px">
+                    <h2>the attack took place on a busy Saturday morning, with approximately 1,000 people inside the popular mall. A local radio station was hosting a children's cooking competition on the roof of the building. As the attack began, the winners were about to receive their prizes. </h2>
+                </div>
+            </div>
+            <div class="page" style="background-image: url(./img/backgrounds/5.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-1 h-1" style="width: 600px">
+                    <h2>at least 67 people are known to have died, including children and four attackers. over 175 were injured.</h2>
+                </div>
+            </div>
+            <div class="page" style="background-image: url(./img/backgrounds/6.jpg);">
+                <div class="dark-tint"></div>
+                <div class="v-1 h-1" style="width: 600px">
+                    <h2>The picture that has emerged in the aftermath of the attack is that of a woefully disorganised and incompetent response from Kenyan authorities. a clash of egos left a handful of Kenyan officers and armed vigilantes to initially fight heavily armed militants, in a bid to rescue hundreds of shoppers.</h2>
+                </div>
+            </div>
             <div class="page" id="page-intro">
                 <div class="container">
-                    <h1>MASS MEDIA COVERAGE</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in ipsum nec nibh faucibus tincidunt sit amet suscipit nibh. Praesent congue molestie leo. Aliquam vitae consequat metus. Ut condimentum id dui ac convallis. Duis libero mauris, condimentum eu elit vel.</p>
 
                 </div>
             </div>
@@ -45,14 +85,21 @@
             </div>
             <div class="page" id="photo-gallery">
               <div id="pictures-container"></div>
-              <div id="preview"><img src="" id="big-pic" /></div>
+              <div id="preview">
+                  <img src="" id="big-pic" />
+                  <br />
+                  <h2 id="picture-retweet" style="margin-top: 10px"></h2>
+              </div>
             </div>
+            <div class="page"></div>
         </div>
     </div>
     <div class="tooltip"></div>
-    <script src="js/jquery.fullPage.js"></script>
-    <script src="js/d3.v3.min.js"></script>
+
+<script src="js/d3.v3.min.js"></script>
+<script src="js/moment.min.js"></script>
 <script src="js/main.js"></script>
+
 
 
 <script src="js/bubble.js"></script>

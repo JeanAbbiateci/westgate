@@ -1,9 +1,15 @@
 var pageHeight = 0;                             // height of the slides in the page
-var pagesList = ["page-intro", "tweet-map", "bubble-page", "network", "word-chart", "photo-gallery"];
+var pagesList = [];
 var pastPos = 0;                                // past position for the scrollHandler
 var currentPageIndex = 0;                       // current Pagelist index
 var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
 var headerHeight = 71;                          // header height. Should be dinamix => fix!
+
+//Collect pages id
+$('.page').each(function(i){
+    var currentID = this.id || i;
+    pagesList.push(currentID);
+});
 
 window.load = (function() {
     var pages = document.querySelectorAll('.page');
@@ -39,7 +45,7 @@ window.load = (function() {
                 pos = -(pos);
             /*if (currentPageIndex !== 0)
                 pos -= headerHeight;*/
-            
+            hide_show_slider();
             
             
             $("#pages").css("transform", "translate(0,"+pos+"px)");
@@ -55,14 +61,13 @@ window.load = (function() {
             index = pagesList.length - 1;
         else if (index < 0)
             index = 0;
-        hide_show_slider(index);
         return index;
         
     }
 
-    function hide_show_slider(index){
+    function hide_show_slider(){
         console.log(1)
-        if (index === 1 || index === 2)
+        if (currentPage === "tweet-map" || currentPage === "bubble-page")
             {d3.select("#slider").transition().duration(200).style("display", "block").style("opacity", 1);
             console.log(1234)}
         else

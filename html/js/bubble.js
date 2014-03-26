@@ -21,16 +21,16 @@ function bubble(hour,current_view) {
       this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       this.center = {
         x: this.width / 2,
-        y: (this.height - 100) / 2
+        y: (this.height - 171) / 2
       };
       this.centers = {
         'Verified users' : {
           x: this.width / 3,
-          y: (this.height - 100) / 2
+          y: (this.height - 171) / 2
         },
         'Normal users' : {
           x: 2 * this.width / 3,
-          y: (this.height - 100) / 2
+          y: (this.height - 171) / 2
         }
       };
       this.layout_gravity = -0.005;
@@ -189,13 +189,13 @@ function bubble(hour,current_view) {
       content += "It was retweeted " + data.value + " times";
       
       var y = d3.event.pageY;
-      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>");
+      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("bottom", null).style("top", (y - 160) + "px").html("<p>" + content + "</p>");
       tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
       tooltip.transition().duration(1000).style("opacity",1);
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
-      d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
+      d3.select(".tooltip").style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
       });

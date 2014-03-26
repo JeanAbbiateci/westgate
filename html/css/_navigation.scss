@@ -13,7 +13,6 @@ body {
 #story-nav {
   cursor: default;
   background-color: $dark-blue;
-  font-family: 'collator';
   width: 100%;
   height: 71px;
   position: fixed;
@@ -71,12 +70,13 @@ body {
   #pages{
 
     .page{
+      background-repeat: no-repeat;
+      background-size: 100%;
       border-bottom: 1px solid $dark-blue;
       display: block;
       color: $light-blue;
-      min-height: 700px;
       overflow: hidden;
-
+      position: relative;
       .container{
 
         margin-top: 30px;
