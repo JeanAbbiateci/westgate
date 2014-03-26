@@ -301,7 +301,7 @@ document.onkeydown = checkKey;
         slidercontainer = d3.select("body").append("div")
                 .attr("id", "slider")
                 .style("width", function(d) {
-            return barwidth + "px";
+            return barwidth - 10 + "px";
         })
                 .style("height", function(d) {
             return barheight + "px";

@@ -50,10 +50,10 @@ window.load = (function() {
             currentPage = pagesList[currentPageIndex];
 
             var pos = pageHeight;
-            // If it's not the first one, we need to subtract the header height
+            /*If it's not the first one, we need to subtract the header height
             if (currentPageIndex !== 0) {
                 pos -= (headerHeight - correction); //Don't ask me why the -23
-            }
+            }*/
             pos = pos * currentPageIndex;
             pos = -(pos);
 
