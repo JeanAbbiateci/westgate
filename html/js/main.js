@@ -1,9 +1,15 @@
 var pageHeight = 0;                             // height of the slides in the page
-var pagesList = ["page-intro", "tweet-map", "bubble-page", "network", "word-chart", "photo-gallery"];
+var pagesList = [];
 var pastPos = 0;                                // past position for the scrollHandler
 var currentPageIndex = 0;                       // current Pagelist index
 var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
 var headerHeight = 71;                          // header height. Should be dinamix => fix!
+
+//Collect pages id
+$('.page').each(function(i){
+    var currentID = this.id || i;
+    pagesList.push(currentID);
+});
 
 window.load = (function() {
     var pages = document.querySelectorAll('.page');
