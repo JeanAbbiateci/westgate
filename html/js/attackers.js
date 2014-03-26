@@ -146,10 +146,10 @@
                 .enter()
                 .append("rect")
                 .attr("x", function(d, i) {
-            return xScale(dataTotal[i].date) - 80;
+            return xScale(dataTotal[i].date) - 70;
         })
                 .attr("y", padding)
-                .attr("width", 160)
+                .attr("width", 140)
                 .attr("height", h - padding - 50)
                 .attr("class", "linesholders")
                 .style("fill", "#000")
@@ -348,7 +348,6 @@
             }
         });
 			
-			console.log(checkClicked);
 			
         // update scale for y axis
         yScale.domain([0, d3.max(y_max, function(d) {
@@ -358,12 +357,12 @@
         yAxis.scale(yScale);
 
         axiss.transition()
-                .duration(750)
+                .duration(650)
                 .call(yAxis);
 
         // update y grid
         gridy.transition()
-                .duration(750)
+                .duration(650)
                 .call(make_y_axis(yScale)
                 .tickSize(-w, 0, 0)
                 .tickFormat(""));
@@ -378,7 +377,7 @@
                 // transition for lines and circles
                 svgContainer.select("#lines-" + j)
                         .transition()
-                        .duration(750)
+                        .duration(650)
                         .attr("d", line(sData))
                         .style("stroke", colors[j])
 						.style("opacity", function() {
@@ -389,7 +388,7 @@
                 svgContainer.selectAll("#circles-" + j)
                         .data(sData)
                         .transition()
-                        .duration(750)
+                        .duration(650)
                         .attr("r", 3)
                         .attr("cx", function(d, i) {
                     return xScale(dataTotal[i].date);
@@ -459,12 +458,12 @@
         yAxis.scale(yScale);
 
         axiss.transition()
-                .duration(750)
+                .duration(650)
                 .call(yAxis);
 
         // update y grid
         gridy.transition()
-                .duration(750)
+                .duration(650)
                 .call(make_y_axis(yScale)
                 .tickSize(-w, 0, 0)
                 .tickFormat(""));
@@ -479,7 +478,7 @@
                 // transition for lines and circles
                 svgContainer.select("#lines-" + j)
                         .transition()
-                        .duration(750)
+                        .duration(650)
                         .attr("d", line(sData))
                         .style("stroke", colors[j])
 						.style("opacity", function() {
@@ -490,7 +489,7 @@
                 svgContainer.selectAll("#circles-" + j)
                         .data(sData)
                         .transition()
-                        .duration(750)
+                        .duration(650)
                         .attr("r", 3)
                         .attr("cx", function(d, i) {
                     return xScale(dataTotal[i].date);
@@ -530,7 +529,7 @@
         var head = "<table style='width:150px'><tr><td class='tableHead' colspan='3'><b>Day " + (i + 1) + ".</b> Total: " + d.occurs + "</td></tr>";
         var rest = "";
         sortedDayView.forEach(function(b, j) {
-            rest = rest + "<tr><td style='text-align:left'> <FONT size='4' COLOR='" + b[0] + "'><b>- </b></FONT>" + b[1] + "</td><td style='text-align:right'>" + b[2] + "</td></tr>";
+            rest = rest + "<tr><td style='text-align:left'> <FONT size='5' COLOR='" + b[0] + "'><b>- </b></FONT>" + b[1] + "</td><td style='text-align:right'>" + b[2] + "</td></tr>";
         });
 
         return head + rest + "</table>";
@@ -615,12 +614,12 @@
         yAxis.scale(yScale);
 
         axiss.transition()
-                .duration(750)
+                .duration(650)
                 .call(yAxis);
 
         // update y grid
         gridy.transition()
-                .duration(750)
+                .duration(650)
                 .call(make_y_axis(yScale)
                 .tickSize(-w, 0, 0)
                 .tickFormat(""));
@@ -635,7 +634,7 @@
                 // transition for lines and circles
                 svgContainer.select("#lines-" + j)
                         .transition()
-                        .duration(750)
+                        .duration(650)
                         .attr("d", line(sData))
                         .style("stroke", colors[j]);
 
@@ -643,7 +642,7 @@
                 svgContainer.selectAll("#circles-" + j)
                         .data(sData)
                         .transition()
-                        .duration(750)
+                        .duration(650)
                         .attr("r", 3)
                         .attr("cx", function(d, i) {
                     return xScale(dataTotal[i].date);
