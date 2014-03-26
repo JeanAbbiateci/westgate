@@ -1,6 +1,5 @@
 (function(pageHeight) {
 
-    var data2 = [];
     var height = window.innerHeight, width = window.innerWidth;
     var bodySelection = d3.select("#page-intro .container");
     var svgHeight = 500;

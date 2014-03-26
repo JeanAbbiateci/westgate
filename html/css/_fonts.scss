@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import url(http://fonts.googleapis.com/css?family=Homenaje);
+@import url(http://fonts.googleapis.com/css?family=Muli:300,400);
 
 @mixin fontFace($family,$src,$weight: normal,$style: normal) {
   @font-face {
@@ -16,7 +17,7 @@
 }
 
 h1{
-  font-family: 'Collator', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 32px;
   color: #DBE1E7;
   line-height: 38px;
@@ -29,7 +30,7 @@ h2{
 }
 
 p{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 13px;
   color: #ACB2C1;
   line-height: 20px;
