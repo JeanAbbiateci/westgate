@@ -325,7 +325,6 @@ document.onkeydown = checkKey;
                 .on("slide", function(evt, value) {
             ti = value;
             drawDots();
-            if (timelapse)
             bubble(ti,get_current_view());
         });
         // CREATE SLIDER
