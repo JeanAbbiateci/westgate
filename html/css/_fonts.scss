@@ -1,24 +1,27 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 @import url(http://fonts.googleapis.com/css?family=Homenaje);
 @import url(http://fonts.googleapis.com/css?family=Muli:300,400);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 h1{
-  font-size: $s4;
+  font-size: $s5;
   font-weight: 200;
+  font-family: 'Muli', sans-serif;
   color: #DBE1E7;
   line-height: 40px;
   margin-bottom: 10px;
 }
 
 h2{
-  font-size: $s2;
+  font-size: $s4;
+  font-weight: 300;
   color: #DBE1E7;
   line-height: 38px;
+  margin-bottom: 13px;
 }
 
 p{
-  font-family: 'open sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: $s1;
   color: #ACB2C1;
   line-height: 22px;
@@ -27,7 +30,10 @@ p{
 }
 
 body{
-  font-family: 'open sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: $s1;
 }
 
+.red {
+  color: $red;
+}
