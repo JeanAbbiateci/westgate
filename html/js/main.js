@@ -15,7 +15,7 @@ window.load = (function() {
     var pages = document.querySelectorAll('.page');
 
     function setPagesHeight() {
-        pageHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0, 700);
+        pageHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
         for (var i = 0; i < pages.length; i++) {
             pages.item(i).style.height = pageHeight + 'px';
         }
