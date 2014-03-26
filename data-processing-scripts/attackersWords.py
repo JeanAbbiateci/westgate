@@ -13,7 +13,7 @@ s = Session()
 
 i = 0
 
-word = [("shabaab", "shabab", "shebab"), "terrorists", ("gunmen", "gun men"), "thugs", "militants", "criminals", "gang", "robbers", "jihadis", "murderers", "extremists", "islamists", "enemies"]
+word = [("shabaab", "shabab", "shebab"), "terrorists", ("gunmen", "gun men"), "thugs", "militants", "gang", "jihadis", "murderers", "islamists"]
 
 #rowarray_list = []
 #for i in range(len(word)):

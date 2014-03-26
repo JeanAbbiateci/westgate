@@ -1,6 +1,5 @@
 (function(pageHeight) {
 
-    var data2 = [];
     var height = window.innerHeight, width = window.innerWidth;
     var bodySelection = d3.select("#page-intro .container");
     var svgHeight = 500;
@@ -137,9 +136,7 @@
         })
 
                 .on("mouseout", function(d, i) {
-
-
-            d3.select(".tooltip").style("opacity", 0).display("none");
+            tooltip.style("opacity", 0).style("display","none");
         });
 
 

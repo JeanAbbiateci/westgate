@@ -9,9 +9,9 @@
     var tooltip = null;
     var checkClicked = null;
     // labels
-    var labels = ["al-Shabaab", "Terrorists", "Gunmen", "Thugs", "Militants", "Criminals", "Gangsters", "Robbers", "Jihadists", "Murderers", "Extremists", "Islamists", "Enemies"];
+    var labels = ["al-Shabaab", "Terrorists", "Gunmen", "Thugs", "Militants", "Gangsters", "Jihadists", "Murderers", "Islamists"];
     // colors				
-    var colors = ["#DB3D3D", "#FCA43A", "#008DAA", "#91399E", "#9467bd", "#8c564b", "#e377c2", "#ff7f0e", "#98df8a", "#b34228", "#ff9896", "#17becf", "#c5b0d5"];
+    var colors = ["#DB3D3D", "#FCA43A", "#008DAA", "#91399E", "#9467bd", "#8c564b", "#e377c2", "#ff7f0e", "#98df8a"];
     var sData = null;
 
 
@@ -46,7 +46,7 @@
         });
 
 
-        checkClicked = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        checkClicked = [1, 1, 1, 1, 0, 0, 0, 0, 0];
         /*data.forEach(function(d) {
          checkClicked.push(1);
          });*/
@@ -167,8 +167,7 @@
             
             var y = d3.event.pageY;
             tooltip = tooltip.style("left", (d3.event.pageX - 50) + "px").style("bottom", null).style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
-            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-            tooltip.transition().duration(1000).style("opacity",1);
+            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block").style("opacity",1);
         })
 
 
@@ -194,11 +193,11 @@
             // legend rectangles 
             legendsvg.append("rect")
                     .attr("x", 40)
-                    .attr("y", j * (hlegend / data.length) + 5)
+                    .attr("y", j * (hlegend / data.length) + 25)
                     .attr("width", 10)
                     .attr("height", 10)
                     .attr("id", "rect-" + j)
-                    .style("fill", "#fff")
+                    .style("fill", "#4C515C")
                     .style("stroke", colors[j])
                     .attr("rx", 2)
                     .attr("ry", 2)
@@ -210,7 +209,7 @@
             // legend labels
             legendsvg.append("text")
                     .attr("x", 60)
-                    .attr("y", j * (hlegend / data.length) + 10)
+                    .attr("y", j * (hlegend / data.length) + 30)
                     .attr("dy", ".35em")
                     .text(labels[j])
                     .on("mouseover", function() {
