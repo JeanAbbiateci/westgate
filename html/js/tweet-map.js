@@ -215,8 +215,8 @@ document.onkeydown = checkKey;
                 .on("mouseover", function(d) {
             tipdiv
                     .style("opacity", 1)
-                    .style("display", "block").style("height", "15px");
-            tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
+                    .style("display", "block");
+            tipdiv.html(d[4] + ": " + d[3] + " tweets")
                     .style("left", (d3.event.pageX) - 25 + "px")
                     .style("bottom", null)
                     .style("top", (d3.event.pageY - 50) + "px");
