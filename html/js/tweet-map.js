@@ -174,14 +174,12 @@ document.onkeydown = checkKey;
      */
 
     function startAnimate() {
-        console.log(timelapse);
         timelapse = setInterval(animate, animationSpeed);
     }
 
 
     function stopAnimate() {
         clearInterval(timelapse);
-        console.log(timelapse);
     }
 
 
@@ -417,7 +415,7 @@ document.onkeydown = checkKey;
         }
 
         
-
+        /*
         playpause = sliderdiv.append("div")
                 .attr("id", "startstop")
                 .append("a")
@@ -442,7 +440,7 @@ document.onkeydown = checkKey;
                 playPauseElement.classed("play", false).transition().duration(100).style("opacity", 1);
             });
         }
-    }); 
+    }); */
 
     }
 
