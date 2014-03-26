@@ -149,6 +149,11 @@ h1 {
   color: #DBE1E7;
   line-height: 38px; }
 
+h {
+  font-size: 16px;
+  color: #DBE1E7;
+  line-height: 38px; }
+
 p {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
@@ -396,6 +401,7 @@ div.newstip .time {
     overflow: hidden; }
   #photo-gallery #preview {
     position: absolute;
+    overflow: hidden;
     z-index: 100;
     padding: 10px;
     background-color: #1b1e2a;
