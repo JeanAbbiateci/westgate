@@ -129,3 +129,52 @@ circle
     }
 
 }
+
+
+/* Vertical grid */
+
+.v-1{
+  top: 20%;
+}
+
+.v-2{
+  top: 40%;
+}
+.v-3{
+  top: 60%;
+}
+.v-4{
+  top:80%;
+}
+
+.h-1{
+  position: absolute;
+  left: 16%;
+}
+
+.h-2{
+  position: absolute;
+  left: 32%;
+}
+.h-3{
+  position: absolute;
+  left: 48%;
+}
+.h-4{
+  position: absolute;
+  left:64%;
+}
+.h-5{
+  position: absolute;
+  left: 80%;
+}
+.h-6{
+  position: absolute;
+  left: 96%;
+}
+
+.dark-tint{
+  background-color: #000000;
+  opacity: 0.4;
+  
+}
