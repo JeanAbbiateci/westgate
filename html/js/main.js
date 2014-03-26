@@ -34,7 +34,13 @@ window.load = (function() {
             currentPageIndex = selectPage(currentPageIndex - 1);
         else if (event.which === 40)
             currentPageIndex = selectPage(currentPageIndex + 1);
-        
+        pageChanged();
+        updateMenu();
+
+    });
+
+    function pageChanged()
+    {
         if (currentPage !== pagesList[currentPageIndex]) {
             currentPage = pagesList[currentPageIndex];
 
@@ -55,7 +61,8 @@ window.load = (function() {
             }, 1000);*/
         }
         return;
-    });
+    }
+
 
     function selectPage(index) {
         if (index >= pagesList.length)
@@ -77,20 +84,44 @@ window.load = (function() {
 
     }
 
-    var submenulengths = [8,4,4,3,2]
+    var submenulengths = [8,4,4,3,2];
 
     //Build menu
     function makemenu()
     {
+        var total = 0;
+        var pageindexes = range(0, pagesList.length);
         for (var i=0;i<submenulengths.length;i++)
         { 
-            var items = range(0,submenulengths[i])
-            var currentmenu = d3.select("#menu"+i)
-            currentmenu.select("ul").append("li")
+            var subm = submenulengths[i]
+            var items = range(0,subm);
+            var currentmenu = d3.select("#menu"+i);
+            currentmenu.select("ul").selectAll("li")
+            .data(pageindexes.slice(total, total+ subm))
+            .enter()
+            .append("li")
+            .attr("class","dot")
+            .attr("id", function(d){return "dot"+d})
+            .on("click", function(d)
+            {   
+                //Remove all color and then color current div
+                currentPageIndex = d;
+                pageChanged();
+                updateMenu();
+            });
+
+            total = total + subm;
         }
     }
 
     makemenu();
+
+    function updateMenu()
+    {
+        d3.selectAll(".dot").classed("active",false);
+        d3.select("#dot"+currentPageIndex).classed("active",true);
+    }
+    updateMenu();
 
 
     //Range helper function
