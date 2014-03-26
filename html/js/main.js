@@ -4,11 +4,16 @@ var pastPos = 0;                                // past position for the scrollH
 var currentPageIndex = 0;                       // current Pagelist index
 var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
 var headerHeight = 71;                          // header height. Should be dinamix => fix!
+var keyboardUseCorrection = 23;                 // mha!
 
 //Collect pages id
 $('.page').each(function(i) {
     var currentID = this.id || i;
     pagesList.push(currentID);
+});
+
+$(document).ready(function(){
+    $(this).scrollTop(0);
 });
 
 window.load = (function() {
@@ -34,12 +39,12 @@ window.load = (function() {
             currentPageIndex = selectPage(currentPageIndex - 1);
         else if (event.which === 40)
             currentPageIndex = selectPage(currentPageIndex + 1);
-        pageChanged();
+        pageChanged(keyboardUseCorrection);
         updateMenu();
 
     });
 
-    function pageChanged()
+    function pageChanged(correction)
     {
         if (currentPage !== pagesList[currentPageIndex]) {
             currentPage = pagesList[currentPageIndex];
@@ -47,7 +52,7 @@ window.load = (function() {
             var pos = pageHeight;
             // If it's not the first one, we need to subtract the header height
             if (currentPageIndex !== 0) {
-                pos -= (headerHeight - 23); //Don't ask me why the -23
+                pos -= (headerHeight - correction); //Don't ask me why the -23
             }
             pos = pos * currentPageIndex;
             pos = -(pos);
@@ -58,7 +63,6 @@ window.load = (function() {
 
             $("#pages").css("transform", "translate(0," + pos + "px)");
         }
-        return;
     }
 
 
@@ -107,8 +111,9 @@ window.load = (function() {
             {
                 //Remove all color and then color current div
                 currentPageIndex = d;
-                pageChanged();
+                pageChanged(headerHeight);
                 updateMenu();
+                return false;
             });
 
             total = total + subm;

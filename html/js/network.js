@@ -43,7 +43,7 @@ function network(){
   }
 
   function hideTooltip(d) {
-    tooldiv.style("opacity", 0).style("display", "none")
+    tooltip.style("opacity", 0).style("display", "none")
   }
 
    function showLinkTooltip(data) {
