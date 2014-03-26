@@ -126,15 +126,31 @@
             sday = findDay(d);
             return y(sday) + 50;
         })
-                .style("fill", "red")
+                .style("fill", "#db3d3c")
                 .on("mouseover", function(d, i) {
 
+				
+				d3.select(this)
+					.transition()
+					.duration(220)
+					.style("fill","#af3130");
+				
             var y = d3.event.pageY;
-            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0).style("bottom", null);
+			
+            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
             tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block").style("opacity",1);
+        })
+		.on("mousemove", function() {
+            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
         })
 
                 .on("mouseout", function(d, i) {
+				
+				d3.select(this)
+					.transition()
+					.duration(220)
+					.style("fill","#db3d3c");
+				
             tooltip.style("opacity", 0).style("display","none");
         });
 
