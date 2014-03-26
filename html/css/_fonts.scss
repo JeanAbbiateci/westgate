@@ -1,26 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import url(http://fonts.googleapis.com/css?family=Homenaje);
 @import url(http://fonts.googleapis.com/css?family=Muli:300,400);
-
-@mixin fontFace($family,$src,$weight: normal,$style: normal) {
-  @font-face {
-    font-family: $family;
-    src: url('#{$src}.eot'); // IE9 compat
-    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), // IE8 and below
-    url('#{$src}.woff') format('woff'), // standards
-    url('#{$src}.ttf') format('truetype'), // Safari, Android, iOS
-    url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
-
-    font-style: $style;
-    font-weight: $weight;
-  }
-}
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 h1{
-  font-family: 'Muli', sans-serif;
-  font-size: 32px;
+  font-size: $s4;
+  font-weight: 200;
   color: #DBE1E7;
-  line-height: 38px;
+  line-height: 40px;
+  margin-bottom: 10px;
 }
 
 h2{
@@ -30,14 +18,16 @@ h2{
 }
 
 p{
-  font-family: 'Muli', sans-serif;
-  font-size: 13px;
+  font-family: 'open sans', sans-serif;
+  font-size: $s1;
   color: #ACB2C1;
-  line-height: 20px;
+  line-height: 22px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 body{
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
+  font-family: 'open sans', sans-serif;
+  font-size: $s1;
 }
 

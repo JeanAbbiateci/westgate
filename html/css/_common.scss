@@ -1,11 +1,4 @@
 /* General styling for SVG, path, circle, p, h1 etc */
-p
-  {
-    font-family:'Open Sans';
-    margin:0px;
-    font-size:$s1;
-  }
-
 a {
   color: $saturated-blue;
 }
@@ -78,7 +71,6 @@ circle
       {
       line-height:$s2 + 12;
       margin:0px;
-      font-family: 'Collator';
       font-size:$s2;
       }
       z-index:30000;
