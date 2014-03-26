@@ -2,7 +2,6 @@
 
     var height = window.innerHeight, width = window.innerWidth;
     var bodySelection = d3.select("#page-intro .container");
-	var tooltip = null;
     var svgHeight = 400;
     var svgWidth = 1140;
     var svg = bodySelection.append("svg")
