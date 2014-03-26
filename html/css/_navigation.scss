@@ -55,9 +55,10 @@ body {
   }
 
   a {
-    color:$light-blue;
+    color: $light-blue;
     display: block;
     padding: 6px 12px;
+    font-size: $s2;
     text-decoration: none;
   }
 
@@ -92,7 +93,7 @@ body {
   width:6px;
   border-radius:50%;
   float:left;
-  background-color:$light-blue;
+  background-color:$medium-blue;
   }
   
   .dot:hover
