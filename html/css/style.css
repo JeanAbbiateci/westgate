@@ -149,7 +149,7 @@ h1 {
   color: #DBE1E7;
   line-height: 38px; }
 
-h {
+h2 {
   font-size: 16px;
   color: #DBE1E7;
   line-height: 38px; }
@@ -197,45 +197,22 @@ path {
   fill: #343a45; }
 
 div.tooltip {
-  display: none;
-  position: absolute;
-  text-align: left;
-  width: auto;
-  max-width: 350px;
-  padding: 10px 15px;
-  font-size: 13px;
-  color: #dbe1e7;
-  background: rgba(66, 73, 87, 0.8);
-  pointer-events: none;
-  z-index: 999;
-  line-height: 1.2em; }
-
-div.tooltipline {
-  width: 2px;
-  /* Line width */
-  background-color: black;
-  /* Line color */
-  height: 100%;
-  /* Override in-line if you want specific height. */
-  float: left;
-  z-index: 1000; }
-
-div.newstip {
   border-radius: 3px;
   position: absolute;
   text-align: left;
   background: #acb2c1;
   height: auto;
   min-width: 100px;
-  max-width: 300px;
+  max-width: 450px;
   padding: 10px;
   font-size: 12px;
   color: #343a45;
   overflow: hidden;
   z-index: 999; }
-
-.newstip p {
-  color: #343a45; }
+  div.tooltip p {
+    color: #343a45; }
+  div.tooltip h1 {
+    color: #424957; }
 
 div.newstip .time {
   margin: 0px; }

@@ -195,7 +195,7 @@ function bubble(hour,current_view) {
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
-      d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
+      d3.select(".tooltip").style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
       });

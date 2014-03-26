@@ -15,13 +15,6 @@
             barchartheight = 100,
             animationSpeed = 700;
 
-    dates[264] = "21-09-2013";
-    dates[265] = "22-09-2013";
-    dates[266] = "23-09-2013";
-    dates[267] = "24-09-2013";
-    dates[268] = "25-09-2013";
-
-
     /* 
      ---------------------
      Initialize
@@ -212,13 +205,10 @@
             tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
                     .style("left", (d3.event.pageX) - 25 + "px")
                     .style("bottom", null)
-                    .style("top", (d3.event.pageY - 37) + "px");
+                    .style("top", (d3.event.pageY - 50) + "px");
         })
                 .on("mouseout", function(d) {
-            tipdiv.transition()
-                    .duration(500)
-                    .style("opacity", 0)
-                    .style("display", "none").style("height", "auto");
+            tipdiv.style("opacity", 0).style("display", "none")
         });
 
         if (animate) {
@@ -267,7 +257,7 @@
         var currenttime = tweets_per_location[ti].key;
         var timeobject =moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
         timediv.html("<h1>" + timeobject.zone(-3).format("dddd, MMMM Do YYYY, h:mm") + "</h1>")
-        
+
         //set slider
         slider.slide_to(ti);
 
@@ -386,18 +376,15 @@
                     .style("top", null)
                     .style("bottom", (h - d3.event.pageY +6) + "px")
                     .style("opacity", 0)
-                    .style("display", "block");
-
-            tooltip.transition()
+                    .style("display", "block")
+                    .transition()
                     .duration(500)
                     .style("opacity", 1);
 
         })
                 .on("mouseout", function(d) {
-            tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0)
-                    .style("display", "none");
+            tooltip.style("opacity", 0).style("display", "none")
+                    
         });
 
         // TimeDiv
