@@ -406,3 +406,10 @@ div.newstip .time {
   #photo-gallery #big-pic {
     max-height: 300px;
     max-width: 300px; }
+
+#page-intro .y path {
+  display: none; }
+#page-intro .container {
+  padding-top: 80px; }
+  #page-intro .container p {
+    width: 500px; }
