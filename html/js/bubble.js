@@ -21,16 +21,16 @@ function bubble(hour,current_view) {
       this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       this.center = {
         x: this.width / 2,
-        y: (this.height - 100) / 2
+        y: (this.height - 171) / 2
       };
       this.centers = {
         'Verified users' : {
           x: this.width / 3,
-          y: (this.height - 100) / 2
+          y: (this.height - 171) / 2
         },
         'Normal users' : {
           x: 2 * this.width / 3,
-          y: (this.height - 100) / 2
+          y: (this.height - 171) / 2
         }
       };
       this.layout_gravity = -0.005;

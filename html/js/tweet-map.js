@@ -22,6 +22,22 @@
      */
     init();
     
+
+    // Check key when Pressed
+function checkKey(e) {
+    if (e.keyCode == '37' && ti > 0) {
+        stopAnimate();
+        ti--;
+        drawDots();
+    }
+    else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
+        stopAnimate();
+        ti++;
+        drawDots();
+    }
+}
+
+document.onkeydown = checkKey;
     
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.
@@ -158,12 +174,14 @@
      */
 
     function startAnimate() {
+        console.log(timelapse);
         timelapse = setInterval(animate, animationSpeed);
     }
 
 
     function stopAnimate() {
         clearInterval(timelapse);
+        console.log(timelapse);
     }
 
 
@@ -256,7 +274,7 @@
         //timeset
         var currenttime = tweets_per_location[ti].key;
         var timeobject =moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
-        timediv.html("<h1>" + timeobject.zone(-3).format("dddd, MMMM Do YYYY, h:mm") + "</h1>")
+        timediv.html("<h1>" + timeobject.zone(-3).format("dddd Do, h:mm a") + "</h1>")
 
         //set slider
         slider.slide_to(ti);
@@ -309,6 +327,7 @@
                 .on("slide", function(evt, value) {
             ti = value;
             drawDots();
+            if (timelapse)
             bubble(ti,get_current_view());
         });
         // CREATE SLIDER
@@ -397,15 +416,7 @@
             slidercontainer.style("opacity", 0).style("display", "none");
         }
 
-        /*
-
-        d3.select("#startstop")
-                .style("left", function(d) {
-            return left_rightmargin - playPauseWidth + "px";
-        })
-                .style("top", function(d) {
-            return (h - barchartheight - 2) + topmargin + "px";
-        });
+        
 
         playpause = sliderdiv.append("div")
                 .attr("id", "startstop")
@@ -431,7 +442,7 @@
                 playPauseElement.classed("play", false).transition().duration(100).style("opacity", 1);
             });
         }
-    }); */
+    }); 
 
     }
 

@@ -39,7 +39,7 @@ window.load = (function() {
                 pos = -(pos);
             /*if (currentPageIndex !== 0)
                 pos -= headerHeight;*/
-            
+            hide_show_slider();
             
             
             $("#pages").css("transform", "translate(0,"+pos+"px)");
@@ -55,14 +55,13 @@ window.load = (function() {
             index = pagesList.length - 1;
         else if (index < 0)
             index = 0;
-        hide_show_slider(index);
         return index;
         
     }
 
-    function hide_show_slider(index){
+    function hide_show_slider(){
         console.log(1)
-        if (index === 1 || index === 2)
+        if (currentPage === "tweet-map" || currentPage === "bubble-page")
             {d3.select("#slider").transition().duration(200).style("display", "block").style("opacity", 1);
             console.log(1234)}
         else
