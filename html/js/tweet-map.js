@@ -15,13 +15,6 @@
             barchartheight = 100,
             animationSpeed = 700;
 
-    dates[264] = "21-09-2013";
-    dates[265] = "22-09-2013";
-    dates[266] = "23-09-2013";
-    dates[267] = "24-09-2013";
-    dates[268] = "25-09-2013";
-
-
     /* 
      ---------------------
      Initialize
@@ -29,6 +22,22 @@
      */
     init();
     
+
+    // Check key when Pressed
+function checkKey(e) {
+    if (e.keyCode == '37' && ti > 0) {
+        stopAnimate();
+        ti--;
+        drawDots();
+    }
+    else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
+        stopAnimate();
+        ti++;
+        drawDots();
+    }
+}
+
+document.onkeydown = checkKey;
     
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.
@@ -151,7 +160,6 @@
     function loadNewsItems() {
         // DRAW TWEETS ON MAP.
         d3.json("data/newsfeed.json", function(error, news_feed) {
-            console.log(news_feed);
             newsfeed = news_feed;
             loadBarchart();
         });
@@ -205,19 +213,16 @@
         })
                 .attr("style", "fill:url(#gradient)") //Firefox fix
                 .on("mouseover", function(d) {
-            tipdiv.transition()
-                    .duration(500)
+            tipdiv
                     .style("opacity", 1)
-                    .style("display", "block").style("height", "15px");
-            tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
+                    .style("display", "block");
+            tipdiv.html(d[4] + ": " + d[3] + " tweets")
                     .style("left", (d3.event.pageX) - 25 + "px")
-                    .style("top", (d3.event.pageY - 37) + "px");
+                    .style("bottom", null)
+                    .style("top", (d3.event.pageY - 50) + "px");
         })
                 .on("mouseout", function(d) {
-            tipdiv.transition()
-                    .duration(500)
-                    .style("opacity", 0)
-                    .style("display", "none").style("height", "auto");
+            tipdiv.style("opacity", 0).style("display", "none")
         });
 
         if (animate) {
@@ -264,7 +269,8 @@
 
         //timeset
         var currenttime = tweets_per_location[ti].key;
-        timediv.html("<h1>" + dates[currenttime.substring(0, 3)] + " || " + currenttime.substring(4, 6) + ":00</h1>")
+        var timeobject =moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
+        timediv.html("<h1>" + timeobject.zone(-3).format("dddd Do, h:mm a") + "</h1>")
 
         //set slider
         slider.slide_to(ti);
@@ -284,7 +290,7 @@
     function loadBarchart()
     {
         // VARIABLES
-        var topmargin = 6;
+        var topmargin = 8;
         var playPauseWidth = 80;
         var left_rightmargin = 200 + playPauseWidth / 2;
         var barwidth = w - left_rightmargin * 2;
@@ -318,11 +324,10 @@
             ti = value;
             drawDots();
             bubble(ti,get_current_view());
-            updateNetwork(ti)
         });
         // CREATE SLIDER
         d3.select('#slider div')
-                .call(slider);
+                .call(slider)
 
         svgbar = sliderdiv.append("svg")
                 .attr("width", barwidth)
@@ -369,9 +374,9 @@
             return d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
         })
                 .attr("cy", function(d, i) {
-            return 3;
+            return 4;
         })
-                .attr("r", 3)
+                .attr("r", 4)
                 .on("mouseover", function(d) {
 
 
@@ -382,20 +387,16 @@
                     '<p class="content">' + d[3] + "</p>"
                     )
                     .style("left", (d3.event.pageX - 200) + "px")
+                    .style("top", null)
                     .style("bottom", (h - d3.event.pageY +6) + "px")
                     .style("opacity", 0)
-                    .style("display", "block");
-
-            tooltip.transition()
-                    .duration(500)
+                    .style("display", "block")
                     .style("opacity", 1);
 
         })
                 .on("mouseout", function(d) {
-            tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0)
-                    .style("display", "none");
+            tooltip.style("opacity", 0).style("display", "none")
+                    
         });
 
         // TimeDiv
@@ -408,16 +409,8 @@
             slidercontainer.style("opacity", 0).style("display", "none");
         }
 
+        
         /*
-
-        d3.select("#startstop")
-                .style("left", function(d) {
-            return left_rightmargin - playPauseWidth + "px";
-        })
-                .style("top", function(d) {
-            return (h - barchartheight - 2) + topmargin + "px";
-        });
-
         playpause = sliderdiv.append("div")
                 .attr("id", "startstop")
                 .append("a")

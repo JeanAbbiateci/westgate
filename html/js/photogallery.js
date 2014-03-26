@@ -49,8 +49,9 @@ $(function(){
                 clearTimeout(timer);
                 imageName = this.src.match(/\/\d+_\d+.jpg/)[0];
                 timer = setTimeout(function(){
-                    $('#big-pic').attr('src', './img/photos/fullsize'+imageName);
-                },120);
+                        $('#big-pic').attr('src', './img/photos/fullsize'+imageName);
+                    },120);
+                $('#picture-retweet').html('<b>Retweets:</b> ' + imageName.match(/\d+/))
                 }, function(){clearTimeout(timer)})
             })
         var moveTimer;

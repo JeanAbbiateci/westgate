@@ -13,7 +13,6 @@ body {
 #story-nav {
   cursor: default;
   background-color: $dark-blue;
-  font-family: 'collator';
   width: 100%;
   height: 71px;
   position: fixed;
@@ -44,7 +43,7 @@ body {
     list-style: none;
     float: left;
     color: $white-blue;
-    padding: 30px 0 0 20px;
+    padding: 25px 0 0 20px;
     font-size: 16px;
   }
 
@@ -55,9 +54,54 @@ body {
   }
 
   a {
+    color:$light-blue;
     display: block;
     padding: 6px 12px;
     text-decoration: none;
+  }
+
+  a.active
+  {
+  color:$red;
+  }
+
+  /* DOTS NAVIGATION */
+
+
+  ul > li > a
+  {
+  padding: 0px;
+  }
+
+  ul > li > ul
+  {
+    margin:3px auto;
+    padding:0px;
+  }
+
+  ul > li > ul > li
+  {
+    margin:2px;
+  }
+
+  .dot{
+  padding:0px;
+  display:block;
+  height:6px;
+  width:6px;
+  border-radius:50%;
+  float:left;
+  background-color:$light-blue;
+  }
+  
+  .dot:hover
+  {
+    background-color:$red;
+  }
+
+  .dot.active
+  {
+  background-color:$red;
   }
 
 }
@@ -71,12 +115,12 @@ body {
   #pages{
 
     .page{
-      border-bottom: 1px solid $dark-blue;
+      background-repeat: no-repeat;
+      background-size: 100%;
       display: block;
       color: $light-blue;
-      min-height: 700px;
       overflow: hidden;
-
+      position: relative;
       .container{
 
         margin-top: 30px;
@@ -116,3 +160,5 @@ body {
   z-index: 100;
   -webkit-user-select: none;
 }
+
+

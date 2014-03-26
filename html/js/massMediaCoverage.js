@@ -1,9 +1,8 @@
 (function(pageHeight) {
 
-    var data2 = [];
     var height = window.innerHeight, width = window.innerWidth;
     var bodySelection = d3.select("#page-intro .container");
-    var svgHeight = 500;
+    var svgHeight = 400;
     var svgWidth = 1140;
     var svg = bodySelection.append("svg")
             .attr("width", svgWidth)
@@ -33,7 +32,7 @@
                 barWidth = (svgWidth - dayNameBarWidth) / 24;
         var xAxis = d3.scale.linear()
                 .range([0, barWidth]);
-        var y = d3.scale.ordinal().rangeRoundBands([0, 400]);
+        var y = d3.scale.ordinal().rangeRoundBands([0, 300]);
         var yAxis = d3.svg.axis().scale(y).orient("left");
         y.domain(data.map(function(d) {
             return findDay(d);
@@ -125,21 +124,34 @@
         })
                 .attr("cy", function(d, i) {
             sday = findDay(d);
-            return y(sday) + 50;
+            return y(sday) + 38;
         })
-                .style("fill", "red")
+                .style("fill", "#db3d3c")
                 .on("mouseover", function(d, i) {
 
+				
+				d3.select(this)
+					.transition()
+					.duration(220)
+					.style("fill","#af3130");
+				
             var y = d3.event.pageY;
-            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
-            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-            tooltip.transition().duration(1000).style("opacity",1);
+			
+            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0).style("bottom", null);
+            tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block").style("opacity",1);
+        })
+		.on("mousemove", function() {
+            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
         })
 
                 .on("mouseout", function(d, i) {
-
-
-            d3.select(".tooltip").style("opacity", 0).display("none");
+				
+				d3.select(this)
+					.transition()
+					.duration(220)
+					.style("fill","#db3d3c");
+				
+            tooltip.style("opacity", 0).style("display","none");
         });
 
 
@@ -182,10 +194,10 @@
         var text = [];
         if (d[0] instanceof Array) {
             for (var i = 0; i < d.length; i++)
-                text = text + d[i][1] + " - " + d[i][2] + "</br>" + d[i][3] + "</br></br>";
+                text = text + d[i][1] + " - " + d[i][2] + "</br></br>" + d[i][3] + "</br></br>";
         }
         else
-            text = d[1] + " - " + d[2] + "</br>" + d[3];
+            text = d[1] + " - " + d[2] + "</br></br>" + d[3];
         return text;
     }
 

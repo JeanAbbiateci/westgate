@@ -1,5 +1,5 @@
 #page-bubble{
-	margin-top:80px;
+	margin-top:71px;
 	.bubble
 	{
 		fill: $yellow;
@@ -11,4 +11,8 @@
 	{
 		fill:$light-blue;
 	}
+    .types{
+      font-size: $s2;
+      fill: $bright-blue;
+    }
 }

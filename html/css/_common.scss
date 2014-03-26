@@ -1,11 +1,4 @@
 /* General styling for SVG, path, circle, p, h1 etc */
-p
-  {
-    font-family:'Open Sans';
-    margin:0px;
-    font-size:$s1;
-  }
-
 a {
   color: $saturated-blue;
 }
@@ -36,46 +29,28 @@ circle
 
 
     div.tooltip {
-        display:none;
-      position: absolute;           
-      text-align: left;           
-      width: auto;
-      max-width: 350px;          
-      padding: 10px 15px;           
-      font-size: 13px;
-      color:$white-blue;    
-      background: rgba($medium-blue, 0.8);             
-      pointer-events: none;
-      z-index:999;
-    line-height: 1.2em;
-    }
-
-    div.tooltipline {   
-      width: 2px; /* Line width */
-      background-color: black; /* Line color */
-      height: 100%; /* Override in-line if you want specific height. */
-      float: left;
-      z-index: 1000;
-    }
-
-    div.newstip {   
       border-radius:3px;
       position: absolute;
       text-align: left;    
       background: $bright-blue;
       height:auto;
       min-width: 100px;
-      max-width:300px;
+      max-width:450px;
       padding: 10px;
       font-size: $s1;
       color: $dark-blue;
       overflow: hidden;
-      z-index:999;
-    }
+      z-index:999;  
 
-    .newstip p{
+      p{
       color: $dark-blue;
     }
+
+    h1{
+      color: $medium-blue;
+    }  
+      }
+
 
     div.newstip .time
     {
@@ -96,7 +71,6 @@ circle
       {
       line-height:$s2 + 12;
       margin:0px;
-      font-family: 'Collator';
       font-size:$s2;
       }
       z-index:30000;
@@ -109,18 +83,13 @@ circle
         z-index: 2;
     }
 
-    .d3-slider-horizontal {
-        height: 100%;
-    }  
-
 
     .d3-slider-handle {
+        margin-top:8px;
+        height:62px;
         position: absolute;
-        width: 3px;
-        height: 100%;
-        background: rgba($medium-blue, 0.6);
-        border-left: 1px solid rgba($light-blue, 0.6);
-        border-right: 1px solid rgba($light-blue, 0.6);
+        width: 10px;
+        background: rgba($saturated-blue, 0.6);
         z-index: 3;
         cursor: col-resize;
     }
@@ -159,4 +128,72 @@ circle
         background: url(../img/play.png);
     }
 
+}
+
+
+/* Vertical grid */
+
+.v-1{
+  top: 20%;
+}
+
+.v-2{
+  top: 40%;
+}
+.v-3{
+  top: 60%;
+}
+.v-4{
+  top:80%;
+}
+
+.h-1{
+  position: absolute;
+  left: 16%;
+}
+
+.h-2{
+  position: absolute;
+  left: 32%;
+}
+.h-3{
+  position: absolute;
+  left: 48%;
+}
+.h-4{
+  position: absolute;
+  left:64%;
+}
+.h-5{
+  position: absolute;
+  left: 80%;
+}
+.h-6{
+  position: absolute;
+  left: 96%;
+}
+
+.dark-tint{
+  background-color: #060b0f;
+  opacity: 0.7;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.selected-tweets-text{
+  font-style: italic;
+  background-color: rgba(255,255,255,0.6);
+  line-height: 22px;
+  color: $dark-blue;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  width: 450px;
+}
+
+.selected-tweets-text span {
+  color: $dark-blue;
+  font-weight: 700;
 }

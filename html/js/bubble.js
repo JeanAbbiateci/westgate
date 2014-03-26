@@ -1,5 +1,4 @@
 function bubble(hour,current_view) {
-  console.log('hai')
   var BubbleChart, root,
     __bind = function(fn, me){return function(){ return fn.apply(me, arguments); }; };
 
@@ -22,28 +21,27 @@ function bubble(hour,current_view) {
       this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       this.center = {
         x: this.width / 2,
-        y: (this.height - 100) / 2
+        y: (this.height - 171) / 2
       };
       this.centers = {
         'Verified users' : {
           x: this.width / 3,
-          y: (this.height - 100) / 2
+          y: (this.height - 171) / 2
         },
         'Normal users' : {
           x: 2 * this.width / 3,
-          y: (this.height - 100) / 2
+          y: (this.height - 171) / 2
         }
       };
-      this.layout_gravity = -0.01;
+      this.layout_gravity = -0.005;
       this.damper = 0.1;
       this.vis = null;
       this.nodes = [];
       this.force = null;
       this.circles = null;
-      max_amount = d3.max(this.data, function(d) {
-        return parseInt(d.amount);
-      });
-      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 50]);
+      max_amount = 2233
+      min_amount = 7
+      this.radius_scale = d3.scale.pow().exponent(0.6).domain([min_amount, max_amount]).range([5, pageHeight / 6]);
       this.create_nodes();
       this.create_vis();
     }
@@ -186,18 +184,17 @@ function bubble(hour,current_view) {
       var content;
       el = d3.select(element)
       el.attr("stroke", "black");
-      content = "<span class=\"name\">User:</span><span class=\"value\"> " + data.name + "</span><br/>";
-      content += "<span class=\"name\">Tweet:</span><span class=\"value\"> " + urlize(data.tweet)+ "</span><br/>";
-      content += "<span class=\"name\">Amount:</span><span class=\"value\">" + data.value + "</span>";
+      content = data.name + " tweeted : <br/>";
+      content += urlize(data.tweet)+"<br/>";
+      content += "It was retweeted " + data.value + " times";
       
       var y = d3.event.pageY;
-      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>");
-      tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-      tooltip.transition().duration(1000).style("opacity",1);
+      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("bottom", null).style("top", (y - 160) + "px").html("<p>" + content + "</p>");
+      tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block").style("opacity",1);
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
-      d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
+      d3.select(".tooltip").style("opacity",0).style("display", "none");
       d3.select(element).attr("stroke", function(d) {
         return "#777";
       });
