@@ -1,8 +1,8 @@
 function network(){
 
-  var treshold = 15
+  var treshold = 10
 
-  var height = 700,
+  var height = 650,
     width =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
   var sqrtScale = d3.scale.pow().exponent(.05)
@@ -10,7 +10,7 @@ function network(){
     .domain([627,33135]);
 
   var logScale = d3.scale.log()
-    .range([1,3])
+    .range([1,10])
     .domain([treshold,266]);
 
   var chargeScale = d3.scale
