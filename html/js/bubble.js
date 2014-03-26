@@ -189,7 +189,7 @@ function bubble(hour,current_view) {
       content += "It was retweeted " + data.value + " times";
       
       var y = d3.event.pageY;
-      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>");
+      var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("bottom", null).style("top", (y - 160) + "px").html("<p>" + content + "</p>");
       tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
       tooltip.transition().duration(1000).style("opacity",1);
     };

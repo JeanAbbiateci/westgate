@@ -131,7 +131,7 @@
                 .on("mouseover", function(d, i) {
 
             var y = d3.event.pageY;
-            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0);
+            tooltip = tooltip.style("left", (d3.event.pageX + 20) + "px").style("top", (y - 160) + "px").html(buildTooltipData(d, i)).style("opacity", 0).style("bottom", null);
             tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
             tooltip.transition().duration(1000).style("opacity",1);
         })
