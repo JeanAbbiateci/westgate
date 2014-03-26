@@ -41,7 +41,7 @@ function bubble(hour,current_view) {
       this.circles = null;
       max_amount = 2233
       min_amount = 7
-      this.radius_scale = d3.scale.pow().exponent(0.6).domain([min_amount, max_amount]).range([5, 100]);
+      this.radius_scale = d3.scale.pow().exponent(0.6).domain([min_amount, max_amount]).range([5, pageHeight / 6]);
       this.create_nodes();
       this.create_vis();
     }
@@ -190,8 +190,7 @@ function bubble(hour,current_view) {
       
       var y = d3.event.pageY;
       var tooltip = d3.select('.tooltip').style("left", (d3.event.pageX - 125) + "px").style("bottom", null).style("top", (y - 160) + "px").html("<p>" + content + "</p>");
-      tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-      tooltip.transition().duration(1000).style("opacity",1);
+      tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block").style("opacity",1);
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {

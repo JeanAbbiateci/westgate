@@ -2,11 +2,11 @@ function network(){
 
   var treshold = 10
 
-  var height = 650,
+  var height = pageHeight - headerHeight,
     width =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
   var sqrtScale = d3.scale.pow().exponent(.05)
-    .range([5,40])
+    .range([3,pageHeight/20])
     .domain([627,33135]);
 
   var logScale = d3.scale.log()
@@ -15,7 +15,7 @@ function network(){
 
   var chargeScale = d3.scale
     .linear()
-    .range([-100,-125])
+    .range([-90,-125])
     .domain([627,33135]);
 
   var linkramp = d3.scale.sqrt()
@@ -39,8 +39,7 @@ function network(){
     var y = d3.event.pageY;
     var x = d3.event.pageX;
     var tooltip = d3.select('.tooltip').style("left", (x - 50) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
-    tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-    tooltip.transition().duration(1000).style("opacity",1);
+    tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("bottom", null).style("display", "block").style("opacity",1);
   }
 
   function hideTooltip(d) {
@@ -53,12 +52,11 @@ function network(){
     var y = d3.event.pageY;
     var x = d3.event.pageX;
     var tooltip = d3.select('.tooltip').style("left", (x - 50) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
-    tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("display", "block");
-    tooltip.transition().duration(1000).style("opacity",1);
+    tooltip = tooltip.style("top", (y-$(".tooltip").outerHeight()-15)+"px").style("bottom", null).style("display", "block").style("opacity",1);
   }
 
   function hideLinkTooltip(d) {
-    d3.select(".tooltip").transition().duration(1000).style("opacity",0).style("display", "none");
+    d3.select(".tooltip").style("opacity",0).style("display", "none");
   }
 
   function drawNetwork(graph){

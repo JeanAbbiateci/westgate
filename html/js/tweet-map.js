@@ -214,8 +214,7 @@ document.onkeydown = checkKey;
         })
                 .attr("style", "fill:url(#gradient)") //Firefox fix
                 .on("mouseover", function(d) {
-            tipdiv.transition()
-                    .duration(500)
+            tipdiv
                     .style("opacity", 1)
                     .style("display", "block").style("height", "15px");
             tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
@@ -393,8 +392,6 @@ document.onkeydown = checkKey;
                     .style("bottom", (h - d3.event.pageY +6) + "px")
                     .style("opacity", 0)
                     .style("display", "block")
-                    .transition()
-                    .duration(500)
                     .style("opacity", 1);
 
         })
