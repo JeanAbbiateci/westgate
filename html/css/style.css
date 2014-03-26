@@ -374,6 +374,9 @@ div.newstip .time {
     stroke-width: 1px; }
   #page-bubble .bubble.verified {
     fill: #9399a5; }
+  #page-bubble .types {
+    font-size: 16px;
+    fill: #acb2c1; }
 
 #network {
   margin-top: 80px; }
