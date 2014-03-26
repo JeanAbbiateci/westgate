@@ -160,7 +160,6 @@ document.onkeydown = checkKey;
     function loadNewsItems() {
         // DRAW TWEETS ON MAP.
         d3.json("data/newsfeed.json", function(error, news_feed) {
-            console.log(news_feed);
             newsfeed = news_feed;
             loadBarchart();
         });

@@ -47,7 +47,8 @@ window.load = (function() {
                 pos -= headerHeight;*/
             hide_show_slider();
             
-            
+            d3.select(".tooltip").style("opacity",0).style("display", "none");
+
             $("#pages").css("transform", "translate(0,"+pos+"px)");
             /*$("html, body").stop(true).animate({
                 scrollTop: pos
@@ -66,14 +67,41 @@ window.load = (function() {
     }
 
     function hide_show_slider(){
-        console.log(1)
+
         if (currentPage === "tweet-map" || currentPage === "bubble-page")
             {d3.select("#slider").transition().duration(200).style("display", "block").style("opacity", 1);
-            console.log(1234)}
+            }
         else
             {d3.select("#slider").transition().duration(200).style("opacity", 0).style("display", "none");
-            console.log(1235)}
+            }
 
+    }
+
+    var submenulengths = [8,4,4,3,2]
+
+    //Build menu
+    function makemenu()
+    {
+        for (var i=0;i<submenulengths.length;i++)
+        { 
+            var items = range(0,submenulengths[i])
+            var currentmenu = d3.select("#menu"+i)
+            currentmenu.select("ul").append("li")
+        }
+    }
+
+    makemenu();
+
+
+    //Range helper function
+    function range(start, end)
+    {
+        var array = new Array();
+        for(var i = start; i < end; i++)
+        {
+            array.push(i);
+        }
+        return array;
     }
 
 }());
