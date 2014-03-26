@@ -211,6 +211,7 @@
                     .style("display", "block").style("height", "15px");
             tipdiv.html("<p>" + d[4] + ": " + d[3] + " tweets</p>")
                     .style("left", (d3.event.pageX) - 25 + "px")
+                    .style("bottom", null)
                     .style("top", (d3.event.pageY - 37) + "px");
         })
                 .on("mouseout", function(d) {
@@ -264,8 +265,9 @@
 
         //timeset
         var currenttime = tweets_per_location[ti].key;
-        timediv.html("<h1>" + dates[currenttime.substring(0, 3)] + " || " + currenttime.substring(4, 6) + ":00</h1>")
-
+        var timeobject =moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
+        timediv.html("<h1>" + timeobject.zone(-3).format("dddd, MMMM Do YYYY, h:mm") + "</h1>")
+        
         //set slider
         slider.slide_to(ti);
 
@@ -284,7 +286,7 @@
     function loadBarchart()
     {
         // VARIABLES
-        var topmargin = 6;
+        var topmargin = 8;
         var playPauseWidth = 80;
         var left_rightmargin = 200 + playPauseWidth / 2;
         var barwidth = w - left_rightmargin * 2;
@@ -318,11 +320,10 @@
             ti = value;
             drawDots();
             bubble(ti,get_current_view());
-            updateNetwork(ti)
         });
         // CREATE SLIDER
         d3.select('#slider div')
-                .call(slider);
+                .call(slider)
 
         svgbar = sliderdiv.append("svg")
                 .attr("width", barwidth)
@@ -369,9 +370,9 @@
             return d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
         })
                 .attr("cy", function(d, i) {
-            return 3;
+            return 4;
         })
-                .attr("r", 3)
+                .attr("r", 4)
                 .on("mouseover", function(d) {
 
 
@@ -382,6 +383,7 @@
                     '<p class="content">' + d[3] + "</p>"
                     )
                     .style("left", (d3.event.pageX - 200) + "px")
+                    .style("top", null)
                     .style("bottom", (h - d3.event.pageY +6) + "px")
                     .style("opacity", 0)
                     .style("display", "block");

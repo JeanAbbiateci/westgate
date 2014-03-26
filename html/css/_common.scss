@@ -36,7 +36,7 @@ circle
 
 
     div.tooltip {
-        display:none;
+      display:none;
       position: absolute;           
       text-align: left;           
       width: auto;
@@ -109,18 +109,13 @@ circle
         z-index: 2;
     }
 
-    .d3-slider-horizontal {
-        height: 100%;
-    }  
-
 
     .d3-slider-handle {
+        margin-top:8px;
+        height:62px;
         position: absolute;
-        width: 3px;
-        height: 100%;
-        background: rgba($medium-blue, 0.6);
-        border-left: 1px solid rgba($light-blue, 0.6);
-        border-right: 1px solid rgba($light-blue, 0.6);
+        width: 10px;
+        background: rgba($saturated-blue, 0.6);
         z-index: 3;
         cursor: col-resize;
     }

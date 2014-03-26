@@ -4,6 +4,7 @@
 */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import url(http://fonts.googleapis.com/css?family=Homenaje);
+@import url(http://fonts.googleapis.com/css?family=Muli:300,400);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -144,13 +145,18 @@ body {
   -webkit-user-select: none; }
 
 h1 {
-  font-family: 'Collator', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 32px;
   color: #DBE1E7;
   line-height: 38px; }
 
+h2 {
+  font-size: 16px;
+  color: #DBE1E7;
+  line-height: 38px; }
+
 p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 13px;
   color: #ACB2C1;
   line-height: 20px; }
@@ -165,6 +171,7 @@ body {
   src: url("./fonts/collator.eot?#iefix") format("embedded-opentype"), url("./fonts/collator.woff") format("woff"), url("./fonts/collator.ttf") format("truetype"), url("./fonts/collator.svg#collator") format("svg");
   font-style: normal;
   font-weight: normal; }
+
 /* General styling for SVG, path, circle, p, h1 etc */
 p {
   font-family: 'Open Sans';
@@ -250,16 +257,12 @@ div.newstip .time {
   position: relative;
   z-index: 2; }
 
-.d3-slider-horizontal {
-  height: 100%; }
-
 .d3-slider-handle {
+  margin-top: 8px;
+  height: 62px;
   position: absolute;
-  width: 3px;
-  height: 100%;
-  background: rgba(66, 73, 87, 0.6);
-  border-left: 1px solid rgba(147, 153, 165, 0.6);
-  border-right: 1px solid rgba(147, 153, 165, 0.6);
+  width: 10px;
+  background: rgba(0, 141, 170, 0.6);
   z-index: 3;
   cursor: col-resize; }
 
@@ -396,6 +399,7 @@ div.newstip .time {
     overflow: hidden; }
   #photo-gallery #preview {
     position: absolute;
+    overflow: hidden;
     z-index: 100;
     padding: 10px;
     background-color: #1b1e2a;
@@ -406,3 +410,10 @@ div.newstip .time {
   #photo-gallery #big-pic {
     max-height: 300px;
     max-width: 300px; }
+
+#page-intro .y path {
+  display: none; }
+#page-intro .container {
+  padding-top: 80px; }
+  #page-intro .container p {
+    width: 500px; }
