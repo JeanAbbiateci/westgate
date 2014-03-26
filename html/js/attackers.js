@@ -406,23 +406,6 @@
             }
 
         });
-	
-	/*
-        data.forEach(function(b, j) {
-			
-            if ((pos !== j) && (checkClicked[pos] !== 0)) {
-                svgContainer.select("#lines-" + j)
-                        .transition()
-                        .duration(250)
-                        .style("opacity", .1);
-
-                svgContainer.selectAll("#circles-" + j)
-                        .transition()
-                        .duration(250)
-                        .style("opacity", .1);
-
-            }
-        });*/
     }
 
 
@@ -527,7 +510,7 @@
 
         // build the html code
         var head = "<table style='width:150px'><tr><td class='tableHead' colspan='3'><b>Day " + (i + 1) + ".</b> Total: " + d.occurs + "</td></tr>";
-        var rest = "";
+        var rest = "<tr></tr>";
         sortedDayView.forEach(function(b, j) {
             rest = rest + "<tr><td style='text-align:left'> <FONT size='5' COLOR='" + b[0] + "'><b>- </b></FONT>" + b[1] + "</td><td style='text-align:right'>" + b[2] + "</td></tr>";
         });

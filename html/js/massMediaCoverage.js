@@ -179,10 +179,10 @@
         var text = [];
         if (d[0] instanceof Array) {
             for (var i = 0; i < d.length; i++)
-                text = text + d[i][1] + " - " + d[i][2] + "</br>" + d[i][3] + "</br></br>";
+                text = text + d[i][1] + " - " + d[i][2] + "</br></br>" + d[i][3] + "</br></br>";
         }
         else
-            text = d[1] + " - " + d[2] + "</br>" + d[3];
+            text = d[1] + " - " + d[2] + "</br></br>" + d[3];
         return text;
     }
 
