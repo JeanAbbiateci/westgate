@@ -1,5 +1,9 @@
 #page-bubble{
-	margin-top:71px;
+	svg
+  {
+  margin-top:71px !important;
+  }
+  
 	.bubble
 	{
 		fill: $yellow;

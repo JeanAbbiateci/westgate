@@ -93,7 +93,7 @@ window.load = (function() {
     //Build menu
     function makemenu()
     {
-        var total = 0;
+        var total = 1;
         var pageindexes = range(0, pagesList.length);
         for (var i = 0; i < submenulengths.length; i++)
         {
