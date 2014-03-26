@@ -1,9 +1,15 @@
 var pageHeight = 0;                             // height of the slides in the page
-var pagesList = ["page-intro", "tweet-map", "bubble-page", "network", "word-chart", "photo-gallery"];
-var pastPos = 0;                                // past position for the scrollHandler
-var currentPageIndex = 0;                       // current Pagelist index
-var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
-var headerHeight = 71;                          // header height. Should be dinamix => fix!
+var pagesList = [];
+var pastPos = 0;                                                  // past position for the scrollHandler
+var currentPageIndex = 0;                                         // current Pagelist index
+var currentPage = pagesList[currentPageIndex];                    // current page ID the user is seeing
+var headerHeight = 71;                                            // header height. Should be dinamix => fix!
+
+//Collect pages id
+$('.page').each(function(i){
+        var currentID = this.id || i;
+        pagesList.push(currentID);
+});
 
 window.load = (function() {
     var pages = document.querySelectorAll('.page');
@@ -28,20 +34,20 @@ window.load = (function() {
             currentPageIndex = selectPage(currentPageIndex - 1);
         else if (event.which === 40)
             currentPageIndex = selectPage(currentPageIndex + 1);
-        
+
         if (currentPage !== pagesList[currentPageIndex]) {
             currentPage = pagesList[currentPageIndex];
 
             //var pos = $("#" + currentPage).offset().top;
             var pos = pageHeight*currentPageIndex;
             // If it's not the first one, we need to subtract the header height
-           
+
                 pos = -(pos);
             /*if (currentPageIndex !== 0)
                 pos -= headerHeight;*/
-            
-            
-            
+
+
+
             $("#pages").css("transform", "translate(0,"+pos+"px)");
             /*$("html, body").stop(true).animate({
                 scrollTop: pos
@@ -57,7 +63,7 @@ window.load = (function() {
             index = 0;
         hide_show_slider(index);
         return index;
-        
+
     }
 
     function hide_show_slider(index){
