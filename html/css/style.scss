@@ -1,8 +1,8 @@
 //COLORS
 $dark-blue: #343A45;
-$medium-blue: #424957;
-$light-blue: #9399A5;
-$bright-blue: #ACB2C1;
+$medium-blue: #4c5057;
+$light-blue: #8d94a5;
+$bright-blue: #b8bcc1;
 $white-blue: #DBE1E7;
 $gray: #4C515C;
 $saturated-blue: #008DAA;
@@ -11,15 +11,15 @@ $yellow: #C5BB91;
 
 //FONT SCALE
 $s0: 10px;
-$s1: 12px;
+$s1: 14px;
 $s2: 16px;
 $s3: 22px;
+$s4: 32px;
 
 //STYLES
 @import "reset";
 @import "navigation";
 @import 'fonts';
-@include fontFace('collator','./fonts/collator');
 @import "common";
 
 //PAGES
