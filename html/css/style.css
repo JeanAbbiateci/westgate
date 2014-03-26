@@ -149,6 +149,11 @@ h1 {
   color: #DBE1E7;
   line-height: 38px; }
 
+h {
+  font-size: 16px;
+  color: #DBE1E7;
+  line-height: 38px; }
+
 p {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
@@ -371,6 +376,9 @@ div.newstip .time {
     stroke-width: 1px; }
   #page-bubble .bubble.verified {
     fill: #9399a5; }
+  #page-bubble .types {
+    font-size: 16px;
+    fill: #acb2c1; }
 
 #network {
   margin-top: 80px; }
@@ -390,6 +398,7 @@ div.newstip .time {
     overflow: hidden; }
   #photo-gallery #preview {
     position: absolute;
+    overflow: hidden;
     z-index: 100;
     padding: 10px;
     background-color: #1b1e2a;
@@ -400,3 +409,10 @@ div.newstip .time {
   #photo-gallery #big-pic {
     max-height: 300px;
     max-width: 300px; }
+
+#page-intro .y path {
+  display: none; }
+#page-intro .container {
+  padding-top: 80px; }
+  #page-intro .container p {
+    width: 500px; }
