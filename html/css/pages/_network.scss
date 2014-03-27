@@ -5,8 +5,31 @@
   .description{
     position: absolute;
     width: 200px;
-    left: 10%;
+    left: 5%;
     top: 20%;
+
+    .bullet{
+      float : left;
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      border-radius : 10px;
+    }
+
+    .normal{
+      color: $white;
+      font-size: $s1;
+    }
+
+    .ver{
+      background-color : $light-blue;
+
+    }
+
+    .non-ver{
+      background-color : $yellow;
+    }
   }
     .bubble
     {

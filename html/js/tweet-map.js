@@ -128,7 +128,6 @@ document.onkeydown = checkKey;
                     .attr("d", path);
 
             loadTweetHours();
-            loadTweets();
             
         });
 
@@ -162,6 +161,7 @@ document.onkeydown = checkKey;
         d3.json("data/newsfeed.json", function(error, news_feed) {
             newsfeed = news_feed;
             loadBarchart();
+            loadTweets();
         });
     }
 
