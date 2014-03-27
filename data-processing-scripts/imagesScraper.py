@@ -15,7 +15,7 @@ from instagram.bind import InstagramAPIError, InstagramClientError
 from twython import Twython
 from twython.exceptions import TwythonError
 
-engine = sqlalchemy.create_engine('sqlite:////Users/denadai2/Google Drive/InfoVis/Data processing/SQLite.db')
+engine = sqlalchemy.create_engine('sqlite:////Users/imperal/Projects/InfoVis/SQLite.db')
 engine.raw_connection().connection.text_factory = str
 Session = scoped_session(sessionmaker(bind=engine))
 s = Session()

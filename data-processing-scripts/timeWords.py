@@ -14,38 +14,23 @@ engine.raw_connection().connection.text_factory = str
 Session = scoped_session(sessionmaker(bind=engine))
 s = Session()
 
-stopwords = set(stopwords.words('english'))
-remove_punctuation_map = dict((ord(Char), None) for Char in string.punctuation)
-
 content = s.execute("SELECT username, date(timestamp),strftime('%H',timestamp), text, parent_ID FROM Tweet")
 
-words = defaultdict(int)
 i = 0
-re_links = re.compile(r'^http?:\/\/.*[\r\n]*',flags = re.MULTILINE)
-re_mention = re.compile(r'(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9]+)', flags = re.IGNORECASE | re.VERBOSE | re.MULTILINE)
-mentions = defaultdict(int)
+total = 0
+tags = set()
 for row in content:
 	if row[4]:
-		result = s.execute("SELECT username, date(timestamp),strftime('%H',timestamp), text, parent_ID FROM Tweet WHERE id = '{}'".format(row[4]))
-		r = result.fetchone()
-		text = r[3]
-	else:
-		text = row[3]
+		continue
+	text = row[3]
 
-	text = re.sub(re_mention, "", text)
-	text = re.sub(re_links, "", text)
-	text = filter(lambda w: not w in string.digits,text)
-	text = filter(None, (word.strip(string.punctuation) for word in text.lower().split()))
-	text = filter(lambda w: not w in stopwords,text)
-	for w in text:
-		if len(w) > 3:
-			words[w] += 1
-	i += 1
+	for word in text.split():
+		if word.startswith('#'):
+			word.strip('#')
+			for tag in word.split('#'):
+				tags.add(tag)
 	if (i % 10000) == 0:
 		print i
 
 s.close()
-
-word_list = [(word,amount) for word,amount in words.iteritems()]
-with open('words.json','wb') as fp:
-	json.dump(sorted(word_list, key = lambda (word,amount) : amount, reverse = True),fp, indent=2)
+print tags

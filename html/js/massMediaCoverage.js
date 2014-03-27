@@ -21,7 +21,6 @@
     }
 
     function visualizeit() {
-        //console.log(data);
 
         var hoursData = [];
         for (var i = 0; i < 24; i++) {
