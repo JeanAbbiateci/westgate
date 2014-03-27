@@ -127,7 +127,7 @@ function network(){
 
 
   var request = new XMLHttpRequest();
-  request.open("GET", "data/userProfiles.json", false);
+  request.open("GET", "data/user_profiles.json", false);
   request.send(null)
   var authors = JSON.parse(request.responseText);
 

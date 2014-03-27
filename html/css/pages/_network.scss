@@ -1,7 +1,15 @@
 #network{
-	svg
-  {
   margin-top:71px !important;
+
+  .description{
+    position: absolute;
+    width: 200px;
+    left: 10%;
+    top: 20%;
+
+    p{
+      padding-top: 10px;
+    }
   }
     .bubble
     {

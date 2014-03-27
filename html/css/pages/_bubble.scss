@@ -1,9 +1,41 @@
 #page-bubble{
-	svg
-  {
-  margin-top:71px !important;
-  }
-  
+	position : relative;
+	padding-top:71px;
+
+	.description{
+		position: absolute;
+		width: 200px;
+		left: 10%;
+		top: 25%;
+
+		p{
+			padding-top: 10px;
+		}
+
+		.bullet{
+			float : left;
+			width: 10px;
+			height: 10px;
+			margin-right: 10px;
+			margin-bottom: 5px;
+			border-radius : 10px;
+		}
+
+		.normal{
+			color: $white;
+			font-size: $s1;
+		}
+
+		.ver{
+			background-color : $light-blue;
+
+		}
+
+		.non-ver{
+			background-color : $yellow;
+		}
+	}
+
 	.bubble
 	{
 		fill: $yellow;
@@ -15,8 +47,38 @@
 	{
 		fill:$light-blue;
 	}
+
     .types{
       font-size: $s2;
       fill: $bright-blue;
     }
+
+    #options{
+
+    	width: 33%;
+    	margin : 71px auto 0 auto;
+
+    	
+    	.bubble-button{
+    		font-size: $s2;
+    		color: $white;
+    		margin-right: 10%;
+	    		
+    	}
+    }
+    #marker{
+		position: absolute;
+		background-color: $red;
+		height: 2px;
+		border: 2px solid $red;
+		border-radius: 10px;
+		top : 71px + 71px + $s2 + 10px;
+    }
+}
+
+#all{
+	float:right;
+}
+#type{
+	float:left;
 }

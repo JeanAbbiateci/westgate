@@ -6,8 +6,6 @@ function bubble(hour,current_view) {
     function BubbleChart(data) {
       this.hide_details = __bind(this.hide_details, this);
       this.show_details = __bind(this.show_details, this);
-      this.hide_years = __bind(this.hide_years, this);
-      this.display_years = __bind(this.display_years, this);
       this.move_towards_outer = __bind(this.move_towards_outer, this);
       this.display_by_type = __bind(this.display_by_type, this);
       this.move_towards_center = __bind(this.move_towards_center, this);
@@ -25,11 +23,11 @@ function bubble(hour,current_view) {
       };
       this.centers = {
         'Verified users' : {
-          x: this.width / 3,
+          x: this.width / 3 + 50,
           y: (this.height - 171) / 2
         },
         'Normal users' : {
-          x: 2 * this.width / 3,
+          x: 2 * this.width / 3 - 50,
           y: (this.height - 171) / 2
         }
       };
@@ -50,8 +48,8 @@ function bubble(hour,current_view) {
       var _this = this;
       this.data.forEach(function(d) {
         var node;
-        if(authors[d.user]){
-          v = authors[d.user].verified;
+        if(this.authors[d.user]){
+          v = this.authors[d.user].verified;
         }else{
           v = false;
         };
@@ -142,7 +140,6 @@ function bubble(hour,current_view) {
         });
       });
       this.force.start();
-      return this.display_years();
     };
 
     BubbleChart.prototype.move_towards_outer = function(alpha) {
@@ -157,27 +154,6 @@ function bubble(hour,current_view) {
         d.x = d.x + (target.x - d.x) * (_this.damper + 0.02) * alpha * 1.1;
         return d.y = d.y + (target.y - d.y) * (_this.damper + 0.02) * alpha * 1.1;
       };
-    };
-
-    BubbleChart.prototype.display_years = function() {
-      var years, years_data, years_x,
-        _this = this;
-      years_x = {
-        'Verified users': this.width / 3,
-        'Normal users':  this.width / 3 * 2
-      };
-      years_data = d3.keys(years_x);
-      years = this.vis.selectAll(".types").data(years_data);
-      return years.enter().append("text").attr("class", "types").attr("x", function(d) {
-        return years_x[d];
-      }).attr("y", 40).attr("text-anchor", "middle").text(function(d) {
-        return d;
-      });
-    };
-
-    BubbleChart.prototype.hide_years = function() {
-      var types;
-      return types = this.vis.selectAll(".types").remove();
     };
 
     BubbleChart.prototype.show_details = function(data, i, element) {
@@ -206,7 +182,7 @@ function bubble(hour,current_view) {
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-  visualize = function(hour,current_view) {
+  visualize = function(authors, hour, current_view) {
     var chart, render_vis,
       _this = this;
     chart = null;
@@ -223,28 +199,31 @@ function bubble(hour,current_view) {
     }
 
     root.display_all = function() {
-      chart.hide_years()
       return chart.display_group_all();
     };
     root.display_type = function() {
       return chart.display_by_type();
     };
-    root.toggle_view = function() {
-      if (this.current_view == 'all') {
+    root.toggle_view = function(type) {
+      if (type == 'type') {
         this.current_view = 'type';
         return root.display_type();
       } else {
         this.current_view = 'all';
-        chart.hide_years()
         return root.display_all();
       }
     };
     root.get_current_view = function(){
       return this.current_view
     }
+    root.authors = authors
     return d3.json("data/popular_tweets.json", render);
   }
-  visualize(hour,current_view)
+
+  d3.json("data/user_profiles.json",function(authors){
+    visualize(authors, hour,current_view)
+  })
+
 }
 
 function urlize(content){
@@ -260,19 +239,28 @@ function urlize(content){
   return content
 }
 
-var request = new XMLHttpRequest();
-request.open("GET", "data/userProfiles.json", false);
-request.send(null);
-var authors = JSON.parse(request.responseText);
+function moveMarker(el){
+  rect = el.getBoundingClientRect()
+  left = rect.left - 5 
+  size = rect.right - rect.left + 10
+  d3.select('#marker').transition().duration(1000).style('left',left+'px').style('width',size + 'px')
+  
+}
 
 function createButton(){
-  button = d3.select('#options').append('div');
-  button.attr('class','bubble-button')
-  button.html('Switch views')
-  button.on('click',function(){
-    toggle_view();
-  })
+  options = d3.select('#options')
+  types = [{type : 'type', html : 'Group users'},{type : 'all', html : 'Aggregate groups'}]
+  buttons = options.selectAll('.bubble-button').data(types).enter().append('div')
+    .attr('class','bubble-button')
+    .attr('id', function(d){return d.type})
+    .html(function(d){return d.html})
+    .on('click',function(d){
+      moveMarker(this)
+      toggle_view(d.type);
+    })
+  moveMarker(buttons[0][1])
 }
+
 
 bubble(0,'all');
 createButton();

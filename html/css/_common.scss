@@ -3,25 +3,21 @@ a {
   color: $saturated-blue;
 }
 
-circle
-    {
+    circle{
       fill:#db3d3c;
       cursor:pointer;
     }
 
-    circle:hover
-    {
+    circle:hover{
         fill:$dark-blue;
     }
 
-    svg
-    {
+    svg{
       display:block;
       margin:0px !important;
     }
 
-    path 
-    {
+    path {
     stroke:$light-blue;
     stroke-width: 0.25px;
     fill:$dark-blue;
