@@ -2,9 +2,16 @@
 {
     svg
   {
-  margin-top:71px !important;
+    margin-top:71px !important;
   }
     position: relative;
+
+    .description{
+        position: absolute;
+        width: 200px;
+        left: 3%;
+        top: 25%;
+    }
 
     .tick{
       fill:$light-blue;
@@ -25,7 +32,7 @@
      right: 360px;
     }
     path {
-    stroke: steelblue;
+        stroke: steelblue;
         stroke-width: 2;
         fill: none;
     }

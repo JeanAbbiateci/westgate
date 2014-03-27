@@ -23,11 +23,11 @@ function bubble(hour,current_view) {
       };
       this.centers = {
         'Verified users' : {
-          x: this.width / 3 + 50,
+          x: this.width / 3 + 75,
           y: (this.height - 171) / 2
         },
         'Normal users' : {
-          x: 2 * this.width / 3 - 50,
+          x: 2 * this.width / 3 - 75,
           y: (this.height - 171) / 2
         }
       };
@@ -244,7 +244,13 @@ function moveMarker(el){
   left = rect.left - 5 
   size = rect.right - rect.left + 10
   d3.select('#marker').transition().duration(1000).style('left',left+'px').style('width',size + 'px')
-  
+}
+
+function makeFirst(el){
+  rect = el.getBoundingClientRect()
+  left = rect.left - 13
+  size = rect.right - rect.left + 18
+  d3.select('#marker').transition().duration(1000).style('left',left+'px').style('width',size + 'px')
 }
 
 function createButton(){
@@ -258,7 +264,8 @@ function createButton(){
       moveMarker(this)
       toggle_view(d.type);
     })
-  moveMarker(buttons[0][1])
+  first = document.getElementById('all');
+  makeFirst(first)
 }
 
 

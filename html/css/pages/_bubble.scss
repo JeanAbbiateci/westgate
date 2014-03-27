@@ -1,12 +1,14 @@
 #page-bubble{
 	position : relative;
-	padding-top:71px;
+	svg{
+		margin-top:71px;
+	}
 
 	.description{
 		position: absolute;
 		width: 200px;
 		left: 10%;
-		top: 25%;
+		top: 10%;
 
 		.bullet{
 			float : left;
@@ -52,7 +54,7 @@
     #options{
 
     	width: 33%;
-    	margin : 71px auto 0 auto;
+    	margin : 71px + 71px auto 0 auto;
 
     	
     	.bubble-button{
@@ -65,10 +67,10 @@
     #marker{
 		position: absolute;
 		background-color: $red;
-		height: 2px;
-		border: 2px solid $red;
+		height: 0px;
+		border: 1px solid $red;
 		border-radius: 10px;
-		top : 71px + 71px + $s2 + 10px;
+		top: $s2 + 5px;
     }
 }
 
