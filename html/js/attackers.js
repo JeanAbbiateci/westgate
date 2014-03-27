@@ -97,7 +97,7 @@
         line = d3.svg.line();
 
         // svg container for linechart
-        var container = d3.select("#word-chart .container");
+        var container = d3.select("#word-container");
         svgContainer = container.append("svg")
                 .attr("width", w)
                 .attr("height", h)
