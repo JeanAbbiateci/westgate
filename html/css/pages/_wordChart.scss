@@ -19,6 +19,7 @@
     div > svg:nth-child(3){
       margin-top: 150px !important;
       float: right;
+
     }
 
     div > svg:nth-child(2){
@@ -88,4 +89,10 @@
             background: #eee;
     }
 
+}
+
+#word-container > svg:nth-child(3){
+    text{
+        fill : $white
+    }
 }
