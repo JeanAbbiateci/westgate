@@ -1,6 +1,8 @@
 #tweet-map
 {
-	
+    g:nth-child(2) > path:nth-child(7){ /* Remove penguins*/
+      display: none;
+    }
     margin-top:0px !important;
     position:relative;
 

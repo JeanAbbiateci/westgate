@@ -33,8 +33,13 @@ h3{
 h4{
   color: $white;
   margin-bottom: 30px;
-  line-height: $s1 *1.2;
-  font-size: $s1;
+  line-height: $s2 *1.4;
+  font-size: $s2;
+}
+
+h5{
+  color: $white;
+  line-height: $s1*1.2;
 }
 
 p{
