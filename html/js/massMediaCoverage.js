@@ -3,7 +3,7 @@
     var height = window.innerHeight, width = window.innerWidth;
     var bodySelection = d3.select("#page-intro .container");
     var svgHeight = 400;
-    var svgWidth = 1140;
+    var svgWidth = 975;
     var svg = bodySelection.append("svg")
             .attr("width", svgWidth)
             .attr("height", svgHeight);
