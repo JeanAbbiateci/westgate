@@ -63,7 +63,7 @@ $(function(){
                 popup.css({
                     'transform': function(){
                         var horizontal = (e.pageX + width + 50) > horizSizeView ? e.pageX - width - 50 : e.pageX + 50;
-                        var vertical = e.pageY < height/2 + 10 ? 10 : e.pageY - height/2;
+                        var vertical = e.pageY < height/2 + 60 ? 60 : e.pageY - height/2;
                         position = 'translate('+horizontal+'px,'+ vertical +'px)';
                         return position;
                         }
