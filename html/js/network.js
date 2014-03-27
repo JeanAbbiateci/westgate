@@ -126,17 +126,12 @@ function network(){
   }
 
 
-  var request = new XMLHttpRequest();
-  request.open("GET", "data/user_profiles.json", false);
-  request.send(null)
-  var authors = JSON.parse(request.responseText);
-
-  var request = new XMLHttpRequest();
-  request.open("GET", "data/final_mentions.json", false);
-  request.send(null)
-  this.ORIGINAL_DATA = JSON.parse(request.responseText);
-  var i = 1
-  drawNetwork(this.ORIGINAL_DATA)
+  d3.json("data/user_profiles.json", function(authors){
+    d3.json("data/final_mentions.json",function(ORIGINAL_DATA){
+      this.ORIGINAL_DATA = ORIGINAL_DATA;
+      drawNetwork(this.ORIGINAL_DATA);
+    })
+  })
 
   return this
 }
