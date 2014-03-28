@@ -16,7 +16,7 @@ body {
   cursor: default;
   background-color: $dark-blue;
   width: 100%;
-  height: 71px;
+  height: 50px;
   position: fixed;
     top: 0px;
     left: 0px;
@@ -25,7 +25,7 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   #logo {
-    padding: 20px 20px 0;
+padding: 10px;
     height: 100%;
     width: 180px;
     color: $light-blue;
@@ -41,13 +41,11 @@ body {
 
   ul {
     cursor: pointer;
-    margin: 0;
+    margin: 12px;
     padding: 0;
     list-style: none;
     float: left;
     color: $white-blue;
-    padding: 22px 0 0 20px;
-    font-size: 16px;
   }
 
   li {
@@ -60,7 +58,7 @@ body {
     color: $light-blue;
     display: block;
     padding: 6px 12px;
-    font-size: $s1;
+    font-size: $s0;
     text-decoration: none;
     font-weight: bold;
   }

@@ -64,6 +64,8 @@ a {
 
           div.timediv 
     {
+        clear:both;
+
       h1
       {
       line-height:$s2 + 12;
@@ -72,6 +74,13 @@ a {
       }
       z-index:30000;
     }
+    }
+
+    #slider > div{
+    }
+
+    #sliderContainer{
+        float:right;
     }
 
     .d3-slider {
@@ -103,15 +112,15 @@ a {
 
     #startstop
     {
-        padding-top:4px;
+        padding-top:10px;
         width:70px;
         float:left;
-        position: fixed
+        height: 60px;
+        display:block;
     }
 
     #startstop a
     {
-        margin-left:8px;
         color:white;   
         text-decoration: none;
         width: 55px;

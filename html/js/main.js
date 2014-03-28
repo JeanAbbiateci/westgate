@@ -3,7 +3,7 @@ var pagesList = [];
 var pastPos = 0;                                // past position for the scrollHandler
 var currentPageIndex = 0;                       // current Pagelist index
 var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
-var headerHeight = 71;                          // header height. Should be dinamix => fix!
+var headerHeight = 50;                          // header height. Should be dinamix => fix!
 var keyboardUseCorrection = 23;                 // mha!
 
 //Collect pages id
@@ -80,6 +80,10 @@ window.load = (function() {
         if (currentPage === "tweet-map" || currentPage === "bubble-page")
         {
             d3.select("#slider").transition().duration(200).style("display", "block").style("opacity", 1);
+            if(currentPage === "tweet-map")
+                d3.select("#startstop").style("display", "block");
+            else
+                d3.select("#startstop").style("display", "none");
         }
         else
         {
