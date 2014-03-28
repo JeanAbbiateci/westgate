@@ -93,6 +93,7 @@ window.load = (function() {
     }
 
     var submenulengths = [8, 4, 4, 3, 2];
+    var menuIDs = [0, 9, 13, 16, 18];
 
     //Build menu
     function makemenu()
@@ -100,7 +101,17 @@ window.load = (function() {
         var total = 1;
         var pageindexes = range(0, pagesList.length);
         for (var i = 0; i < submenulengths.length; i++)
-        {
+        {   
+            d3.select("#menu" + i).selectAll('a').attr("id",'nav_id'+total)
+                .on("click", function(){
+                    id = d3.event.toElement.id
+                    to_id = +id.substring("nav_id".length,id.length)
+                    currentPageIndex = to_id;
+                    pageChanged(headerHeight);
+                    updateMenu();
+                    return false;
+                });
+
             var subm = submenulengths[i];
             var currentmenu = d3.select("#menu" + i);
             currentmenu.select("ul").selectAll("li")
@@ -122,6 +133,8 @@ window.load = (function() {
 
             total = total + subm;
         }
+
+
     }
 
     makemenu();
