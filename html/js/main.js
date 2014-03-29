@@ -110,7 +110,15 @@ window.load = (function() {
                     pageChanged(headerHeight);
                     updateMenu();
                     return false;
-                });
+                })
+				.on("mouseover", function() {
+					d3.select(this)
+					.style("color", "#dbe1e7");
+				})
+				.on("mouseout", function() {
+					d3.select(this)
+					.style("color", "#8d94a5");
+				});
 
             var subm = submenulengths[i];
             var currentmenu = d3.select("#menu" + i);
