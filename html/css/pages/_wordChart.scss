@@ -10,7 +10,7 @@
         position: absolute;
         width: 200px;
         left: 3%;
-        top: 25%;
+        top: 16%;
     }
 
     .tick{
@@ -25,7 +25,9 @@
     div > svg:nth-child(2){
       position: absolute;
       top: 40px;
-      left: 20%;
+      left: 22%;
+	  background-color: $dark-blue;
+	  border-radius:20px;
     }
     div > svg:nth-child(2) > text{
       fill: $bright-blue;
