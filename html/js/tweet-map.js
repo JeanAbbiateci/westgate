@@ -21,24 +21,24 @@
      ---------------------
      */
     init();
-
+    
 
     // Check key when Pressed
-    function checkKey(e) {
-        if (e.keyCode == '37' && ti > 0) {
-            stopAnimate();
-            ti--;
-            drawDots();
-        }
-        else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
-            stopAnimate();
-            ti++;
-            drawDots();
-        }
+function checkKey(e) {
+    if (e.keyCode == '37' && ti > 0) {
+        stopAnimate();
+        ti--;
+        drawDots();
     }
+    else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
+        stopAnimate();
+        ti++;
+        drawDots();
+    }
+}
 
-    document.onkeydown = checkKey;
-
+document.onkeydown = checkKey;
+    
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.
      * 
@@ -128,7 +128,7 @@
                     .attr("d", path);
 
             loadTweetHours();
-
+            
         });
 
     }
@@ -195,15 +195,15 @@
 
     }
 
-
+    
     /**
-     * Method that draw a single circle inside the map
-     *
-     * @method drawDot
-     * @param {Object} dotsList A list of object to be inserted in the map
-     * @param {Boolean} animate indicates if the circle needs to be animated or only inserted
-     * @return {Null} 
-     */
+    * Method that draw a single circle inside the map
+    *
+    * @method drawDot
+    * @param {Object} dotsList A list of object to be inserted in the map
+    * @param {Boolean} animate indicates if the circle needs to be animated or only inserted
+    * @return {Null} 
+    */
     function drawDot(dotsList, animate) {
         dotsList.attr("cx", function(d) {
             return projection([d[1], d[2]])[0];
@@ -241,11 +241,11 @@
 
     // Draw dots from current hour based on ti.
     /**
-     * Method that draw all the dots based on the actual ti (=time)
-     *
-     * @method drawDots
-     * @return {Null} 
-     */
+    * Method that draw all the dots based on the actual ti (=time)
+    *
+    * @method drawDots
+    * @return {Null} 
+    */
     function drawDots() {
         var temp_g;
         if (ti === 0)
@@ -282,7 +282,7 @@
      Functions for the Barchart.
      ---------------------
      */
-
+    
     /** /
      * 
      * @return {undefined}
@@ -314,9 +314,9 @@
         });
 
         var playPause = d3.select("#slider").append("div")
-                .attr("id", "startstop")
-                .append("a")
-                .attr("class", "play");
+            .attr("id", "startstop")
+            .append("a")
+            .attr("class", "play");
 
         playPause.on('click', function(e) {
             if (!this.classList.contains("play")) {
@@ -346,15 +346,16 @@
                 .max(tweets_per_hour.length - 1)
                 .step(1)
                 .on("slide", function(evt, value) {
-            ti = value;
-            if(currentPage === "tweet-map")
-                drawDots();
-            else
-                bubble(ti, get_current_view());
-        });
+                    console.log(value)
+                    ti = value;
+                    if(currentPage === "tweet-map")
+                        drawDots();
+                    else
+                        bubble(ti, get_current_view());
+                });
         // CREATE SLIDER
         d3.select('#sliderContainer')
-                .call(slider);
+                .call(slider)
 
         svgbar = sliderdiv.append("svg")
                 .attr("width", barwidth - 85)
@@ -423,7 +424,7 @@
         })
                 .on("mouseout", function(d) {
             tooltip.style("opacity", 0).style("display", "none")
-
+                    
         });
 
         // TimeDiv
@@ -435,10 +436,6 @@
         {
             slidercontainer.style("opacity", 0).style("display", "none");
         }
-
-
-
-
 
     }
 
