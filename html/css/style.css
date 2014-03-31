@@ -285,12 +285,10 @@ div.newstip .time {
       margin: 0px;
       font-size: 16px; }
 
-#sliderContainer {
-  float: right; }
-
 .d3-slider {
   cursor: pointer;
   position: relative;
+  margin-left: 70px;
   z-index: 2; }
 
 .d3-slider-handle {
@@ -422,7 +420,7 @@ div.newstip .time {
     /* Remove penguins*/
     display: none; }
   #tweet-map #map {
-    margin-top: 71px !important; }
+    margin-top: 50px !important; }
   #tweet-map .description {
     position: absolute;
     width: 200px;

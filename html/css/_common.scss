@@ -76,16 +76,11 @@ a {
     }
     }
 
-    #slider > div{
-    }
-
-    #sliderContainer{
-        float:right;
-    }
 
     .d3-slider {
       cursor: pointer;
         position: relative;
+        margin-left:70px;
         z-index: 2;
     }
 
