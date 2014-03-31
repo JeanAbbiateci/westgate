@@ -171,19 +171,19 @@
         }
 
         if (day.substring(7, 9) == "21") {
-            sday = "Saturday";
+            sday = "Sat 21 ";
         }
         else if (day.substring(7, 9) == "22") {
-            sday = "Sunday";
+            sday = "Sun 22";
         }
         else if (day.substring(7, 9) == "23") {
-            sday = "Monday";
+            sday = "Mon 23";
         }
         else if (day.substring(7, 9) == "24") {
-            sday = "Tuesday";
+            sday = "Tue 24";
         }
         else {
-            sday = "Wednesday";
+            sday = "Wed 25";
         }
         return sday;
     }
