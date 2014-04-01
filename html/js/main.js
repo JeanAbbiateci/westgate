@@ -280,8 +280,8 @@ var PageTransitions = (function() {
             onEndAnimation( $currPage, $nextPage );
         }
 
-        $bgImg.eq(current - direction).animate({opacity:0}, function(){
-            $bgImg.eq(current).animate({opacity: opacityVal});
+        $bgImg.eq(current - direction).animate({opacity:0,easing: 'easein'},400, function(){
+            $bgImg.eq(current).animate({opacity: opacityVal, easing:'easeout'},1400);
             $bgImg.eq(current).removeClass('gray');
             $bgImg.eq(current-direction).addClass('gray');
         });
