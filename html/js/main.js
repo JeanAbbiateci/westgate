@@ -38,12 +38,12 @@ window.load = (function() {
             for(var j = 0; j < val; j++) $chapters.find('li > ul').eq(ind).append('<li class="dot"></li>');
         });
 
-        //Add slide index to dots
+        //Add nav switches to the dots
         $('.dot').each( function(i,v) {
-            $(v).attr('slide', i+2);
             $(v).on('click', function(){
-                switchPage(i);
-                $('dot').addClass('current-dot');
+                switchPage(i+1);
+                $('.dot.active').removeClass('active');
+                $(this).addClass('active');
             });
         });
 
@@ -68,6 +68,11 @@ window.load = (function() {
             if(e.keyCode === 39 && currentPageIndex < pagesList.length-1) switchPage(currentPageIndex+1);
             if(e.keyCode === 37 && currentPageIndex > 0) switchPage(currentPageIndex-1);
         });
+    }
+
+    function updateDot(){
+        $('.dot.active').removeClass('active');
+        if(currentPageIndex > 0) $('.dot').eq(currentPageIndex-1).addClass('active');
     }
 
     function onEndAnimation( $outpage, $inpage ) {
@@ -111,12 +116,13 @@ window.load = (function() {
             onEndAnimation( $currPage, $nextPage );
         }
 
-        console.log(currentPageIndex,goToSlide);
+        //Animate Background
         $bgImg.eq(currentPageIndex).animate({opacity:0, easing: 'easein'},300, function(){
             $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1200);
             $bgImg.eq(goToSlide).removeClass('gray current-bg');
             $bgImg.eq(currentPageIndex).addClass('gray current-bg');
             currentPageIndex = goToSlide;
+            updateDot();
         });
     }
 
