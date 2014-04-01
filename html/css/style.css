@@ -141,22 +141,22 @@ body {
 
 .pages-container {
   position: relative;
-  max-width: 1190px;
-  margin: 0 auto;
   height: 100%;
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
   perspective: 1200px;
   background-repeat: none; }
   .pages-container .page {
+    max-width: 1190px;
+    margin: auto;
     z-index: 100;
-    width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
     visibility: hidden;
-    overflow: hidden;
+    overflow: visible;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -171,6 +171,7 @@ body {
 
 .current-page {
   visibility: visible !important;
+  display: block;
   z-index: 1; }
 
 #arrow-right {
@@ -410,15 +411,18 @@ div.newstip .time {
   color: #343a45;
   font-weight: 700; }
 
-.description p {
+.description-text p {
   color: #dbe1e7;
   font-size: 13px;
   line-height: 20px;
   padding-top: 10px; }
 
-.description span {
+.description-text span {
   color: #db3d3d;
   font-size: 16px; }
+
+.description-text {
+  width: 300px; }
 
 /* move from / to and fade */
 .pt-page-moveToLeftFade {
@@ -629,11 +633,10 @@ div.newstip .time {
     display: none; }
   #tweet-map #map {
     margin-top: 50px !important; }
-  #tweet-map .description {
+  #tweet-map .description-text {
     position: absolute;
-    width: 200px;
-    left: 5%;
-    top: 40%; }
+    top: 460px;
+    left: 370px; }
 
 #word-chart {
   position: relative; }
@@ -700,24 +703,24 @@ div.newstip .time {
   position: relative; }
   #page-bubble svg {
     margin-top: 71px; }
-  #page-bubble .description {
+  #page-bubble .description-text {
     position: absolute;
     width: 200px;
     left: 10%;
     top: 10%; }
-    #page-bubble .description .bullet {
+    #page-bubble .description-text .bullet {
       float: left;
       width: 10px;
       height: 10px;
       margin-right: 10px;
       margin-bottom: 5px;
       border-radius: 10px; }
-    #page-bubble .description .normal {
+    #page-bubble .description-text .normal {
       color: #dbe1e7;
       font-size: 13px; }
-    #page-bubble .description .ver {
+    #page-bubble .description-text .ver {
       background-color: #8d94a5; }
-    #page-bubble .description .non-ver {
+    #page-bubble .description-text .non-ver {
       background-color: #c5bb91; }
   #page-bubble .bubble {
     fill: #c5bb91;
@@ -751,24 +754,24 @@ div.newstip .time {
 
 #network svg {
   margin-top: 71px !important; }
-#network .description {
+#network .description-text {
   position: absolute;
   width: 225px;
-  left: 5%;
+  left: 0px;
   top: 15%; }
-  #network .description .bullet {
+  #network .description-text .bullet {
     float: left;
     width: 10px;
     height: 10px;
     margin-right: 10px;
     margin-bottom: 5px;
     border-radius: 10px; }
-  #network .description .normal {
+  #network .description-text .normal {
     color: #dbe1e7;
     font-size: 13px; }
-  #network .description .ver {
+  #network .description-text .ver {
     background-color: #8d94a5; }
-  #network .description .non-ver {
+  #network .description-text .non-ver {
     background-color: #c5bb91; }
 #network .bubble {
   fill: #c5bb91;

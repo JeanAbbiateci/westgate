@@ -214,15 +214,18 @@ a {
   font-weight: 700;
 }
 
-.description p{
+.description-text p{
   color: $white;
   font-size: $s1;
   line-height: 20px;
   padding-top: 10px;
 }
 
-.description span{
+.description-text span{
   color: $red;
   font-size: $s2;
 }
 
+.description-text{
+  width: 300px;
+}

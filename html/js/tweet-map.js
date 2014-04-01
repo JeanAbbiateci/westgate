@@ -62,8 +62,8 @@ function checkKey(e) {
 
         // Append SVG to body
         svg = d3.select("#tweet-map").append("svg")
-                .attr("width", w)
-                .attr("height", h - 50 - barchartheight)
+                .attr("width", '100%')
+                .attr("height",'100%')
                 .attr("id", "map")
                 .on("click", zooming);
 
