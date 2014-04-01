@@ -43,15 +43,26 @@ $fadef: 1s;
 }
 
 @include keyframes(moveFromLeftFade){
-  from {
-    @include transform(translateX(-$transf));
+  0%{
     opacity: 0;
+    @include transform(translateX(-$transf));
+  }
+  50%{
+    @include transform(translateX(0));
+  }
+  100%{
+    opacity: 1;
+    @include transform(translateX(0));
   }
 }
 
 @include keyframes(moveToRightFade){
-  to {
+  30%{
+    opacity: 0;
+  }
+  100% {
     @include transform(translateX($transt));
+    opacity: 0;
   }
 }
 
