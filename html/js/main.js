@@ -537,7 +537,8 @@ var PageTransitions = (function() {
         }
 
         $bgImg.eq(current - direction).animate({opacity:0}, function(){
-            $bgImg.eq(current).animate({opacity:0.2});
+            $bgImg.eq(current).animate({opacity:0.3});
+            $bgImg.eq(current).addClass('gray')
         });
     }
 

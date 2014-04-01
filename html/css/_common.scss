@@ -182,13 +182,17 @@ a {
   position: absolute;
   background-color: #212630;
   .bg-image{
-    -webkit-filter: grayscale(100%);
     position: absolute;
     height : 100%;
     width: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    -webkit-transition:-webkit-filter 3s ease-in-out;
   }
+}
+
+.gray {
+  -webkit-filter: grayscale(100%);
 }
 
 

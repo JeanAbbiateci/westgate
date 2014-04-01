@@ -304,12 +304,10 @@ div.newstip .time {
       margin: 0px;
       font-size: 16px; }
 
-#sliderContainer {
-  float: right; }
-
 .d3-slider {
   cursor: pointer;
   position: relative;
+  margin-left: 70px;
   z-index: 2; }
 
 .d3-slider-handle {
@@ -386,12 +384,15 @@ div.newstip .time {
   position: absolute;
   background-color: #212630; }
   #bg-images .bg-image {
-    -webkit-filter: grayscale(100%);
     position: absolute;
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 100%; }
+    background-size: 100% 100%;
+    -webkit-transition: -webkit-filter 3s ease-in-out; }
+
+.gray {
+  -webkit-filter: grayscale(100%); }
 
 .selected-tweets-text {
   font-style: italic;
