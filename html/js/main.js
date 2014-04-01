@@ -1,6 +1,6 @@
 var pageHeight = 0;                             // height of the slides in the page
 var pagesList = [];
-var currentPageIndex = 0;                       // current Pagelist index
+var currentPageIndex = 0;
 var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
 var headerHeight = $('#story-nav').height();    // header height. Should be dinamix => fix!
 
@@ -19,7 +19,6 @@ window.load = (function() {
     $bg = $('#bg-images'),
     $bgImg = undefined,
     pagesCount = $pages.length,
-    current = 0,
     isAnimating = false,
     endCurrPage = false,
     endNextPage = false,
@@ -39,6 +38,15 @@ window.load = (function() {
             for(var j = 0; j < val; j++) $chapters.find('li > ul').eq(ind).append('<li class="dot"></li>');
         });
 
+        //Add slide index to dots
+        $('.dot').each( function(i,v) {
+            $(v).attr('slide', i);
+            $(v).on('click', function(){
+                switchPage(i);
+                $('dot').addClass('current-dot')
+            });
+        });
+
         //Add backgrounds
         $pages.each( function(z) {
             z = z -100;
@@ -50,15 +58,15 @@ window.load = (function() {
         $bgImg =  $('.bg-image'); //update bg variable
 
         //Initiate first active page
-        $pages.eq( current ).addClass( 'current-page' );
+        $pages.eq( currentPageIndex ).addClass( 'current-page' );
         $bgImg.eq(0).animate({opacity:opacityVal}, function(){
             $(this).removeClass('gray');
         });
 
         //Set arrow keys
         $(window).on('keydown', function(e){
-            if(e.keyCode === 39) nextPage(9, 1)
-            if(e.keyCode === 37) nextPage(10, -1)
+            if(e.keyCode === 39 && currentPageIndex < pagesList.length-1) switchPage(currentPageIndex+1);
+            if(e.keyCode === 37 && currentPageIndex > 0) switchPage(currentPageIndex+1);
         });
     }
 
@@ -69,7 +77,7 @@ window.load = (function() {
         isAnimating = false;
     }
 
-    function nextPage( animation, direction ) {
+    function switchPage( goToSlide ) {
 
         if( isAnimating ) {
             return false;
@@ -77,31 +85,10 @@ window.load = (function() {
 
         isAnimating = true;
 
-        var $currPage = $pages.eq( current );
+        var $currPage = $pages.eq( currentPageIndex );
+        var $nextPage = $pages.eq( goToSlide ).addClass( 'current-page' );
 
-        if( current < pagesCount - 1 ) {
-            current += direction;
-        }
-        else {
-            current = 0;
-        }
-
-        var $nextPage = $pages.eq( current ).addClass( 'current-page' ),
-            outClass = '', inClass = '';
-
-        switch( animation ) {
-
-            case 9:
-                outClass = 'pt-page-moveToLeftFade';
-                inClass = 'pt-page-moveFromRightFade';
-                break;
-            case 10:
-                outClass = 'pt-page-moveToRightFade';
-                inClass = 'pt-page-moveFromLeftFade';
-                break;
-        }
-
-        $currPage.addClass( outClass ).on( animEndEventName, function() {
+        $currPage.addClass( 'pt-page-moveToLeftFade' ).on( animEndEventName, function() {
             $currPage.off( animEndEventName );
             endCurrPage = true;
             if( endNextPage ) {
@@ -109,7 +96,7 @@ window.load = (function() {
             }
         } );
 
-        $nextPage.addClass( inClass ).on( animEndEventName, function() {
+        $nextPage.addClass( 'pt-page-moveFromRightFade' ).on( animEndEventName, function() {
             $nextPage.off( animEndEventName );
             endNextPage = true;
             if( endCurrPage ) {
@@ -121,11 +108,13 @@ window.load = (function() {
             onEndAnimation( $currPage, $nextPage );
         }
 
-        $bgImg.eq(current - direction).animate({opacity:0,easing: 'easein'},400, function(){
-            $bgImg.eq(current).animate({opacity: opacityVal, easing:'easeout'},1400);
-            $bgImg.eq(current).removeClass('gray');
-            $bgImg.eq(current-direction).addClass('gray');
+        $bgImg.eq(currentPageIndex).animate({opacity:0,easing: 'easein'},400, function(){
+            $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1400);
+            $bgImg.eq(goToSlide).removeClass('gray');
+            $bgImg.eq(goToSlide).addClass('gray');
         });
+
+        currentPageIndex = goToSlide;
     }
 
     function resetPage( $outpage, $inpage ) {
