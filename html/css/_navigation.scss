@@ -32,16 +32,19 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   #logo {
+   text-align: center;
   padding: 10px;
     height: 100%;
     width: 180px;
     color: $light-blue;
     float: left;
-    font-size: $s2;
+    font-size: 15px;
+    font-weight: 700;
     span{
       font-family: 'Open sans';
       font-size: 10px;
       letter-spacing: 1px;
+      font-weight: 500;
     }
 
   }
