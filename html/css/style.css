@@ -69,8 +69,7 @@ body {
   width: auto;
   margin: 0 auto;
   height: 100%;
-  position: relative;
-  overflow: hidden; }
+  position: relative; }
 
 .clearfix .clearfix:before, .clearfix .clearfix:after {
   content: " ";
@@ -142,7 +141,8 @@ body {
 
 .pages-container {
   position: relative;
-  width: 100%;
+  max-width: 1190px;
+  margin: 0 auto;
   height: 100%;
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
@@ -354,7 +354,7 @@ div.newstip .time {
 
 .h-1 {
   position: absolute;
-  left: 16%; }
+  left: 0%; }
 
 .h-2 {
   position: absolute;
@@ -374,7 +374,7 @@ div.newstip .time {
 
 .h-6 {
   position: absolute;
-  left: 96%; }
+  left: 100%; }
 
 #bg-images {
   top: 0;
@@ -382,7 +382,8 @@ div.newstip .time {
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: #212630; }
+  background-color: #212630;
+  z-index: -101; }
   #bg-images .bg-image {
     position: absolute;
     height: 100%;

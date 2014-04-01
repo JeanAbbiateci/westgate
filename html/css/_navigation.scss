@@ -11,7 +11,6 @@ body {
   margin: 0 auto;
   height: 100%;
   position: relative;
-  overflow: hidden;
 }
 
 
@@ -119,7 +118,8 @@ body {
 
 .pages-container {
   position: relative;
-  width: 100%;
+  max-width: 1190px;
+  margin: 0 auto;
   height: 100%;
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;

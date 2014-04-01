@@ -202,6 +202,7 @@ var PageTransitions = (function() {
     function init() {
 
         $pages.each( function(z) {
+            z = z -100;
             var $page = $( this );
             $page.data( 'originalClassList', $page.attr( 'class' ) );
             var bg = $page.attr('bg') || "";

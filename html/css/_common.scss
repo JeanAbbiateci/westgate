@@ -150,7 +150,7 @@ a {
 
 .h-1{
   position: absolute;
-  left: 16%;
+  left: 0%;
 }
 
 .h-2{
@@ -171,7 +171,7 @@ a {
 }
 .h-6{
   position: absolute;
-  left: 96%;
+  left: 100%;
 }
 
 #bg-images {
@@ -181,6 +181,7 @@ a {
   width: 100%;
   position: absolute;
   background-color: #212630;
+  z-index: -101;
   .bg-image{
     position: absolute;
     height : 100%;
