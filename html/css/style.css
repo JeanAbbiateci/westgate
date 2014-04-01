@@ -354,7 +354,7 @@ div.newstip .time {
 
 .h-1 {
   position: absolute;
-  left: 0%; }
+  left: 10px; }
 
 .h-2 {
   position: absolute;
@@ -374,7 +374,7 @@ div.newstip .time {
 
 .h-6 {
   position: absolute;
-  left: 100%; }
+  right: 10px; }
 
 #bg-images {
   top: 0;
