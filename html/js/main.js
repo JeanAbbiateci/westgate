@@ -42,8 +42,6 @@ window.load = (function() {
         $('.dot').each( function(i,v) {
             $(v).on('click', function(){
                 switchPage(i+1);
-                $('.dot.active').removeClass('active');
-                $(this).addClass('active');
             });
         });
 
@@ -119,8 +117,8 @@ window.load = (function() {
         //Animate Background
         $bgImg.eq(currentPageIndex).animate({opacity:0, easing: 'easein'},300, function(){
             $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1200);
-            $bgImg.eq(goToSlide).removeClass('gray current-bg');
-            $bgImg.eq(currentPageIndex).addClass('gray current-bg');
+            $bgImg.eq(goToSlide).removeClass('gray');
+            $bgImg.eq(currentPageIndex).addClass('gray');
             currentPageIndex = goToSlide;
             updateDot();
         });
@@ -130,6 +128,5 @@ window.load = (function() {
         $outpage.attr( 'class', $outpage.data( 'originalClassList' ) );
         $inpage.attr( 'class', $inpage.data( 'originalClassList' ) + ' current-page' );
     }
-
     init();
 })();
