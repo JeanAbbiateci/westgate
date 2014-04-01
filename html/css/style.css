@@ -626,8 +626,7 @@ div.newstip .time {
   fill: #8d94a5; }
 
 #tweet-map {
-  margin-top: 0px !important;
-  position: relative; }
+  margin-top: 0px !important; }
   #tweet-map g:nth-child(2) > path:nth-child(7) {
     /* Remove penguins*/
     display: none; }
@@ -638,113 +637,109 @@ div.newstip .time {
     top: 460px;
     left: 370px; }
 
-#word-chart {
-  position: relative; }
-  #word-chart svg {
-    margin-top: 71px !important; }
-  #word-chart .description {
-    position: absolute;
-    width: 200px;
-    left: 3%;
-    top: 16%; }
-  #word-chart .tick {
-    fill: #8d94a5; }
-  #word-chart div > svg:nth-child(3) {
-    margin-top: 150px !important;
-    float: right; }
-  #word-chart div > svg:nth-child(2) {
-    position: absolute;
-    top: 40px;
-    left: 22%;
-    background-color: #343a45;
-    border-radius: 20px; }
-  #word-chart div > svg:nth-child(2) > text {
-    fill: #b8bcc1;
-    cursor: default; }
-  #word-chart path {
-    stroke: steelblue;
-    stroke-width: 2;
-    fill: none; }
-  #word-chart .grammes path,
-  #word-chart .grammes line {
-    stroke: steelblue;
-    stroke-width: 2;
-    fill: none; }
-  #word-chart .axis path,
-  #word-chart .axis line {
-    fill: none;
-    stroke: grey;
-    stroke-width: 2;
-    shape-rendering: crispEdges; }
-  #word-chart .x.axis path {
-    display: none; }
-  #word-chart .axis text {
-    font-family: sans-serif;
-    font-size: 11px; }
-  #word-chart .grid .tick {
-    stroke: #4f5967;
-    opacity: 0.7; }
-  #word-chart .grid path {
-    stroke-width: 0; }
-  #word-chart .lala {
-    background-color: red; }
-  #word-chart table, #word-chart th, #word-chart td {
-    border: 1px dotted lightgrey;
-    border-collapse: collapse; }
-  #word-chart th, #word-chart td {
-    padding: 5px; }
-  #word-chart .tableHead {
-    background: #eee; }
+#word-chart svg {
+  margin-top: 71px !important; }
+#word-chart .description {
+  position: absolute;
+  width: 200px;
+  left: 3%;
+  top: 16%; }
+#word-chart .tick {
+  fill: #8d94a5; }
+#word-chart div > svg:nth-child(3) {
+  margin-top: 150px !important;
+  float: right; }
+#word-chart div > svg:nth-child(2) {
+  position: absolute;
+  top: 40px;
+  left: 22%;
+  background-color: #343a45;
+  border-radius: 20px; }
+#word-chart div > svg:nth-child(2) > text {
+  fill: #b8bcc1;
+  cursor: default; }
+#word-chart path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none; }
+#word-chart .grammes path,
+#word-chart .grammes line {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none; }
+#word-chart .axis path,
+#word-chart .axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 2;
+  shape-rendering: crispEdges; }
+#word-chart .x.axis path {
+  display: none; }
+#word-chart .axis text {
+  font-family: sans-serif;
+  font-size: 11px; }
+#word-chart .grid .tick {
+  stroke: #4f5967;
+  opacity: 0.7; }
+#word-chart .grid path {
+  stroke-width: 0; }
+#word-chart .lala {
+  background-color: red; }
+#word-chart table, #word-chart th, #word-chart td {
+  border: 1px dotted lightgrey;
+  border-collapse: collapse; }
+#word-chart th, #word-chart td {
+  padding: 5px; }
+#word-chart .tableHead {
+  background: #eee; }
 
 #word-container > svg:nth-child(3) text {
   fill: #dbe1e7; }
 
-#page-bubble {
-  position: relative; }
-  #page-bubble svg {
-    margin-top: 71px; }
-  #page-bubble .description-text {
-    position: absolute;
-    width: 200px;
-    left: 10%;
-    top: 10%; }
-    #page-bubble .description-text .bullet {
-      float: left;
-      width: 10px;
-      height: 10px;
-      margin-right: 10px;
-      margin-bottom: 5px;
-      border-radius: 10px; }
-    #page-bubble .description-text .normal {
-      color: #dbe1e7;
-      font-size: 13px; }
-    #page-bubble .description-text .ver {
-      background-color: #8d94a5; }
-    #page-bubble .description-text .non-ver {
-      background-color: #c5bb91; }
-  #page-bubble .bubble {
-    fill: #c5bb91;
-    stroke: #4c515c;
-    stroke-width: 1px; }
-  #page-bubble .bubble.verified {
-    fill: #8d94a5; }
-  #page-bubble .types {
+#page-bubble svg {
+  margin-top: 71px; }
+#page-bubble .description-text {
+  position: absolute;
+  width: 200px;
+  left: 10%;
+  top: 10%; }
+  #page-bubble .description-text .bullet {
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px; }
+  #page-bubble .description-text .normal {
+    color: #dbe1e7;
+    font-size: 13px; }
+  #page-bubble .description-text .ver {
+    background-color: #8d94a5; }
+  #page-bubble .description-text .non-ver {
+    background-color: #c5bb91; }
+#page-bubble .bubble {
+  fill: #c5bb91;
+  stroke: #4c515c;
+  stroke-width: 1px; }
+#page-bubble .bubble.verified {
+  fill: #8d94a5; }
+#page-bubble .types {
+  font-size: 16px;
+  fill: #b8bcc1; }
+#page-bubble #options {
+  width: 33%;
+  margin: 142px auto 0 auto; }
+  #page-bubble #options .bubble-button {
     font-size: 16px;
-    fill: #b8bcc1; }
-  #page-bubble #options {
-    width: 33%;
-    margin: 142px auto 0 auto; }
-    #page-bubble #options .bubble-button {
-      font-size: 16px;
-      color: #dbe1e7;
-      margin-right: 10%; }
-  #page-bubble #marker {
-    position: absolute;
-    background-color: #db3d3d;
-    height: 0px;
-    border: 1px solid #db3d3d;
-    border-radius: 10px;
-    top: 21px; }
+    color: #dbe1e7;
+    margin-right: 10%; }
+#page-bubble #marker {
+  position: absolute;
+  background-color: #db3d3d;
+  height: 0px;
+  border: 1px solid #db3d3d;
+  border-radius: 10px;
+  top: 21px; }
 
 #all {
   float: right; }
