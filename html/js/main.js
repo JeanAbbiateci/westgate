@@ -40,10 +40,10 @@ window.load = (function() {
 
         //Add slide index to dots
         $('.dot').each( function(i,v) {
-            $(v).attr('slide', i);
+            $(v).attr('slide', i+2);
             $(v).on('click', function(){
                 switchPage(i);
-                $('dot').addClass('current-dot')
+                $('dot').addClass('current-dot');
             });
         });
 
@@ -66,7 +66,7 @@ window.load = (function() {
         //Set arrow keys
         $(window).on('keydown', function(e){
             if(e.keyCode === 39 && currentPageIndex < pagesList.length-1) switchPage(currentPageIndex+1);
-            if(e.keyCode === 37 && currentPageIndex > 0) switchPage(currentPageIndex+1);
+            if(e.keyCode === 37 && currentPageIndex > 0) switchPage(currentPageIndex-1);
         });
     }
 
@@ -88,7 +88,10 @@ window.load = (function() {
         var $currPage = $pages.eq( currentPageIndex );
         var $nextPage = $pages.eq( goToSlide ).addClass( 'current-page' );
 
-        $currPage.addClass( 'pt-page-moveToLeftFade' ).on( animEndEventName, function() {
+        var inClass = goToSlide > currentPageIndex ? 'pt-page-moveToLeftFade' : 'pt-page-moveToRightFade';
+        var outClass = goToSlide > currentPageIndex ? 'pt-page-moveFromRightFade' : 'pt-page-moveFromLeftFade';
+
+        $currPage.addClass( inClass ).on( animEndEventName, function() {
             $currPage.off( animEndEventName );
             endCurrPage = true;
             if( endNextPage ) {
@@ -96,7 +99,7 @@ window.load = (function() {
             }
         } );
 
-        $nextPage.addClass( 'pt-page-moveFromRightFade' ).on( animEndEventName, function() {
+        $nextPage.addClass( outClass ).on( animEndEventName, function() {
             $nextPage.off( animEndEventName );
             endNextPage = true;
             if( endCurrPage ) {
@@ -108,10 +111,10 @@ window.load = (function() {
             onEndAnimation( $currPage, $nextPage );
         }
 
-        $bgImg.eq(currentPageIndex).animate({opacity:0,easing: 'easein'},400, function(){
+        $bgImg.eq(currentPageIndex).animate({opacity:0, easing: 'easein'},400, function(){
             $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1400);
-            $bgImg.eq(goToSlide).removeClass('gray');
-            $bgImg.eq(goToSlide).addClass('gray');
+            $bgImg.eq(goToSlide).removeClass('gray current-bg');
+            $bgImg.eq(currentPageIndex).addClass('gray current-bg');
         });
 
         currentPageIndex = goToSlide;
