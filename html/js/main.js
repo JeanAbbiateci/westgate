@@ -187,6 +187,7 @@ var PageTransitions = (function() {
         isAnimating = false,
         endCurrPage = false,
         endNextPage = false,
+        opacityVal = 0.2;
         animEndEventNames = {
             'WebkitAnimation' : 'webkitAnimationEnd',
             'OAnimation' : 'oAnimationEnd',
@@ -209,11 +210,14 @@ var PageTransitions = (function() {
 
         $pages.eq( current ).addClass( 'current-page' );
         $bgImg = $('.bg-image');
+        $bgImg.eq(0).animate({opacity:opacityVal}, function(){
+            $(this).removeClass('gray');
+        });
     }
 
     $(window).on('keydown', function(e){
-       if(e.keyCode === 39) nextPage(13, 1)
-       if(e.keyCode === 37) nextPage(14, -1)
+       if(e.keyCode === 39) nextPage(9, 1)
+       if(e.keyCode === 37) nextPage(10, -1)
     });
 
     function onEndAnimation( $outpage, $inpage ) {
@@ -537,7 +541,7 @@ var PageTransitions = (function() {
         }
 
         $bgImg.eq(current - direction).animate({opacity:0}, function(){
-            $bgImg.eq(current).animate({opacity:0.3});
+            $bgImg.eq(current).animate({opacity: opacityVal});
             $bgImg.eq(current).removeClass('gray');
             $bgImg.eq(current-direction).addClass('gray');
         });

@@ -67,21 +67,21 @@
 }
 
 .pt-page-moveFromLeftFade {
-	-webkit-animation: moveFromLeftFade .7s ease both;
-	-moz-animation: moveFromLeftFade .7s ease both;
-	animation: moveFromLeftFade .7s ease both;
+	-webkit-animation: moveFromLeftFade .8s ease-out both;
+	-moz-animation: moveFromLeftFade .8s ease-out both;
+	animation: moveFromLeftFade .8s ease-out both;
 }
 
 .pt-page-moveToRightFade {
-	-webkit-animation: moveToRightFade .7s ease both;
-	-moz-animation: moveToRightFade .7s ease both;
-	animation: moveToRightFade .7s ease both;
+	-webkit-animation: moveToRightFade 1s ease-out both;
+	-moz-animation: moveToRightFade 1s ease-out both;
+	animation: moveToRightFade 1s ease-out both;
 }
 
 .pt-page-moveFromRightFade {
-	-webkit-animation: moveFromRightFade .7s ease both;
-	-moz-animation: moveFromRightFade .7s ease both;
-	animation: moveFromRightFade .7s ease both;
+	-webkit-animation: moveFromRightFade .8s ease-out both;
+	-moz-animation: moveFromRightFade .8s ease-out both;
+	animation: moveFromRightFade .8s ease-out both;
 }
 
 .pt-page-moveToTopFade {
