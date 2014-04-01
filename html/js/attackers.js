@@ -197,7 +197,7 @@
                     .attr("width", 10)
                     .attr("height", 10)
                     .attr("id", "rect-" + j)
-                    .style("fill", "#4C515C")
+                    .style("fill", "#212630")
                     .style("stroke", colors[j])
                     .attr("rx", 2)
                     .attr("ry", 2)

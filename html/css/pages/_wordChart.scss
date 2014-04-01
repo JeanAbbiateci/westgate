@@ -5,11 +5,11 @@
     margin-top:71px !important;
   }
 
-    .description{
+    .description-text{
         position: absolute;
         width: 200px;
-        left: 3%;
-        top: 16%;
+        left: 10px;
+        top: 100px;
     }
 
     .tick{
@@ -26,7 +26,7 @@
       top: 40px;
       left: 22%;
 	  background-color: $dark-blue;
-	  border-radius:20px;
+	  border-radius:4px;
     }
     div > svg:nth-child(2) > text{
       fill: $bright-blue;

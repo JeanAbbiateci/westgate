@@ -639,11 +639,11 @@ div.newstip .time {
 
 #word-chart svg {
   margin-top: 71px !important; }
-#word-chart .description {
+#word-chart .description-text {
   position: absolute;
   width: 200px;
-  left: 3%;
-  top: 16%; }
+  left: 10px;
+  top: 100px; }
 #word-chart .tick {
   fill: #8d94a5; }
 #word-chart div > svg:nth-child(3) {
@@ -654,7 +654,7 @@ div.newstip .time {
   top: 40px;
   left: 22%;
   background-color: #343a45;
-  border-radius: 20px; }
+  border-radius: 4px; }
 #word-chart div > svg:nth-child(2) > text {
   fill: #b8bcc1;
   cursor: default; }
