@@ -389,7 +389,8 @@ div.newstip .time {
     width: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    -webkit-transition: -webkit-filter 3s ease-in-out; }
+    -webkit-transition: -webkit-filter 1s ease-in-out;
+    transition-delay: 1s; }
 
 .gray {
   -webkit-filter: grayscale(100%); }
