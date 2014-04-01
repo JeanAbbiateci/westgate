@@ -38,13 +38,6 @@ function checkKey(e) {
     }
 }
 
-<<<<<<< HEAD
-    //document.onkeydown = checkKey;
-
-=======
-document.onkeydown = checkKey;
-    
->>>>>>> FETCH_HEAD
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.
      * 
