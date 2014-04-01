@@ -140,7 +140,6 @@ body {
     background-color: #db3d3d; }
 
 .pages-container {
-  position: relative;
   height: 100%;
   overflow: hidden;
   -webkit-perspective: 1200px;
@@ -148,7 +147,7 @@ body {
   perspective: 1200px;
   background-repeat: none; }
   .pages-container .page {
-    max-width: 1190px;
+    width: 1190px;
     margin: auto;
     z-index: 100;
     height: 100%;
@@ -781,26 +780,24 @@ div.newstip .time {
 #network .bubble.verified {
   fill: #8d94a5; }
 
-#photo-gallery {
-  position: relative; }
-  #photo-gallery .image-tile {
-    background-repeat: no-repeat;
-    float: left; }
-  #photo-gallery .img-row {
-    overflow: hidden; }
-  #photo-gallery #preview {
-    position: absolute;
-    overflow: hidden;
-    z-index: 100;
-    padding: 10px;
-    background-color: #1b1e2a;
-    border-radius: 3px;
-    box-shadow: 0 0 10px rgba(34, 34, 42, 0.96);
-    top: 0;
-    left: 0; }
-  #photo-gallery #big-pic {
-    max-height: 300px;
-    max-width: 300px; }
+#photo-gallery .image-tile {
+  background-repeat: no-repeat;
+  float: left; }
+#photo-gallery .img-row {
+  overflow: hidden; }
+#photo-gallery #preview {
+  position: absolute;
+  overflow: hidden;
+  z-index: 100;
+  padding: 10px;
+  background-color: #1b1e2a;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(34, 34, 42, 0.96);
+  top: 0;
+  left: 0; }
+#photo-gallery #big-pic {
+  max-height: 300px;
+  max-width: 300px; }
 
 #page-intro .y path {
   display: none; }
