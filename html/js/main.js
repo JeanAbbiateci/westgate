@@ -111,13 +111,13 @@ window.load = (function() {
             onEndAnimation( $currPage, $nextPage );
         }
 
-        $bgImg.eq(currentPageIndex).animate({opacity:0, easing: 'easein'},400, function(){
-            $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1400);
+        console.log(currentPageIndex,goToSlide);
+        $bgImg.eq(currentPageIndex).animate({opacity:0, easing: 'easein'},300, function(){
+            $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1200);
             $bgImg.eq(goToSlide).removeClass('gray current-bg');
             $bgImg.eq(currentPageIndex).addClass('gray current-bg');
+            currentPageIndex = goToSlide;
         });
-
-        currentPageIndex = goToSlide;
     }
 
     function resetPage( $outpage, $inpage ) {
