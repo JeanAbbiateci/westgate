@@ -37,7 +37,7 @@
         }
     }
 
-    document.onkeydown = checkKey;
+    //document.onkeydown = checkKey;
 
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.

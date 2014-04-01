@@ -31,6 +31,9 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
+html {
+  height: 100%; }
+
 body {
   line-height: 1;
   -webkit-touch-callout: none;
@@ -38,7 +41,8 @@ body {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  height: 100%; }
 
 ol, ul {
   list-style: none; }
@@ -57,7 +61,8 @@ table {
 
 body {
   font-family: 'Open sans', sans-serif;
-  overflow: hidden; }
+  overflow: hidden;
+  box-sizing: border-box; }
 
 .container {
   max-width: 1190px;
@@ -66,6 +71,12 @@ body {
   height: 100%;
   position: relative;
   overflow: hidden; }
+
+.clearfix .clearfix:before, .clearfix .clearfix:after {
+  content: " ";
+  display: table; }
+.clearfix .clearfix:after {
+  clear: both; }
 
 #story-nav {
   cursor: default;
@@ -130,29 +141,37 @@ body {
     background-color: #db3d3d; }
 
 .pages-container {
+  position: relative;
   width: 100%;
-  background-color: #4c515c;
-  overflow: hidden; }
-  .pages-container #pages {
-    -webkit-transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -moz-transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -o-transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* easeOutQuad */
-    -webkit-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -moz-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -o-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* easeOutQuad */ }
-    .pages-container #pages .page {
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      display: block;
-      color: #8d94a5;
-      overflow: hidden;
-      position: relative; }
-      .pages-container #pages .page .container {
-        margin-top: 30px; }
+  height: 100%;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  perspective: 1200px;
+  background-repeat: none; }
+  .pages-container .page {
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+    .pages-container .page .container {
+      margin-top: 30px; }
+
+.current-page {
+  visibility: visible !important;
+  z-index: 1; }
 
 #arrow-right {
   -webkit-tap-highlight-color: transparent;
@@ -359,14 +378,20 @@ div.newstip .time {
   position: absolute;
   left: 96%; }
 
-.dark-tint {
-  background-color: #060b0f;
-  opacity: 0.7;
+#bg-images {
   top: 0;
   bottom: 0;
   height: 100%;
   width: 100%;
-  position: absolute; }
+  position: absolute;
+  background-color: #212630; }
+  #bg-images .bg-image {
+    -webkit-filter: grayscale(100%);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; }
 
 .selected-tweets-text {
   font-style: italic;
