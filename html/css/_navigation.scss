@@ -119,6 +119,7 @@ body {
 .pages-container {
   position: relative;
   height: 100%;
+  overflow: hidden;
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
   perspective: 1200px;
