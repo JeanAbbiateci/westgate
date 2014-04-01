@@ -204,7 +204,7 @@ var PageTransitions = (function() {
             var $page = $( this );
             $page.data( 'originalClassList', $page.attr( 'class' ) );
             var bg = $page.attr('bg') || "";
-            $bg.append('<div style="' + bg + ' ; z-index:'+z+'; opacity:0" class="bg-image"></div>');
+            $bg.append('<div style="' + bg + ' ; z-index:'+z+'; opacity:0" class="bg-image gray"></div>');
         } );
 
         $pages.eq( current ).addClass( 'current-page' );
@@ -538,7 +538,8 @@ var PageTransitions = (function() {
 
         $bgImg.eq(current - direction).animate({opacity:0}, function(){
             $bgImg.eq(current).animate({opacity:0.3});
-            $bgImg.eq(current).addClass('gray')
+            $bgImg.eq(current).removeClass('gray');
+            $bgImg.eq(current-direction).addClass('gray');
         });
     }
 
