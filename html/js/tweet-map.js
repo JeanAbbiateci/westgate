@@ -13,7 +13,8 @@
             t_style = "linear", ti = 0,
             timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
             barchartheight = 100,
-            animationSpeed = 700;
+            animationSpeed = 700,
+            zoomed = false;
 
     /* 
      ---------------------
@@ -21,24 +22,29 @@
      ---------------------
      */
     init();
-
+    
 
     // Check key when Pressed
-    function checkKey(e) {
-        if (e.keyCode == '37' && ti > 0) {
-            stopAnimate();
-            ti--;
-            drawDots();
-        }
-        else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
-            stopAnimate();
-            ti++;
-            drawDots();
-        }
+function checkKey(e) {
+    if (e.keyCode == '37' && ti > 0) {
+        stopAnimate();
+        ti--;
+        drawDots();
     }
+    else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
+        stopAnimate();
+        ti++;
+        drawDots();
+    }
+}
 
+<<<<<<< HEAD
     //document.onkeydown = checkKey;
 
+=======
+document.onkeydown = checkKey;
+    
+>>>>>>> FETCH_HEAD
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.
      * 
@@ -64,8 +70,9 @@
         // Append SVG to body
         svg = d3.select("#tweet-map").append("svg")
                 .attr("width", w)
-                .attr("height", h - 71 - barchartheight)
-                .attr("id", "map");
+                .attr("height", h - 50 - barchartheight)
+                .attr("id", "map")
+                .on("click", zooming);
 
 
         // Append Gradient to SVG
@@ -104,6 +111,28 @@
 
     }
 
+    function zooming() {
+  var x, y,
+    x = d3.event.pageX,
+    y = d3.event.pageY;
+
+    if (zoomed)
+    {
+        svg.selectAll("g").transition()
+        .duration(750)
+        .attr("transform", "translate(0,0)scale(" + 1 + ")")
+    }
+
+    else
+    {
+        svg.selectAll("g").transition()
+        .duration(750)
+        .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")scale(" + 4 + ")translate(" + -x + "," + -y + ")")
+    }
+    if (zoomed) zoomed = false;
+    else zoomed = true;
+}
+
 
     /* 
      ---------------------
@@ -128,7 +157,7 @@
                     .attr("d", path);
 
             loadTweetHours();
-
+            
         });
 
     }
@@ -141,7 +170,7 @@
                     .key(function(d) {
                 return d[0];
             })
-                    .entries(tweet_locations);
+            .entries(tweet_locations);
             drawDots();
         });
     }
@@ -195,15 +224,15 @@
 
     }
 
-
+    
     /**
-     * Method that draw a single circle inside the map
-     *
-     * @method drawDot
-     * @param {Object} dotsList A list of object to be inserted in the map
-     * @param {Boolean} animate indicates if the circle needs to be animated or only inserted
-     * @return {Null} 
-     */
+    * Method that draw a single circle inside the map
+    *
+    * @method drawDot
+    * @param {Object} dotsList A list of object to be inserted in the map
+    * @param {Boolean} animate indicates if the circle needs to be animated or only inserted
+    * @return {Null} 
+    */
     function drawDot(dotsList, animate) {
         dotsList.attr("cx", function(d) {
             return projection([d[1], d[2]])[0];
@@ -241,11 +270,11 @@
 
     // Draw dots from current hour based on ti.
     /**
-     * Method that draw all the dots based on the actual ti (=time)
-     *
-     * @method drawDots
-     * @return {Null} 
-     */
+    * Method that draw all the dots based on the actual ti (=time)
+    *
+    * @method drawDots
+    * @return {Null} 
+    */
     function drawDots() {
         var temp_g;
         if (ti === 0)
@@ -282,7 +311,7 @@
      Functions for the Barchart.
      ---------------------
      */
-
+    
     /** /
      * 
      * @return {undefined}
@@ -291,7 +320,7 @@
     {
         // VARIABLES
         var topmargin = 8;
-        var playPauseWidth = 80;
+        var playPauseWidth = 70;
         var left_rightmargin = 200 + playPauseWidth / 2;
         var barwidth = w - left_rightmargin * 2;
         var barheight = barchartheight - 30;
@@ -314,9 +343,9 @@
         });
 
         var playPause = d3.select("#slider").append("div")
-                .attr("id", "startstop")
-                .append("a")
-                .attr("class", "play");
+            .attr("id", "startstop")
+            .append("a")
+            .attr("class", "play");
 
         playPause.on('click', function(e) {
             if (!this.classList.contains("play")) {
@@ -338,7 +367,7 @@
             }
         });
 
-        sliderdiv = slidercontainer.append("div").attr("id", "sliderContainer");
+        sliderdiv = slidercontainer.append("div");
 
         slider = d3.slider()
                 .min(0)
@@ -346,18 +375,19 @@
                 .max(tweets_per_hour.length - 1)
                 .step(1)
                 .on("slide", function(evt, value) {
-            ti = value;
-            if(currentPage === "tweet-map")
-                drawDots();
-            else
-                bubble(ti, get_current_view());
-        });
+                    console.log(value)
+                    ti = value;
+                    if(currentPage === "tweet-map")
+                        drawDots();
+                    else
+                        bubble(ti, get_current_view());
+                });
         // CREATE SLIDER
-        d3.select('#sliderContainer')
-                .call(slider);
+        sliderdiv
+                .call(slider)
 
         svgbar = sliderdiv.append("svg")
-                .attr("width", barwidth - 85)
+                .attr("width", barwidth - playPauseWidth)
                 .attr("height", barheight)
                 .attr("id", "barchart");
 
@@ -398,7 +428,7 @@
                 .enter()
                 .append("circle")
                 .attr("cx", function(d, i) {
-            return d[0] * barwidth / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
+            return d[0] * (barwidth - playPauseWidth) / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
         })
                 .attr("cy", function(d, i) {
             return 4;
@@ -423,7 +453,7 @@
         })
                 .on("mouseout", function(d) {
             tooltip.style("opacity", 0).style("display", "none")
-
+                    
         });
 
         // TimeDiv
@@ -435,10 +465,6 @@
         {
             slidercontainer.style("opacity", 0).style("display", "none");
         }
-
-
-
-
 
     }
 

@@ -447,7 +447,7 @@ div.newstip .time {
     /* Remove penguins*/
     display: none; }
   #tweet-map #map {
-    margin-top: 71px !important; }
+    margin-top: 50px !important; }
   #tweet-map .description {
     position: absolute;
     width: 200px;
