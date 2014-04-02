@@ -747,7 +747,8 @@ div.newstip .time {
     #page-bubble #options .bubble-button {
       font-size: 16px;
       color: #dbe1e7;
-      margin-right: 10%; }
+      margin-right: 10%;
+      cursor: pointer; }
   #page-bubble #marker {
     position: relative;
     background-color: #db3d3d;
