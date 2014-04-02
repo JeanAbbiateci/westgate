@@ -36,7 +36,7 @@
 	.bubble
 	{
 		fill: $yellow;
-		stroke: $gray;
+		stroke: #212630;
 		stroke-width:1px;
 	}
 
@@ -64,12 +64,12 @@
     	}
     }
     #marker{
-		position: absolute;
+    	position:relative;
 		background-color: $red;
 		height: 0px;
 		border: 1px solid $red;
 		border-radius: 10px;
-		top: 162px;
+		top: $s2 + 5px;
     }
 }
 

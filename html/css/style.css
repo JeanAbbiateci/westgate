@@ -719,7 +719,7 @@ div.newstip .time {
       background-color: #c5bb91; }
   #page-bubble .bubble {
     fill: #c5bb91;
-    stroke: #4c515c;
+    stroke: #212630;
     stroke-width: 1px; }
   #page-bubble .bubble.verified {
     fill: #8d94a5; }
@@ -748,7 +748,7 @@ div.newstip .time {
   float: left; }
 
 #network svg {
-  margin-top: 71px !important; }
+  margin-top: 10px !important; }
 #network .description-text {
   position: absolute;
   width: 225px;
@@ -770,7 +770,7 @@ div.newstip .time {
     background-color: #c5bb91; }
 #network .bubble {
   fill: #c5bb91;
-  stroke: #4c515c;
+  stroke: #212630;
   stroke-width: 1px; }
 #network .bubble.verified {
   fill: #8d94a5; }
