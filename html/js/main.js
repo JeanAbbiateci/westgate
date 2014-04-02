@@ -62,9 +62,7 @@ window.load = (function() {
 
         //Initiate first active page
         $pages.eq( currentPageIndex ).addClass( 'current-page' );
-        $bgImg.eq(0).animate({opacity:opacityVal}, function(){
-            $(this).removeClass('gray');
-        });
+        $bgImg.eq(0).addClass('add-opacity').removeClass('gray');
 
         //Set arrow keys for navigation
         $(window).on('keydown', function(e){
@@ -122,13 +120,12 @@ window.load = (function() {
         }
 
         //Animate Background
-        $bgImg.eq(currentPageIndex).animate({opacity:0, easing: 'easein'},300, function(){
-            $bgImg.eq(goToSlide).animate({opacity: opacityVal, easing:'easeout'},1200);
-            $bgImg.eq(goToSlide).removeClass('gray');
-            $bgImg.eq(currentPageIndex).addClass('gray');
-            currentPageIndex = goToSlide;
-            updateDot();
-        });
+        $bgImg.eq(currentPageIndex).removeClass('add-opacity');
+        $bgImg.eq(goToSlide).addClass('add-opacity');
+        $bgImg.eq(goToSlide).removeClass('gray');
+        $bgImg.eq(currentPageIndex).addClass('gray').removeClass('add-opacity');
+        currentPageIndex = goToSlide;
+        updateDot();
 
        hide_show_slider(goToSlide)
     }

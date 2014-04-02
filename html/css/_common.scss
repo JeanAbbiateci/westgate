@@ -116,17 +116,19 @@ a {
 
     #startstop a
     {
-        color:white;   
-        text-decoration: none;
-        width: 55px;
-        height: 55px;
-        display: block;
-        background: url(../img/pause.png);
+      color:white;
+      text-decoration: none;
+      width: 55px;
+      height: 55px;
+      display: block;
+      background-repeat: no-repeat;
+      background: url(../img/pause.png);
     }
 
     #startstop a.play
     {
-        background: url(../img/play.png);
+     background-repeat: no-repeat;
+     background: url(../img/play.png);
     }
 
 }
@@ -185,8 +187,8 @@ a {
   .bg-image{
     transform: translateZ(0);
     position: absolute;
-    -webkit-transition:-webkit-filter 1s ease-in-out, opacity 2s ease-out;
-    transition-delay: 1s;
+    -webkit-transition:-webkit-filter 1s ease-in-out, opacity .8s ease-out;
+    transition-delay: .3s;
   }
 }
 
@@ -228,5 +230,5 @@ a {
 }
 
 .add-opacity{
-  opacity: 0.2;
+  opacity: 0.2 !important;
 }
