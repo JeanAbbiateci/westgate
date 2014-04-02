@@ -737,12 +737,12 @@ div.newstip .time {
       color: #dbe1e7;
       margin-right: 10%; }
   #page-bubble #marker {
-    position: absolute;
+    position: relative;
     background-color: #db3d3d;
     height: 0px;
     border: 1px solid #db3d3d;
     border-radius: 10px;
-    top: 162px; }
+    top: 21px; }
 
 #all {
   float: right; }
