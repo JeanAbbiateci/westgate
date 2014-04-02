@@ -2,11 +2,11 @@ function network(){
 
   var treshold = 10
 
-  var height = pageHeight - headerHeight,
+  var height =  Math.max(document.documentElement.clientHeight, window.innerHeigt || 0);
     width =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
   var sqrtScale = d3.scale.pow().exponent(.05)
-    .range([3,pageHeight/20])
+    .range([3,height/30])
     .domain([627,33135]);
 
   var logScale = d3.scale.log()
@@ -28,7 +28,7 @@ function network(){
     .linkDistance(function(d) { return linkramp(d.source.value + d.target.value )})
     .size([width, height])
 
-  var svg = d3.select("#network").append("svg")
+  var svg = d3.select("#networkContainer").append("svg")
       .attr("width", width)
       .attr("height", height);
       

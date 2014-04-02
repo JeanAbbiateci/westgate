@@ -43,7 +43,7 @@ function bubble(hour, current_view) {
             this.circles = null;
             max_amount = 2233
             min_amount = 7
-            this.radius_scale = d3.scale.pow().exponent(0.6).domain([min_amount, max_amount]).range([5, pageHeight / 6]);
+            this.radius_scale = d3.scale.pow().exponent(0.6).domain([min_amount, max_amount]).range([5, 100]);
             this.create_nodes();
             this.create_vis();
         }
@@ -246,14 +246,16 @@ function urlize(content) {
 
 function moveMarker(el) {
     rect = el.getBoundingClientRect()
-    left = rect.left - 5
+    left = rect.left - 53
     size = rect.right - rect.left + 10
     d3.select('#marker').transition().duration(1000).style('left', left + 'px').style('width', size + 'px')
 }
 
 function makeFirst(el) {
     rect = el.getBoundingClientRect()
-    left = rect.left - 13
+    console.log(rect)
+    left = rect.left - 60
+    console.log(left)
     size = rect.right - rect.left + 18
     d3.select('#marker').transition().duration(1000).style('left', left + 'px').style('width', size + 'px')
 }

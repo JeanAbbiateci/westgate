@@ -11,6 +11,6 @@ html/node_modules/
 man/
 
 ### SASS CACHE ###
-*.sass-cache
+html/css/.sass-cache/*
 /html/nbproject/private/
 /html/nbproject/

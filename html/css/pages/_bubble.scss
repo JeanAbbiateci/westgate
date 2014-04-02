@@ -1,4 +1,5 @@
 #page-bubble{
+	position : relative
 	svg{
 		margin-top:71px;
 	}
@@ -7,7 +8,6 @@
 		position: absolute;
 		width: 200px;
 		left: 10%;
-		top: 10%;
 
 		.bullet{
 			float : left;
@@ -69,7 +69,7 @@
 		height: 0px;
 		border: 1px solid $red;
 		border-radius: 10px;
-		top: $s2 + 5px;
+		top: 162px;
     }
 }
 
