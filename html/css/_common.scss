@@ -195,7 +195,7 @@ a {
   .bg-image{
     transform: translateZ(0);
     position: absolute;
-    -webkit-transition:-webkit-filter 1s ease-in-out, opacity .8s ease-out;
+    -webkit-transition:-webkit-filter 4s ease-in-out, opacity .8s ease-out;
     transition-delay: .3s;
   }
 }
