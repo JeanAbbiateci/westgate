@@ -299,7 +299,10 @@ div.newstip .time {
 
 /* Slider is now common as it is needed on multiple pages. */
 #slider {
-  position: fixed; }
+  position: fixed;
+  opacity: 0;
+  transition: all .5s ease-out;
+  bottom: -100px; }
   #slider div.timediv {
     clear: both;
     margin-left: 70px;
@@ -308,6 +311,11 @@ div.newstip .time {
       line-height: 28px;
       margin: 0px;
       font-size: 16px; }
+
+.show-slider {
+  opacity: 1 !important;
+  display: block !important;
+  bottom: 30px !important; }
 
 .d3-slider {
   cursor: pointer;

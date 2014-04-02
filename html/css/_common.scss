@@ -60,6 +60,10 @@ a {
 
     #slider{
       position:fixed;
+      opacity: 0;
+      transition: all .5s ease-out;
+      
+      bottom: -100px;
 
       div.timediv{
           clear:both;
@@ -71,6 +75,11 @@ a {
       }
       z-index:30000;
       }
+    }
+    .show-slider{
+      opacity: 1 !important;
+      display: block !important;
+      bottom: 30px !important;
     }
 
 

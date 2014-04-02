@@ -330,9 +330,6 @@ function checkKey(e) {
         })
                 .style("left", function(d) {
             return left_rightmargin + "px";
-        })
-                .style("top", function(d) {
-            return (h - barchartheight) + "px";
         });
 
         var playPause = d3.select("#slider").append("div")
@@ -452,12 +449,7 @@ function checkKey(e) {
         // TimeDiv
         timediv = slidercontainer.append("div")
                 .attr("class", "timediv")
-                .html("<h1>LOADING...");
-
-        if (currentPageIndex != 1 && currentPageIndex != 2 && currentPageIndex != 2)
-        {
-            slidercontainer.style("opacity", 0).style("display", "none");
-        }
+                .html("<h1>LOADING...</h1>");
 
     }
 

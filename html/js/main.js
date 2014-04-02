@@ -155,28 +155,10 @@ window.load = (function() {
     }
 
      function hide_show_slider(goToSlide) {
-
-        if(goToSlide === 11){
-            currentPage = "tweet-map"
-        }else if(goToSlide === 12){
-            currentPage = "bubble-page"
-        }else{
-            currentPage = "other"
+        if (currentPageIndex === 11 || currentPageIndex === 12 ){
+            if( !$('#slider').hasClass('show-slider')) $('#slider').addClass('show-slider');
         }
-        if (currentPage === "tweet-map" || currentPage === "bubble-page")
-        {
-            d3.select("#slider").transition().duration(1000).style("display", "block").style("opacity", 1);
-            if(currentPage === "tweet-map")
-                d3.select("#startstop").style("display", "block");
-            else
-                d3.select("#startstop").style("display", "none");
-        }
-        else
-        {
-            d3.select("#slider").transition().duration(500).style("opacity", 0)
-            d3.select("#slider").transition().delay(1000).style("display","none")
-        }
-
+        else $('#slider').removeClass('show-slider');
     }
 
     init();
