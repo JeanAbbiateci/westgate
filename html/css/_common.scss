@@ -78,7 +78,6 @@ a {
     }
     .show-slider{
       opacity: 1 !important;
-      display: block !important;
       bottom: 30px !important;
     }
 
@@ -129,14 +128,14 @@ a {
       display: block;
       margin: auto;
       margin-top: 6px;
-      background: url(../img/pause.png);
+      background: url(../img/play.png);
 
     }
 
     #startstop a.play
     {
      background-repeat: no-repeat;
-     background: url(../img/play.png);
+     background: url(../img/pause.png);
     }
 
 }

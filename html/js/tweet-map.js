@@ -1,5 +1,5 @@
 
-(function(pageHeight) {
+var sliderModule = (function(pageHeight) {
     // ... all vars and functions are in this scope only
     // still maintains access to all globals
 
@@ -14,6 +14,7 @@
             timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
             barchartheight = 100,
             animationSpeed = 700,
+            isPlaying = false,
             zoomed = false;
 
     /* 
@@ -22,21 +23,6 @@
      ---------------------
      */
     init();
-    
-
-    // Check key when Pressed
-function checkKey(e) {
-    if (e.keyCode == '37' && ti > 0) {
-        stopAnimate();
-        ti--;
-        drawDots();
-    }
-    else if (e.keyCode == '39' && ti < (tweets_per_location.length - 1)) {
-        stopAnimate();
-        ti++;
-        drawDots();
-    }
-}
 
     /** /
      * Initialize Scale, Projection, SVG, Gradients etc.
@@ -195,12 +181,20 @@ function checkKey(e) {
      */
 
     function startAnimate() {
-        timelapse = setInterval(animate, animationSpeed);
+        if(!isPlaying){
+            $('#play-button').addClass('play');
+            timelapse = setInterval(animate, animationSpeed);
+            isPlaying = true;
+        }
     }
 
 
     function stopAnimate() {
-        clearInterval(timelapse);
+        if(isPlaying){
+            $('#play-button').removeClass('play');
+            clearInterval(timelapse);
+            isPlaying = false;
+        }
     }
 
 
@@ -335,26 +329,10 @@ function checkKey(e) {
         var playPause = d3.select("#slider").append("div")
             .attr("id", "startstop")
             .append("a")
-            .attr("class", "play");
+            .attr("id", "play-button");
 
         playPause.on('click', function(e) {
-            if (!this.classList.contains("play")) {
-                stopAnimate();
-
-                playPause.transition()
-                        .duration(300)
-                        .style("opacity", 0).each("end", function() {
-                    playPause.classed("play", true).transition().duration(100).style("opacity", 1);
-                });
-            } else {
-                startAnimate();
-
-                playPause.transition()
-                        .duration(300)
-                        .style("opacity", 0).each("end", function() {
-                    playPause.classed("play", false).transition().duration(100).style("opacity", 1);
-                });
-            }
+            isPlaying ? stopAnimate() : startAnimate();
         });
 
         sliderdiv = slidercontainer.append("div");
@@ -453,7 +431,5 @@ function checkKey(e) {
 
     }
 
-
-
-
+    return {stop: stopAnimate, play: animate}
 }(pageHeight));

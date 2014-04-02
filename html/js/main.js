@@ -155,11 +155,13 @@ window.load = (function() {
     }
 
      function hide_show_slider(goToSlide) {
-        if (currentPageIndex === 11 || currentPageIndex === 12 ){
-            if( !$('#slider').hasClass('show-slider') ) $('#slider').css('display','block').addClass('show-slider')
+        if( currentPageIndex === 11 || currentPageIndex === 12 ) {
+            sliderModule.stop();
+            if(!$('#slider').hasClass('show-slider')) $('#slider').addClass('show-slider');
+            var displayProp = currentPageIndex === 11 ? 'block' : 'none';
+            $('#startstop').css('display', displayProp);
         }
-        else $('#slider').removeClass('show-slider').on('transitionend', function(){$(this).css('display','none');})
-
+        else if ($('#slider').hasClass('show-slider')) $('#slider').removeClass('show-slider');
     }
 
     init();

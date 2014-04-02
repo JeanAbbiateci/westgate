@@ -314,7 +314,6 @@ div.newstip .time {
 
 .show-slider {
   opacity: 1 !important;
-  display: block !important;
   bottom: 30px !important; }
 
 .d3-slider {
@@ -350,10 +349,10 @@ div.newstip .time {
   display: block;
   margin: auto;
   margin-top: 6px;
-  background: url(../img/pause.png); }
+  background: url(../img/play.png); }
 #slider #startstop a.play {
   background-repeat: no-repeat;
-  background: url(../img/play.png); }
+  background: url(../img/pause.png); }
 
 /* Vertical grid */
 .v-1 {
