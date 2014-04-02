@@ -263,7 +263,7 @@ function makeFirst(el) {
 function createButton() {
     options = d3.select('#options')
     marker = options.append('div').attr("id",'marker')
-    types = [{type: 'type', html: 'Grouped users'},{type: 'all', html: 'Combined users'}]
+    types = [{type: 'type', html: 'By user group'},{type: 'all', html: 'Combined view'}]
     buttons = options.selectAll('.bubble-button').data(types).enter().append('div')
             .attr('class', 'bubble-button')
             .attr('id', function(d) {
