@@ -716,7 +716,7 @@ div.newstip .time {
   #page-bubble .description-text {
     position: absolute;
     width: 200px;
-    left: 10%; }
+    left: 0; }
     #page-bubble .description-text .bullet {
       float: left;
       width: 10px;
