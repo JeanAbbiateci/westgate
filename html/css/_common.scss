@@ -58,22 +58,19 @@ a {
       
     /* Slider is now common as it is needed on multiple pages. */
 
-    #slider
-    {
+    #slider{
       position:fixed;
 
-          div.timediv 
-    {
-        clear:both;
-
-      h1
-      {
-      line-height:$s2 + 12;
-      margin:0px;
-      font-size:$s2;
+      div.timediv{
+          clear:both;
+          margin-left: 70px;
+      h1{
+        line-height:$s2 + 12;
+        margin:0px;
+        font-size:$s2;
       }
       z-index:30000;
-    }
+      }
     }
 
 
@@ -116,24 +113,15 @@ a {
 
     #startstop a
     {
-<<<<<<< HEAD
       color:white;
       text-decoration: none;
-      width: 55px;
-      height: 55px;
+      width: 42px;
+      height: 42px;
       display: block;
-      background-repeat: no-repeat;
+      margin: auto;
+      margin-top: 6px;
       background: url(../img/pause.png);
-=======
-        color:white;   
-        text-decoration: none;
-        width: 42px;
-        height: 42px;
-        display: block;
-        margin: auto;
-        margin-top: 6px;
-        background: url(../img/pause.png);
->>>>>>> FETCH_HEAD
+
     }
 
     #startstop a.play

@@ -1,82 +1,809 @@
-/*
-Syntax error: Invalid CSS after "    {": expected "}", was "<<<<<<< HEAD"
-        on line 119 of _common.scss
-        from line 28 of style.scss
-
-114:         display:block;
-115:     }
-116: 
-117:     #startstop a
-118:     {
-119: <<<<<<< HEAD
-120:       color:white;
-121:       text-decoration: none;
-122:       width: 55px;
-123:       height: 55px;
-124:       display: block;
-
-Backtrace:
-_common.scss:119
-style.scss:28
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:1306:in `expected'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:1242:in `expected'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:1237:in `tok!'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:637:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:629:in `ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:692:in `block in declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:1282:in `call'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:1282:in `rethrow'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:693:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:655:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:647:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:636:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:629:in `ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:654:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:647:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:116:in `stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/scss/parser.rb:41:in `parse'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/engine.rb:409:in `_to_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/engine.rb:305:in `to_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:295:in `block in visit_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/stack.rb:88:in `block in with_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/stack.rb:121:in `with_frame'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/stack.rb:88:in `with_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:294:in `visit_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/stack.rb:121:in `with_frame'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:152:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:52:in `map'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:151:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/tree/root_node.rb:20:in `render'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/engine.rb:274:in `render'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:414:in `update_stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:186:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:393:in `on_file_changed'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:248:in `block in watch'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/listener.rb:252:in `call'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:252:in `call'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:252:in `report_changes'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:321:in `poll_changed_directories'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:297:in `block in start_poller'
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"    {\": expected \"}\", was \"<<<<<<< HEAD\"\A         on line 119 of _common.scss\A         from line 28 of style.scss\A \A 114:         display:block;\A 115:     }\A 116: \A 117:     #startstop a\A 118:     {\A 119: <<<<<<< HEAD\A 120:       color:white;\A 121:       text-decoration: none;\A 122:       width: 55px;\A 123:       height: 55px;\A 124:       display: block;"; }
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Homenaje);
+@import url(http://fonts.googleapis.com/css?family=Muli:300,400);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:300,400,700);
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+html {
+  height: 100%; }
+
+body {
+  line-height: 1;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 100%; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  font-family: 'Open sans', sans-serif;
+  overflow: hidden;
+  box-sizing: border-box; }
+
+.container {
+  max-width: 1190px;
+  width: auto;
+  margin: 0 auto;
+  height: 100%;
+  position: relative; }
+
+.clearfix .clearfix:before, .clearfix .clearfix:after {
+  content: " ";
+  display: table; }
+.clearfix .clearfix:after {
+  clear: both; }
+
+#story-nav {
+  cursor: default;
+  background-color: #343a45;
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* DOTS NAVIGATION */ }
+  #story-nav #logo {
+    text-align: center;
+    padding: 10px;
+    height: 100%;
+    width: 180px;
+    color: #8d94a5;
+    float: left;
+    font-size: 15px;
+    font-weight: 700; }
+    #story-nav #logo span {
+      font-family: 'Open sans';
+      font-size: 10px;
+      letter-spacing: 1px;
+      font-weight: 500; }
+  #story-nav ul {
+    cursor: pointer;
+    margin: 12px;
+    padding: 0;
+    list-style: none;
+    float: left;
+    color: #dbe1e7; }
+  #story-nav li {
+    display: inline-block;
+    margin-left: 50px; }
+  #story-nav a {
+    color: #8d94a5;
+    display: block;
+    padding: 6px 12px;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: bold; }
+  #story-nav a.active {
+    color: #db3d3d; }
+  #story-nav ul > li > a {
+    padding: 0px; }
+  #story-nav ul > li > ul {
+    margin: 3px auto;
+    padding: 0px; }
+  #story-nav ul > li > ul > li {
+    margin: 2px; }
+  #story-nav .dot {
+    padding: 0px;
+    display: block;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    float: left;
+    background-color: #4f5967; }
+  #story-nav .dot:hover {
+    background-color: #db3d3d; }
+  #story-nav .dot.active {
+    background-color: #db3d3d; }
+
+#pages-container {
+  height: 100%;
+  overflow: hidden;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  perspective: 1200px;
+  background-repeat: none; }
+  #pages-container .page {
+    width: 1190px;
+    margin: auto;
+    z-index: 100;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    overflow: visible;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+    #pages-container .page .container {
+      margin-top: 30px; }
+
+.current-page {
+  visibility: visible !important;
+  display: block;
+  z-index: 1; }
+
+#arrow-right {
+  -webkit-tap-highlight-color: transparent;
+  position: fixed;
+  right: 50px;
+  top: 50%;
+  width: 22px;
+  height: 40px;
+  margin-top: -20px;
+  cursor: pointer;
+  background-size: 22px 40px;
+  background-image: url("../img/arrow-right.png");
+  z-index: 100;
+  -webkit-user-select: none; }
+
+#arrow-left {
+  -webkit-tap-highlight-color: transparent;
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  width: 22px;
+  height: 40px;
+  margin-top: -20px;
+  cursor: pointer;
+  background-size: 22px 40px;
+  background-image: url("../img/arrow-left.png");
+  z-index: 100;
+  -webkit-user-select: none; }
+
+h1 {
+  text-transform: capitalize;
+  font-size: 54px;
+  font-weight: 200;
+  font-family: 'Open sans', sans-serif;
+  color: #dbe1e7;
+  line-height: 44px;
+  margin-bottom: 10px; }
+
+h2 {
+  text-transform: capitalize;
+  font-size: 32px;
+  font-weight: 300;
+  font-family: 'Open sans', sans-serif;
+  color: #dbe1e7;
+  line-height: 41px;
+  margin-bottom: 13px; }
+
+h3 {
+  font-size: 24px;
+  color: #dbe1e7;
+  line-height: 31px;
+  font-weight: 300; }
+
+h4 {
+  color: #dbe1e7;
+  margin-bottom: 30px;
+  line-height: 22.4px;
+  font-size: 16px; }
+
+h5 {
+  color: #dbe1e7;
+  line-height: 15.6px; }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: #dbe1e7;
+  line-height: 22px;
+  margin-bottom: 10px;
+  padding-bottom: 10px; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px; }
+
+.red {
+  color: #db3d3d;
+  font-weight: bold; }
+
+/* General styling for SVG, path, circle, p, h1 etc */
+a {
+  color: #008daa; }
+
+circle {
+  fill: #db3d3c;
+  cursor: pointer; }
+
+circle:hover {
+  fill: #343a45; }
+
+svg {
+  display: block;
+  margin: 0px !important; }
+
+path {
+  stroke: #8d94a5;
+  stroke-width: 0.25px;
+  fill: #343a45; }
+
+div.tooltip {
+  border-radius: 3px;
+  position: absolute;
+  text-align: left;
+  background: #b8bcc1;
+  height: auto;
+  min-width: 100px;
+  max-width: 450px;
+  padding: 13px;
+  font-size: 13px;
+  color: #343a45;
+  overflow: hidden;
+  z-index: 999;
+  line-height: 21px; }
+  div.tooltip p {
+    color: #343a45; }
+  div.tooltip h1 {
+    color: #4f5967; }
+
+div.newstip .time {
+  margin: 0px; }
+
+/* Slider is now common as it is needed on multiple pages. */
+#slider {
+  position: fixed; }
+  #slider div.timediv {
+    clear: both;
+    margin-left: 70px;
+    z-index: 30000; }
+    #slider div.timediv h1 {
+      line-height: 28px;
+      margin: 0px;
+      font-size: 16px; }
+
+.d3-slider {
+  cursor: pointer;
+  position: relative;
+  margin-left: 70px;
+  z-index: 2; }
+
+.d3-slider-handle {
+  margin-top: 8px;
+  height: 62px;
+  position: absolute;
+  width: 10px;
+  background: rgba(0, 141, 170, 0.6);
+  z-index: 3;
+  cursor: col-resize; }
+
+/* Styling for slider */
+#slider rect {
+  fill: #3a414c;
+  cursor: pointer; }
+#slider #startstop {
+  padding-top: 10px;
+  width: 70px;
+  float: left;
+  height: 60px;
+  display: block; }
+#slider #startstop a {
+  color: white;
+  text-decoration: none;
+  width: 42px;
+  height: 42px;
+  display: block;
+  margin: auto;
+  margin-top: 6px;
+  background: url(../img/pause.png); }
+#slider #startstop a.play {
+  background-repeat: no-repeat;
+  background: url(../img/play.png); }
+
+/* Vertical grid */
+.v-1 {
+  top: 20%; }
+
+.v-2 {
+  top: 40%; }
+
+.v-3 {
+  top: 60%; }
+
+.v-4 {
+  top: 80%; }
+
+.h-1 {
+  position: absolute;
+  left: 10px; }
+
+.h-2 {
+  position: absolute;
+  left: 32%; }
+
+.h-3 {
+  position: absolute;
+  left: 48%; }
+
+.h-4 {
+  position: absolute;
+  left: 64%; }
+
+.h-5 {
+  position: absolute;
+  left: 80%; }
+
+.h-6 {
+  position: absolute;
+  right: 10px; }
+
+#bg-images {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #212630;
+  z-index: -101; }
+  #bg-images .bg-image {
+    transform: translateZ(0);
+    position: absolute;
+    -webkit-transition: -webkit-filter 1s ease-in-out, opacity .8s ease-out;
+    transition-delay: .3s; }
+
+.gray {
+  -webkit-filter: grayscale(100%); }
+
+.selected-tweets-text {
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.6);
+  line-height: 22px;
+  color: #343a45;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  width: 450px; }
+
+.selected-tweets-text span {
+  color: #343a45;
+  font-weight: 700; }
+
+.description-text p {
+  color: #dbe1e7;
+  font-size: 13px;
+  line-height: 20px;
+  padding-top: 10px; }
+
+.description-text span {
+  color: #db3d3d;
+  font-size: 16px; }
+
+.description-text {
+  width: 300px; }
+
+.add-opacity {
+  opacity: 0.2 !important; }
+
+/* move from / to and fade */
+.pt-page-moveToLeftFade {
+  -webkit-animation: moveToLeftFade 1.2s ease-out;
+  -moz-animation: moveToLeftFade 1.2s ease-out;
+  animation: moveToLeftFade 1.2s ease-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.pt-page-moveFromLeftFade {
+  -webkit-animation: moveFromLeftFade 1.5s ease-out;
+  -moz-animation: moveFromLeftFade 1.5s ease-out;
+  animation: moveFromLeftFade 1.5s ease-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.pt-page-moveToRightFade {
+  -webkit-animation: moveToRightFade 1.2s ease-out;
+  -moz-animation: moveToRightFade 1.2s ease-out;
+  animation: moveToRightFade 1.2s ease-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.pt-page-moveFromRightFade {
+  -webkit-animation: moveFromRightFade 1.5s ease-out;
+  -moz-animation: moveFromRightFade 1.5s ease-out;
+  animation: moveFromRightFade 1.5s ease-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+/* move from / to and fade */
+@-webkit-keyframes moveToLeftFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    -webkit-transform: translateX(-20%);
+    opacity: 0; } }
+@-moz-keyframes moveToLeftFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    -moz-transform: translateX(-20%);
+    opacity: 0; } }
+@-o-keyframes moveToLeftFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    -o-transform: translateX(-20%);
+    opacity: 0; } }
+@keyframes moveToLeftFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    transform: translateX(-20%);
+    opacity: 0; } }
+@-webkit-keyframes moveFromLeftFade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-15%); }
+
+  50% {
+    -webkit-transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0); } }
+@-moz-keyframes moveFromLeftFade {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(-15%); }
+
+  50% {
+    -moz-transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0); } }
+@-o-keyframes moveFromLeftFade {
+  0% {
+    opacity: 0;
+    -o-transform: translateX(-15%); }
+
+  50% {
+    -o-transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    -o-transform: translateX(0); } }
+@keyframes moveFromLeftFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-15%); }
+
+  50% {
+    transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes moveToRightFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    -webkit-transform: translateX(20%);
+    opacity: 0; } }
+@-moz-keyframes moveToRightFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    -moz-transform: translateX(20%);
+    opacity: 0; } }
+@-o-keyframes moveToRightFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    -o-transform: translateX(20%);
+    opacity: 0; } }
+@keyframes moveToRightFade {
+  30% {
+    opacity: 0; }
+
+  100% {
+    transform: translateX(20%);
+    opacity: 0; } }
+@-webkit-keyframes moveFromRightFade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(15%); }
+
+  50% {
+    -webkit-transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0); } }
+@-moz-keyframes moveFromRightFade {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(15%); }
+
+  50% {
+    -moz-transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0); } }
+@-o-keyframes moveFromRightFade {
+  0% {
+    opacity: 0;
+    -o-transform: translateX(15%); }
+
+  50% {
+    -o-transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    -o-transform: translateX(0); } }
+@keyframes moveFromRightFade {
+  0% {
+    opacity: 0;
+    transform: translateX(15%); }
+
+  50% {
+    transform: translateX(0); }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+#page-intro .container {
+  margin-left: 10%;
+  padding-top: 80px; }
+  #page-intro .container p {
+    width: 500px; }
+#page-intro .y path {
+  fill: none; }
+#page-intro .y text {
+  text-transform: uppercase;
+  fill: #8d94a5; }
+#page-intro .grid .tick {
+  stroke: #8d94a5;
+  opacity: 0.7; }
+#page-intro .grid path {
+  stroke-width: 0.1;
+  shape-rendering: crispEdges; }
+#page-intro .hour {
+  fill: #343a45; }
+#page-intro .hour-light {
+  fill: #4c515c; }
+#page-intro .hourLabel {
+  fill: #8d94a5; }
+
+#tweet-map {
+  margin-top: 0px !important; }
+  #tweet-map g:nth-child(2) > path:nth-child(7) {
+    /* Remove penguins*/
+    display: none; }
+  #tweet-map #map {
+    margin-top: 50px !important; }
+  #tweet-map .description-text {
+    position: absolute;
+    top: 50%;
+    left: 10%; }
+
+#word-chart svg {
+  margin-top: 71px !important; }
+#word-chart .description-text {
+  position: absolute;
+  width: 200px;
+  left: 10px;
+  top: 100px; }
+#word-chart .tick {
+  fill: #8d94a5; }
+#word-chart div > svg:nth-child(3) {
+  margin-top: 150px !important;
+  float: right; }
+#word-chart div > svg:nth-child(2) {
+  position: absolute;
+  top: 40px;
+  left: 22%;
+  background-color: #343a45;
+  border-radius: 4px; }
+#word-chart div > svg:nth-child(2) > text {
+  fill: #b8bcc1;
+  cursor: default; }
+#word-chart path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none; }
+#word-chart .grammes path,
+#word-chart .grammes line {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none; }
+#word-chart .axis path,
+#word-chart .axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 2;
+  shape-rendering: crispEdges; }
+#word-chart .x.axis path {
+  display: none; }
+#word-chart .axis text {
+  font-family: sans-serif;
+  font-size: 11px; }
+#word-chart .grid .tick {
+  stroke: #4f5967;
+  opacity: 0.7; }
+#word-chart .grid path {
+  stroke-width: 0; }
+#word-chart .lala {
+  background-color: red; }
+#word-chart table, #word-chart th, #word-chart td {
+  border: 1px dotted lightgrey;
+  border-collapse: collapse; }
+#word-chart th, #word-chart td {
+  padding: 5px; }
+#word-chart .tableHead {
+  background: #eee; }
+
+#word-container > svg:nth-child(3) text {
+  fill: #dbe1e7; }
+
+#page-bubble {
+  position: relative svg;
+    position-margin-top: 71px; }
+  #page-bubble .description-text {
+    position: absolute;
+    width: 200px;
+    left: 10%; }
+    #page-bubble .description-text .bullet {
+      float: left;
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      border-radius: 10px; }
+    #page-bubble .description-text .normal {
+      color: #dbe1e7;
+      font-size: 13px; }
+    #page-bubble .description-text .ver {
+      background-color: #8d94a5; }
+    #page-bubble .description-text .non-ver {
+      background-color: #c5bb91; }
+  #page-bubble .bubble {
+    fill: #c5bb91;
+    stroke: #212630;
+    stroke-width: 1px; }
+  #page-bubble .bubble.verified {
+    fill: #8d94a5; }
+  #page-bubble .types {
+    font-size: 16px;
+    fill: #b8bcc1; }
+  #page-bubble #options {
+    width: 33%;
+    margin: 142px auto 0 auto; }
+    #page-bubble #options .bubble-button {
+      font-size: 16px;
+      color: #dbe1e7;
+      margin-right: 10%; }
+  #page-bubble #marker {
+    position: relative;
+    background-color: #db3d3d;
+    height: 0px;
+    border: 1px solid #db3d3d;
+    border-radius: 10px;
+    top: 21px; }
+
+#all {
+  float: right; }
+
+#type {
+  float: left; }
+
+#network svg {
+  margin-top: 10px !important; }
+#network .description-text {
+  position: absolute;
+  width: 225px;
+  left: 0px;
+  top: 15%; }
+  #network .description-text .bullet {
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px; }
+  #network .description-text .normal {
+    color: #dbe1e7;
+    font-size: 13px; }
+  #network .description-text .ver {
+    background-color: #8d94a5; }
+  #network .description-text .non-ver {
+    background-color: #c5bb91; }
+#network .bubble {
+  fill: #c5bb91;
+  stroke: #212630;
+  stroke-width: 1px; }
+#network .bubble.verified {
+  fill: #8d94a5; }
+
+#photo-gallery .image-tile {
+  background-repeat: no-repeat;
+  float: left; }
+#photo-gallery .img-row {
+  overflow: hidden; }
+#photo-gallery #preview {
+  position: absolute;
+  overflow: hidden;
+  z-index: 100;
+  padding: 10px;
+  background-color: #1b1e2a;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(34, 34, 42, 0.96);
+  top: 0;
+  left: 0; }
+#photo-gallery #big-pic {
+  max-height: 300px;
+  max-width: 300px; }
+
+#page-intro .y path {
+  display: none; }
+#page-intro .container {
+  padding-top: 80px; }
+  #page-intro .container p {
+    width: 500px; }
