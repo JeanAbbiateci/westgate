@@ -711,8 +711,9 @@ div.newstip .time {
   fill: #dbe1e7; }
 
 #page-bubble {
-  position: relative svg;
-    position-margin-top: 71px; }
+  position: relative; }
+  #page-bubble #bubble > svg {
+    margin: auto !important; }
   #page-bubble .description-text {
     position: absolute;
     width: 200px;

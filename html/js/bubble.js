@@ -19,7 +19,7 @@ function bubble(hour, current_view) {
             this.create_nodes = __bind(this.create_nodes, this);
             this.data = data;
             var max_amount;
-            this.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            this.width = Math.min(Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 800);
             this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
             this.center = {
                 x: this.width / 2,
