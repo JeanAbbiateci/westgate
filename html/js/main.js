@@ -127,7 +127,7 @@ window.load = (function() {
         currentPageIndex = goToSlide;
         updateDot();
 
-       hide_show_slider(goToSlide)
+       hide_show_slider(currentPageIndex)
     }
 
     function setBgImgSizes(){
@@ -174,7 +174,7 @@ window.load = (function() {
         else
         {
             d3.select("#slider").transition().duration(500).style("opacity", 0)
-            d3.select("#slider").transition().Delay(1000).style("display","none")
+            d3.select("#slider").transition().delay(1000).style("display","none")
         }
 
     }
