@@ -634,8 +634,8 @@ div.newstip .time {
     margin-top: 50px !important; }
   #tweet-map .description-text {
     position: absolute;
-    top: 460px;
-    left: 370px; }
+    top: 50%;
+    left: 10%; }
 
 #word-chart svg {
   margin-top: 71px !important; }

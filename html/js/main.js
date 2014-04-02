@@ -129,6 +129,8 @@ window.load = (function() {
             currentPageIndex = goToSlide;
             updateDot();
         });
+
+        hide_show_slider(goToSlide)
     }
 
     function setBgImgSizes(){
@@ -137,7 +139,6 @@ window.load = (function() {
             $item.load(function(){
                 var w = $item.width() - documentWidth,
                     h = $item.height() - documentHeight;
-                console.log(w,h);
                 if (w < h || w === h){
                     $item.width(documentWidth);
                 }
@@ -151,5 +152,31 @@ window.load = (function() {
         $outpage.attr( 'class', $outpage.data( 'originalClassList' ) );
         $inpage.attr( 'class', $inpage.data( 'originalClassList' ) + ' current-page' );
     }
+
+    function hide_show_slider(goToSlide) {
+
+        if(goToSlide === 11){
+            currentPage = "tweet-map"
+        }else if(goToSlide === 12){
+            currentPage = "bubble-page"
+        }else{
+            currentPage = "other"
+        }
+        if (currentPage === "tweet-map" || currentPage === "bubble-page")
+        {
+            d3.select("#slider").transition().duration(1000).style("display", "block").style("opacity", 1);
+            if(currentPage === "tweet-map")
+                d3.select("#startstop").style("display", "block");
+            else
+                d3.select("#startstop").style("display", "none");
+        }
+        else
+        {
+            d3.select("#slider").transition().duration(500).style("opacity", 0)
+            d3.select("#slider").transition().delay(1000).style("display","none")
+        }
+
+    }
+
     init();
 })();
