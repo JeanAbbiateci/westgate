@@ -391,7 +391,7 @@ div.newstip .time {
   #bg-images .bg-image {
     transform: translateZ(0);
     position: absolute;
-    -webkit-transition: -webkit-filter 1s ease-in-out;
+    -webkit-transition: -webkit-filter 1s ease-in-out, opacity 2s ease-out;
     transition-delay: 1s; }
 
 .gray {
@@ -423,6 +423,9 @@ div.newstip .time {
 
 .description-text {
   width: 300px; }
+
+.add-opacity {
+  opacity: 0.2; }
 
 /* move from / to and fade */
 .pt-page-moveToLeftFade {
