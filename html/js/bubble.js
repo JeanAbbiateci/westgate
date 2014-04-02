@@ -246,23 +246,24 @@ function urlize(content) {
 
 function moveMarker(el) {
     rect = el.getBoundingClientRect()
-    left = rect.left - 53
+    options_rect = document.getElementById('options').getBoundingClientRect()
+    left = rect.left - options_rect.left - 5
     size = rect.right - rect.left + 10
-    d3.select('#marker').transition().duration(1000).style('left', left + 'px').style('width', size + 'px')
+    marker.transition().duration(1000).style('left', left + 'px').style('width', size + 'px')
 }
 
 function makeFirst(el) {
     rect = el.getBoundingClientRect()
-    console.log(rect)
-    left = rect.left - 60
-    console.log(left)
+    options_rect = document.getElementById('options').getBoundingClientRect()
+    left = rect.left - options_rect.left - 10
     size = rect.right - rect.left + 18
-    d3.select('#marker').transition().duration(1000).style('left', left + 'px').style('width', size + 'px')
+    marker.transition().duration(1000).style('left', left + 'px').style('width', size + 'px')
 }
 
 function createButton() {
     options = d3.select('#options')
-    types = [{type: 'type', html: 'Group users'}, {type: 'all', html: 'Aggregate groups'}]
+    marker = options.append('div').attr("id",'marker')
+    types = [{type: 'all', html: 'Aggregate groups'}, {type: 'type', html: 'Group users'}]
     buttons = options.selectAll('.bubble-button').data(types).enter().append('div')
             .attr('class', 'bubble-button')
             .attr('id', function(d) {
