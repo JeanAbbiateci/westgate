@@ -139,7 +139,7 @@ body {
     float: left;
     background-color: #4f5967; }
   #story-nav .dot:hover {
-    background-color: #db3d3d; }
+    background-color: #8d94a5; }
   #story-nav .dot.active {
     background-color: #db3d3d; }
 
@@ -411,7 +411,7 @@ div.newstip .time {
 
 .selected-tweets-text {
   font-style: italic;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.4);
   line-height: 22px;
   color: #343a45;
   padding: 15px;
