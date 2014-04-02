@@ -203,7 +203,7 @@
     function showCirclesAnimation() {
         circles.transition()
                 .duration(720)
-                .attr("r", 12);
+                .attr("r", 10);
     }
 
     loadData();

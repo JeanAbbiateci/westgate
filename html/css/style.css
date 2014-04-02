@@ -232,8 +232,6 @@ h3 {
 
 h4 {
   color: #dbe1e7;
-  margin-bottom: 30px;
-  line-height: 22.4px;
   font-size: 16px; }
 
 h5 {
@@ -618,10 +616,11 @@ div.newstip .time {
     opacity: 1;
     transform: translateX(0); } }
 #page-intro .container {
-  margin-left: 10%;
   padding-top: 80px; }
-  #page-intro .container p {
-    width: 500px; }
+  #page-intro .container .description-text {
+    width: 400px;
+    margin: 0 100px;
+    margin-bottom: 40px; }
 #page-intro .y path {
   fill: none; }
 #page-intro .y text {
@@ -653,7 +652,7 @@ div.newstip .time {
     left: 10%; }
 
 #word-chart svg {
-  margin-top: 71px !important; }
+  margin-top: 126px !important; }
 #word-chart .description-text {
   position: absolute;
   width: 200px;
@@ -662,11 +661,11 @@ div.newstip .time {
 #word-chart .tick {
   fill: #8d94a5; }
 #word-chart div > svg:nth-child(3) {
-  margin-top: 150px !important;
+  margin-top: 175px !important;
   float: right; }
 #word-chart div > svg:nth-child(2) {
   position: absolute;
-  top: 40px;
+  top: 30px;
   left: 22%;
   background-color: #343a45;
   border-radius: 4px; }
@@ -813,5 +812,3 @@ div.newstip .time {
   display: none; }
 #page-intro .container {
   padding-top: 80px; }
-  #page-intro .container p {
-    width: 500px; }

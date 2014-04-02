@@ -1,9 +1,11 @@
 #page-intro {
     .container{
-      margin-left: 10%;
       padding-top: 80px;
-      p{
-        width: 500px;
+
+      .description-text{
+        width: 400px;
+        margin: 0 100px;
+        margin-bottom: 40px;
       }
     }
 
