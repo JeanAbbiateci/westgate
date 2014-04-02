@@ -64,12 +64,12 @@
     	}
     }
     #marker{
-		position: relative;
+		position: absolute;
 		background-color: $red;
 		height: 0px;
 		border: 1px solid $red;
 		border-radius: 10px;
-		top: $s2 + 5px;
+		top: 162px;
     }
 }
 
