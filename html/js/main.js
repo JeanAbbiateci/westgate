@@ -1,8 +1,11 @@
-var pageHeight = 0;                             // height of the slides in the page
-var pagesList = [];
-var currentPageIndex = 0;
-var currentPage = pagesList[currentPageIndex];  // current page ID the user is seeing
-var headerHeight = $('#story-nav').height();    // header height. Should be dinamix => fix!
+var pageHeight = 0,                             // height of the slides in the page
+    pagesList = [],
+    currentPageIndex = 0,
+    currentPage = pagesList[currentPageIndex],  // current page ID the user is seeing
+    headerHeight = $('#story-nav').height(),    // header height. Should be dinamix => fix!
+    $pagesContainer = $('#pages-container'),
+    documentHeight = $pagesContainer.height(),
+    documentWidth = $pagesContainer.width();
 
 //Collect pages id
 $('.page').each(function(i) {
@@ -14,7 +17,7 @@ window.load = (function() {
 
     var submenulengths = [8, 4, 4, 3, 2], //slides in each chapters
     $chapters = $('#chapters'),
-    $main = $( '.pages-container' ),
+    $main = $( '#pages-container' ),
     $pages = $main.children( 'div.page' ),
     $bg = $('#bg-images'),
     $bgImg = undefined,
@@ -51,9 +54,11 @@ window.load = (function() {
             var $page = $( this );
             $page.data( 'originalClassList', $page.attr( 'class' ) );
             var bg = $page.attr('bg') || "";
-            $bg.append('<div style="' + bg + ' ; z-index:'+z+'; opacity:0" class="bg-image gray"></div>');
+            $bg.append('<img src="' + bg + '" style="z-index:'+z+'; opacity:0" class="bg-image gray" />');
         } );
         $bgImg =  $('.bg-image'); //update bg variable
+
+        requestAnimationFrame(setBgImgSizes) //update positions of backgrounds
 
         //Initiate first active page
         $pages.eq( currentPageIndex ).addClass( 'current-page' );
@@ -61,10 +66,12 @@ window.load = (function() {
             $(this).removeClass('gray');
         });
 
-        //Set arrow keys
+        //Set arrow keys for navigation
         $(window).on('keydown', function(e){
-            if(e.keyCode === 39 && currentPageIndex < pagesList.length-1) switchPage(currentPageIndex+1);
-            if(e.keyCode === 37 && currentPageIndex > 0) switchPage(currentPageIndex-1);
+            if(!isAnimating){
+                if(e.keyCode === 39 && currentPageIndex < pagesList.length-1) switchPage(currentPageIndex+1);
+                if(e.keyCode === 37 && currentPageIndex > 0) switchPage(currentPageIndex-1);
+            }
         });
     }
 
@@ -121,6 +128,22 @@ window.load = (function() {
             $bgImg.eq(currentPageIndex).addClass('gray');
             currentPageIndex = goToSlide;
             updateDot();
+        });
+    }
+
+    function setBgImgSizes(){
+        $bg.find('.bg-image').each(function(){
+            var $item = $(this);
+            $item.load(function(){
+                var w = $item.width() - documentWidth,
+                    h = $item.height() - documentHeight;
+                console.log(w,h);
+                if (w < h || w === h){
+                    $item.width(documentWidth);
+                }
+                if (w > h) $item.height(documentHeight);
+
+            });
         });
     }
 
