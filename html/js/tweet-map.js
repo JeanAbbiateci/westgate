@@ -310,7 +310,7 @@ function checkKey(e) {
      * @return {undefined}
      */
     function loadBarchart()
-    {
+    {   
         // VARIABLES
         var topmargin = 8;
         var playPauseWidth = 70;

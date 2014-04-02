@@ -1,7 +1,9 @@
 #network{
+
   svg{
-    margin-top:71px !important;
+    margin-top: 10px !important;
   }
+
   .description-text{
     position: absolute;
     width: 225px;
@@ -34,7 +36,7 @@
     .bubble
     {
       fill: $yellow;
-      stroke: $gray;
+      stroke: #212630;
       stroke-width:1px;
     }
 
