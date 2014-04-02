@@ -135,13 +135,16 @@ window.load = (function() {
         $bg.find('.bg-image').each(function(){
             var $item = $(this);
             $item.load(function(){
-                var w = $item.width() - documentWidth,
-                    h = $item.height() - documentHeight;
-                console.log(w,h);
-                if (w < h || w === h){
+                var w = $item.width(),
+                    h = $item.height(),
+                    wr = w / documentWidth,
+                    hr = h / documentHeight;
+                if (wr < hr || wr === hr){
                     $item.width(documentWidth);
                 }
-                if (w > h) $item.height(documentHeight);
+                if (wr > hr){
+                    $item.height(documentHeight);
+                }
 
             });
         });
