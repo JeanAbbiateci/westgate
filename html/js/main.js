@@ -21,6 +21,8 @@ window.load = (function() {
     $pages = $main.children( 'div.page' ),
     $bg = $('#bg-images'),
     $bgImg = undefined,
+    $arrowL = $('#arrow-left'),
+    $arrowR = $('#arrow-right'),
     pagesCount = $pages.length,
     isAnimating = false,
     endCurrPage = false,
@@ -48,6 +50,7 @@ window.load = (function() {
             });
         });
 
+
         //Add backgrounds
         $pages.each( function(z) {
             z = z -100;
@@ -59,6 +62,9 @@ window.load = (function() {
         $bgImg =  $('.bg-image'); //update bg variable
 
         requestAnimationFrame(setBgImgSizes) //update positions of backgrounds
+
+        //Disable left arrow
+        updateControls.disabledArrow = $arrowL;
 
         //Initiate first active page
         $pages.eq( currentPageIndex ).addClass( 'current-page' );
@@ -73,9 +79,28 @@ window.load = (function() {
         });
     }
 
-    function updateDot(){
+    function updateControls(){
+        hide_show_slider(currentPageIndex)
+
+        //update dots
         $('.dot.active').removeClass('active');
         if(currentPageIndex > 0) $('.dot').eq(currentPageIndex-1).addClass('active');
+
+        //update arrows
+        if (currentPageIndex === 0 ) {
+            $arrowL.css('display','none');
+            updateControls.disabledArrow = $arrowL;
+        }
+        else if(currentPageIndex >= pagesList.length -1 ) {
+            $arrowR.css('display','none');
+            updateControls.disabledArrow = $arrowR;
+        }
+        else{
+            if(updateControls.disabledArrow){
+                updateControls.disabledArrow.css('display','block');
+                updateControls.disabledArrow = false;
+            }
+        }
     }
 
     function onEndAnimation( $outpage, $inpage ) {
@@ -125,9 +150,7 @@ window.load = (function() {
         $bgImg.eq(goToSlide).removeClass('gray');
         $bgImg.eq(currentPageIndex).addClass('gray').removeClass('add-opacity');
         currentPageIndex = goToSlide;
-        updateDot();
-
-       hide_show_slider(currentPageIndex)
+        updateControls();
     }
 
     function setBgImgSizes(){

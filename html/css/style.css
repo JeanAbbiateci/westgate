@@ -203,7 +203,8 @@ body {
   background-size: 22px 40px;
   background-image: url("../img/arrow-left.png");
   z-index: 100;
-  -webkit-user-select: none; }
+  -webkit-user-select: none;
+  display: none; }
 
 h1 {
   text-transform: capitalize;
