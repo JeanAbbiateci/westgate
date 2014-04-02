@@ -50,6 +50,8 @@ window.load = (function() {
             });
         });
 
+        //Add switch to logo
+        $('#logo').on('click', function(){ switchPage(0) })
 
         //Add backgrounds
         $pages.each( function(z) {

@@ -33,13 +33,14 @@ body {
 
   #logo {
    text-align: center;
-  padding: 10px;
+    padding: 10px;
     height: 100%;
     width: 180px;
     color: $light-blue;
     float: left;
     font-size: 15px;
     font-weight: 700;
+    cursor: pointer;
     span{
       font-family: 'Open sans';
       font-size: 10px;
@@ -165,30 +166,29 @@ body {
 #arrow-right{
   -webkit-tap-highlight-color: transparent;
   position: fixed;
+  width: 60px;
+  height: 60px;
   right: 50px;
-  top: 50%;
-  width: 22px;
-  height: 40px;
-  margin-top: -20px;
+  bottom: 20px;
   cursor: pointer;
   background-size: 22px 40px;
-  background-image: url('../img/arrow-right.png');
+  background: url('../img/arrow-right.png') rgba(255,255,255,0.1) no-repeat center;
   z-index: 100;
+  border-radius: 4px;
   -webkit-user-select: none;
 }
 
 #arrow-left{
   -webkit-tap-highlight-color: transparent;
   position: fixed;
-  left: 50px;
-  top: 50%;
-  width: 22px;
-  height: 40px;
-  margin-top: -20px;
+  width: 60px;
+  height: 60px;
+  right: 120px;
+  bottom: 20px;
   cursor: pointer;
   background-size: 22px 40px;
-  background-image: url('../img/arrow-left.png');
+  background: url('../img/arrow-left.png') rgba(255,255,255,0.1) no-repeat center;
   z-index: 100;
-  -webkit-user-select: none;
+  border-radius: 4px;
   display: none;
 }
