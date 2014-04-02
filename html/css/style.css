@@ -142,14 +142,14 @@ body {
   #story-nav .dot.active {
     background-color: #db3d3d; }
 
-.pages-container {
+#pages-container {
   height: 100%;
   overflow: hidden;
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
   perspective: 1200px;
   background-repeat: none; }
-  .pages-container .page {
+  #pages-container .page {
     width: 1190px;
     margin: auto;
     z-index: 100;
@@ -169,7 +169,7 @@ body {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d; }
-    .pages-container .page .container {
+    #pages-container .page .container {
       margin-top: 30px; }
 
 .current-page {
@@ -389,11 +389,8 @@ div.newstip .time {
   background-color: #212630;
   z-index: -101; }
   #bg-images .bg-image {
+    transform: translateZ(0);
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     -webkit-transition: -webkit-filter 1s ease-in-out;
     transition-delay: 1s; }
 

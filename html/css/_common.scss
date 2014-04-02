@@ -183,11 +183,8 @@ a {
   background-color: $bg-blue;
   z-index: -101;
   .bg-image{
+    transform: translateZ(0);
     position: absolute;
-    height : 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     -webkit-transition:-webkit-filter 1s ease-in-out;
     transition-delay: 1s;
   }
