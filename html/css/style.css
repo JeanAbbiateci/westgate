@@ -691,7 +691,8 @@ div.newstip .time {
   display: none; }
 #word-chart .axis text {
   font-family: sans-serif;
-  font-size: 11px; }
+  font-size: 11px;
+  text-transform: uppercase; }
 #word-chart .grid .tick {
   stroke: #4f5967;
   opacity: 0.7; }

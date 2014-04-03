@@ -283,7 +283,7 @@
                 .attr("transform", "translate(" + (w / 2) + " ," + (h - margin.bottom) + ")")
                 .style("text-anchor", "middle")
                 .attr("font-family", "sans-serif")
-                .attr("font-size", "10px")
+                .attr("font-size", "14px")
                 .attr("font-weight", "bold")
                 .attr("fill", "#8A93A5")
                 .text("DATE");
@@ -296,7 +296,7 @@
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
                 .attr("font-family", "sans-serif")
-                .attr("font-size", "10px")
+                .attr("font-size", "14px")
                 .attr("font-weight", "bold")
                 .attr("fill", "#8A93A5")
                 .text("FREQUENCY");
@@ -576,7 +576,7 @@
             // remove circles
             svgContainer.selectAll("#circles-" + pos).remove();
             // remove rect
-            legendsvg.select("#rect-" + pos).style("fill", "#4C515C");
+            legendsvg.select("#rect-" + pos).style("fill", "#212630");
         }
 
         // re-calculate max value for y axis
