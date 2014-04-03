@@ -12,7 +12,7 @@
 
 
     function loadData() {
-        d3.json("data/massmedianewsfeed.json", function(error, json) {
+        d3.json("data/updated_massmedianewsfeed.json", function(error, json) {
             if (error)
                 return console.warn(error);
             data = json;
@@ -170,16 +170,16 @@
             day = d[1];
         }
 
-        if (day.substring(7, 9) == "21") {
+        if (day.substring(day.length -5, day.length - 3) == "21") {
             sday = "Sat 21 ";
         }
-        else if (day.substring(7, 9) == "22") {
+        else if (day.substring(day.length -5, day.length - 3) == "22") {
             sday = "Sun 22";
         }
-        else if (day.substring(7, 9) == "23") {
+        else if (day.substring(day.length -5, day.length - 3) == "23") {
             sday = "Mon 23";
         }
-        else if (day.substring(7, 9) == "24") {
+        else if (day.substring(day.length -5, day.length - 3) == "24") {
             sday = "Tue 24";
         }
         else {
@@ -193,10 +193,10 @@
         var text = [];
         if (d[0] instanceof Array) {
             for (var i = 0; i < d.length; i++)
-                text = text + d[i][1] + " - " + d[i][2] + "</br></br>" + d[i][3] + "</br></br>";
+                text = text + "<p>" + d[i][1] + " - " + d[i][2] + "</br>" + d[i][4] + "</br" + d[i][3] + "</p>";
         }
         else
-            text = d[1] + " - " + d[2] + "</br></br>" + d[3];
+            text = "<p>" + d[1] + " - " + d[2] + "</br>" + d[4] + "</br" + d[3] + "</p>";
         return text;
     }
 

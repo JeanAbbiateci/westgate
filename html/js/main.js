@@ -1,5 +1,6 @@
 var pageHeight = 0,                             // height of the slides in the page
     pagesList = [],
+    ti = 0,
     currentPageIndex = 0,
     currentPage = pagesList[currentPageIndex],  // current page ID the user is seeing
     headerHeight = $('#story-nav').height(),    // header height. Should be dinamix => fix!
@@ -192,6 +193,11 @@ window.load = (function() {
             $('#startstop').css('display', displayProp);
         }
         else if ($('#slider').hasClass('show-slider')) $('#slider').removeClass('show-slider');
+
+        if( currentPageIndex === 11)
+            sliderModule.drawDots();
+        if( currentPageIndex === 12)
+            bubble(ti, get_current_view());
     }
 
     init();

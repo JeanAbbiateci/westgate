@@ -10,7 +10,7 @@ var sliderModule = (function(pageHeight) {
      */
 
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0), w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-            t_style = "linear", ti = 0,
+            t_style = "linear",
             timelapse, tweets_per_location, newsfeed, tweets_per_hour, dates = new Array(),
             barchartheight = 100,
             animationSpeed = 700,
@@ -151,6 +151,7 @@ var sliderModule = (function(pageHeight) {
             })
             .entries(tweet_locations);
             drawDots();
+            settime();
         });
     }
 
@@ -166,7 +167,7 @@ var sliderModule = (function(pageHeight) {
     // News Items
     function loadNewsItems() {
         // DRAW TWEETS ON MAP.
-        d3.json("data/newsfeed.json", function(error, news_feed) {
+        d3.json("data/updated_massmedianewsfeed.json", function(error, news_feed) {
             newsfeed = news_feed;
             loadBarchart();
             loadTweets();
@@ -207,6 +208,7 @@ var sliderModule = (function(pageHeight) {
         else
         {
             drawDots();
+            settime();
         }
 
     }
@@ -283,14 +285,17 @@ var sliderModule = (function(pageHeight) {
         //remove
         temp_g.exit().remove();
 
+        //set slider
+        slider.slide_to(ti);
+
+    }
+
+    function settime()
+    {
         //timeset
         var currenttime = tweets_per_location[ti].key;
         var timeobject = moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
         timediv.html("<h1>" + timeobject.zone(-3).format("dddd Do, h:mm a") + "</h1>")
-
-        //set slider
-        slider.slide_to(ti);
-
     }
 
     /* 
@@ -345,10 +350,12 @@ var sliderModule = (function(pageHeight) {
                 .on("slide", function(evt, value) {
                     console.log(value)
                     ti = value;
-                    if(currentPage === "tweet-map")
+                    if(currentPageIndex === 11)
                         drawDots();
                     else
                         bubble(ti, get_current_view());
+
+                    settime();
                 });
         // CREATE SLIDER
         sliderdiv
@@ -396,21 +403,20 @@ var sliderModule = (function(pageHeight) {
                 .enter()
                 .append("circle")
                 .attr("cx", function(d, i) {
-            return d[0] * (barwidth - playPauseWidth) / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
+                    if (d[0] instanceof Array)
+                        time = d[0][0];
+                    else
+                        time = d[0];
+            return time * (barwidth - playPauseWidth) / tweets_per_hour.length + (barwidth / tweets_per_hour.length) / 2;
         })
                 .attr("cy", function(d, i) {
             return 4;
         })
                 .attr("r", 4)
-                .on("mouseover", function(d) {
+                .on("mouseover", function(d,i) {
 
 
-            tooltip.html(
-                    // Source + Time
-                    '<p class="time"><strong>' + d[2] + ":" + d[1] + "</strong></p>" +
-                    // Content
-                    '<p class="content">' + d[3] + "</p>"
-                    )
+            tooltip.html(buildTooltipData(d,i))
                     .style("left", (d3.event.pageX - 200) + "px")
                     .style("top", null)
                     .style("bottom", (h - d3.event.pageY + 6) + "px")
@@ -431,5 +437,17 @@ var sliderModule = (function(pageHeight) {
 
     }
 
-    return {stop: stopAnimate, play: animate}
+    function buildTooltipData(d, i) {
+
+        var text = [];
+        if (d[0] instanceof Array) {
+            for (var i = 0; i < d.length; i++)
+                text = text + "<p>" + d[i][1] + " - " + d[i][2] + "</br>" + d[i][4] + "</br" + d[i][3] + "</p>";
+        }
+        else
+            text = "<p>" + d[1] + " - " + d[2] + "</br>" + d[4] + "</br" + d[3] + "</p>";
+        return text;
+    }
+
+    return {stop: stopAnimate, play: animate, drawDots: drawDots}
 }(pageHeight));
