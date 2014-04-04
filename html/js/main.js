@@ -88,7 +88,7 @@ window.load = (function() {
     }
 
     function updateControls(){
-        hide_show_slider(currentPageIndex)
+        hide_show_slider(currentPageIndex);
 
         //update dots
         $('.dot.active').removeClass('active');

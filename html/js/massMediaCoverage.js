@@ -23,9 +23,10 @@
     function visualizeit() {
 
         var hoursData = [];
-        for (var i = 0; i < 24; i++) {
-            hoursData.push(i);
-        }
+        for(var j=0;j<2;j++)
+            for (var i = 0; i < 12; i++) {
+                hoursData.push(i);
+            }
 
         var dayNameBarWidth = 100,
                 barWidth = (svgWidth - dayNameBarWidth) / 24;
@@ -189,17 +190,18 @@
     }
 
     function buildTooltipData(d, i) {
-
+        var hour = "";
         var text = [];
         if (d[0] instanceof Array) {
-            var hour = "";
             for (var i = 0; i < d.length; i++){
                 hour = d[i][1].split(",");
-                text = text + "<p>" + hour[1] + " - <strong>" + d[i][2] + "</strong></br><small>" +d[i][3]+ "</small><br />" + d[i][4] + "</br" + d[i][3] + "</p>";
+                text = text + "<p>" + hour[0] + " - <strong>" + d[i][2] + "</strong></br><small>" +d[i][3]+ "</small><br />" + d[i][4] + "</br" + d[i][3] + "</p>";
             }
         }
-        else
-            text = "<p>" + d[1] + " - " + d[2] + "</br>" + d[4] + "</br" + d[3] + "</p>";
+        else{
+            hour = d[1].split(",");
+            text = "<p>" + hour[0] + " - <strong>" + d[2] + "</strong></br><small>" +d[3]+ "</small></br>" + d[4] + "</br" + d[3] + "</p>";
+        }
         return text;
     }
 
