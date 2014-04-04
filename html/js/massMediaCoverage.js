@@ -192,8 +192,11 @@
 
         var text = [];
         if (d[0] instanceof Array) {
-            for (var i = 0; i < d.length; i++)
-                text = text + "<p>" + d[i][1] + " - " + d[i][2] + "</br>" + d[i][4] + "</br" + d[i][3] + "</p>";
+            var hour = "";
+            for (var i = 0; i < d.length; i++){
+                hour = d[i][1].split(",");
+                text = text + "<p>" + hour[1] + " - <strong>" + d[i][2] + "</strong></br><small>" +d[i][3]+ "</small><br />" + d[i][4] + "</br" + d[i][3] + "</p>";
+            }
         }
         else
             text = "<p>" + d[1] + " - " + d[2] + "</br>" + d[4] + "</br" + d[3] + "</p>";

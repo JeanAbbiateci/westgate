@@ -234,13 +234,13 @@ var sliderModule = (function(pageHeight) {
             tipdiv
                     .style("opacity", 1)
                     .style("display", "block");
-            tipdiv.html(d[4] + ": " + d[3] + " tweets")
+            tipdiv.html("<strong>" + d[4] + "</strong>: " + d[3] + " tweets")
                     .style("left", (d3.event.pageX) - 25 + "px")
                     .style("bottom", null)
                     .style("top", (d3.event.pageY - 50) + "px");
         })
                 .on("mouseout", function(d) {
-            tipdiv.style("opacity", 0).style("display", "none")
+            tipdiv.style("opacity", 0).style("display", "none");
         });
 
         if (animate) {
@@ -294,8 +294,9 @@ var sliderModule = (function(pageHeight) {
     {
         //timeset
         var currenttime = tweets_per_location[ti].key;
+        console.log(currenttime);
         var timeobject = moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
-        timediv.html("<h1>" + timeobject.zone(-3).format("dddd Do, h:mm a") + "</h1>")
+        timediv.html("<h1>" + timeobject.zone(-3).format("dddd D, h:mm a") + "</h1>");
     }
 
     /* 

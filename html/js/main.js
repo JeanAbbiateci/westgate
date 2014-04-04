@@ -52,11 +52,11 @@ window.load = (function() {
         });
 
         //Add controls to arrows
-        $('#arrow-left').on('click', function(){ switchPage(currentPageIndex-1) })
-        $('#arrow-right').on('click', function(){ switchPage(currentPageIndex+1) })
+        $('#arrow-left').on('click', function(){ switchPage(currentPageIndex-1); });
+        $('#arrow-right').on('click', function(){ switchPage(currentPageIndex+1); });
 
         //Add switch to logo
-        $('#logo').on('click', function(){ switchPage(0) })
+        $('#logo').on('click', function(){ switchPage(0); });
 
 
         //Add backgrounds

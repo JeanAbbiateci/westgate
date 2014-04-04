@@ -1,6 +1,6 @@
 function network(){
 
-  var treshold = 10
+  var treshold = 10;
 
   var height =  Math.max(document.documentElement.clientHeight, window.innerHeigt || 0);
     width =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -24,9 +24,9 @@ function network(){
     .clamp(true);
 
   var force = d3.layout.force()
-    .charge(function(d){return chargeScale(d.value)})
-    .linkDistance(function(d) { return linkramp(d.source.value + d.target.value )})
-    .size([width, height])
+    .charge(function(d){return chargeScale(d.value);})
+    .linkDistance(function(d) { return linkramp(d.source.value + d.target.value );})
+    .size([width, height]);
 
   var svg = d3.select("#networkContainer").append("svg")
       .attr("width", width)
@@ -34,8 +34,8 @@ function network(){
       
   function showTooltip(data) {
     var content;
-    content = "User: " + data.name + "<br/>";
-    content += "Amount of mentions/retweets: " + data.value;
+    content = "<strong>User</strong>: " + data.name + "<br/>";
+    content += "<strong>Amount of mentions/retweets</strong>: " + data.value;
     var y = d3.event.pageY;
     var x = d3.event.pageX;
     var tooltip = d3.select('.tooltip').style("left", (x - 50) + "px").style("top", (y - 160) + "px").html("<p>" + content + "</p>").style("opacity", 0);
@@ -43,7 +43,7 @@ function network(){
   }
 
   function hideTooltip(d) {
-    tooltip.style("opacity", 0).style("display", "none")
+    tooltip.style("opacity", 0).style("display", "none");
   }
 
    function showLinkTooltip(data) {
@@ -60,7 +60,7 @@ function network(){
   }
 
   function drawNetwork(graph){
-    links = graph.links.slice()
+    links = graph.links.slice();
     for(var i = links.length - 1; i >= 0; i--) {
       if(links[i].value < treshold) {
         links.splice(i, 1);

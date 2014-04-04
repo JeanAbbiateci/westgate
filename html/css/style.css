@@ -288,6 +288,12 @@ div.tooltip {
   overflow: hidden;
   z-index: 999;
   line-height: 21px; }
+  div.tooltip strong {
+    font-weight: bold; }
+  div.tooltip small {
+    line-height: 13px;
+    font-size: 11px;
+    font-style: italic; }
   div.tooltip p {
     color: #343a45; }
   div.tooltip h1 {
@@ -648,8 +654,8 @@ div.newstip .time {
     margin-top: 50px !important; }
   #tweet-map .description-text {
     position: absolute;
-    top: 50%;
-    left: 10%; }
+    top: 43%;
+    left: 8%; }
 
 #word-chart svg {
   margin-top: 126px !important; }
@@ -667,6 +673,7 @@ div.newstip .time {
   position: absolute;
   top: 30px;
   left: 22%;
+  padding: 10px;
   background-color: #343a45;
   border-radius: 4px; }
 #word-chart div > svg:nth-child(2) > text {
