@@ -2,10 +2,10 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
-@import url(http://fonts.googleapis.com/css?family=Homenaje);
-@import url(http://fonts.googleapis.com/css?family=Muli:300,400);
-@import url(http://fonts.googleapis.com/css?family=Montserrat:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Homenaje);
+@import url(https://fonts.googleapis.com/css?family=Muli:300,400);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,700);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -658,7 +658,7 @@ div.newstip .time {
   #tweet-map .description-text {
     position: absolute;
     top: 43%;
-    left: 8%; }
+    left: 6%; }
 
 #word-chart svg {
   margin-top: 126px !important; }
