@@ -718,6 +718,9 @@ div.newstip .time {
 #word-chart .tableHead {
   background: #eee; }
 
+#legend rect {
+  cursor: pointer; }
+
 #word-container > svg:nth-child(3) text {
   fill: #dbe1e7; }
 

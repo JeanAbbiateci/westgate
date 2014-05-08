@@ -93,8 +93,14 @@
 
 }
 
+#legend rect {
+        cursor: pointer;
+    }
+
 #word-container > svg:nth-child(3){
     text{
         fill : $white
     }
+
+
 }

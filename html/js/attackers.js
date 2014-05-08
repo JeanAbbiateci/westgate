@@ -111,6 +111,7 @@
 
 
         legendsvg = container.append("svg")
+                .attr("id", "legend")
                 .attr("width", wlegend)
                 .attr("height", 420);
 
