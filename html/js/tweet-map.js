@@ -229,7 +229,6 @@ var sliderModule = (function(pageHeight) {
                 .attr("cy", function(d) {
             return projection([d[1], d[2]])[1];
         })
-                .attr("style", "fill:url(#gradient)") //Firefox fix
                 .on("mouseover", function(d) {
             tipdiv
                     .style("opacity", 1)
@@ -294,7 +293,6 @@ var sliderModule = (function(pageHeight) {
     {
         //timeset
         var currenttime = tweets_per_location[ti].key;
-        console.log(currenttime);
         var timeobject = moment(currenttime.substring(4, 6) + "-" + currenttime.substring(0, 3) + "-2013+0000", "HH-DDD-YYYY+Z");
         timediv.html("<h1>" + timeobject.zone(-3).format("dddd D, h:mm a") + "</h1>");
     }
@@ -349,7 +347,6 @@ var sliderModule = (function(pageHeight) {
                 .max(tweets_per_hour.length - 1)
                 .step(1)
                 .on("slide", function(evt, value) {
-                    console.log(value)
                     ti = value;
                     if(currentPageIndex === 11)
                         drawDots();
